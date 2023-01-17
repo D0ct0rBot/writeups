@@ -1,4 +1,3 @@
-https://github.github.com/gfm
 # Loly
 Realizamos un escaneo en la red:
 ```bash
@@ -45,7 +44,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.62 seconds
 Inicialmente, parece haber un puerto abierto: el 80.
 
 ---
-Miramos que version de servidor http se está utilizando:
+Miramos que versión de servidor http se está utilizando:
 
 ```bash
 > sudo nmap -sV -p 80 -n -Pn 192.168.1.25 
@@ -66,7 +65,9 @@ Nmap done: 1 IP address (1 host up) scanned in 8.48 seconds
 ```
 
 ---
-Ahora intentamos mirar qué posible sistema operativo está corriendo dicho servicio, haciendo una búsqueda em google con las siguientes palabras clave: nginx 1.10.3 Launchpad, y allí nos aparecerá lo más probable la versión del SO sobre el que corre el servicio.
+Ahora intentamos mirar qué posible sistema operativo está corriendo dicho servicio, haciendo una búsqueda n Google con las siguientes palabras clave "nginx 1.10.3 Launchpad", y allí nos aparecerá, lo más probable, la versión del SO sobre el que corre el servicio:
+
+![nginx_launchpad.png](nginx_launchpad.png)
 
 Al parecer está corriendo sobre Ubuntu xenial.
 
@@ -83,6 +84,7 @@ http://192.168.1.25 [200 OK] Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Lin
 
 ---
 Y ahora miramos la página principal:
+
 ![whatweb](2023-01-16_15-45.png)
 
 ---
@@ -116,6 +118,7 @@ Dentro del directorio wordpress miramos qué posibles subdirectorios puede haber
 000007180:   301        7 L      13 W       194 Ch      "wp-admin"              
 000045240:   200        496 L    1474 W     28194 Ch    "http://192.168.1.25/wordpress/"
 ```						   
+
 --- 
 Al acceder al directorio wordpress desde el navegador esto es lo que vemos:
 
@@ -123,7 +126,7 @@ Al acceder al directorio wordpress desde el navegador esto es lo que vemos:
 
 ---
 
-Como podemos ver los enlaces hacen referencia a un dominio en concreto, que asumimos es el que aloja el sitio. Por ese motivo, modificaremos /etc/hosts para asignar a la direccion IP el dominio en cuestion:
+Como podemos ver los enlaces hacen referencia a un dominio en concreto, que asumimos es el que aloja el sitio web. Por ese motivo, modificaremos ```/etc/hosts``` para asignar a la dirección IP el dominio en cuestión:
 
 ```bash
    ───┬──────────────────────────────────────────────────────────────────────────────────────────
@@ -136,5 +139,6 @@ Como podemos ver los enlaces hacen referencia a un dominio en concreto, que asum
   5   │ ff02::2     ip6-allrouters
   6   │ 192.168.1.25 loly.lc</pre><p>&nbsp;&nbsp;</p>
 ```
-Al clicar en la primera pagina, se abre la pagina principal del blog:
+
+Al clicar en la primera página, se abre la página principal del blog:
 ![](2023-01-16_15-59.png)
