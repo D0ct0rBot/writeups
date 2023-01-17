@@ -1,18 +1,27 @@
-﻿<html><body> <p>Realizamos un escaneo en la red:</p><p></p><p>&gt; sudo arp-scan -I eth0 --localnet</p><p></p><pre>Interface: eth0, type: EN10MB, MAC: 08:00:27:22:46:4f, IPv4: 192.168.1.80
+﻿#
+Realizamos un escaneo en la red:
+```bash
+> sudo arp-scan -I eth0 --localnet
+```
+```bash
+Interface: eth0, type: EN10MB, MAC: 08:00:27:22:46:4f, IPv4: 
+192.168.1.80
 Starting arp-scan 1.9.8 with 256 hosts (https://github.com/royhills/arp-scan)
-192.168.1.1	48:8d:36:4f:94:37	Arcadyan Corporation
-192.168.1.15	e0:d5:5e:56:4d:af	GIGA-BYTE TECHNOLOGY CO.,LTD.
+192.168.1.1				Arcadyan Corporation
+192.168.1.15				GIGA-BYTE TECHNOLOGY CO.,LTD.
 192.168.1.25	00:0c:29:01:03:d9	VMware, Inc.
-192.168.1.32	78:c8:81:2a:af:2d	Sony Interactive Entertainment Inc.
-192.168.1.44	dc:f5:05:5b:28:45	AzureWave Technology Inc.
-192.168.1.26	d4:a6:51:1b:71:3b	Tuya Smart Inc.
-192.168.1.12	68:db:f5:00:01:0e	Amazon Technologies Inc.
-192.168.1.76	e0:9d:13:c6:e2:52	Samsung Electronics Co.,Ltd
-192.168.1.77	d0:37:45:11:23:fa	TP-LINK TECHNOLOGIES CO.,LTD.
-192.168.1.98	9c:d2:1e:5d:d5:57	Hon Hai Precision Ind. Co.,Ltd.
-192.168.1.34	e8:9f:6d:a5:54:54	Espressif Inc.
-192.168.1.115	48:0f:cf:dd:08:d5	Hewlett Packard
-192.168.1.79	74:60:fa:a4:0c:2b	HUAWEI TECHNOLOGIES CO.,LTD</pre><p></p><p>-------------------------------------------------------------------------</p><p></p><p>Vemos que hay una máquina VMWare con ip 192.168.1.25</p><p></p><p>Comprobamos que la máquina esté activa:</p><p></p><p>&nbsp;└─$ ping -c 1 192.168.1.25 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p><pre> PING 192.168.1.25 (192.168.1.25) 56(84) bytes of data.
+192.168.1.32				Sony Interactive Entertainment Inc.
+192.168.1.44				AzureWave Technology Inc.
+192.168.1.26				Tuya Smart Inc.
+192.168.1.12				Amazon Technologies Inc.
+192.168.1.76				Samsung Electronics Co.,Ltd
+192.168.1.77				TP-LINK TECHNOLOGIES CO.,LTD.
+192.168.1.98				Hon Hai Precision Ind. Co.,Ltd.
+192.168.1.34				Espressif Inc.
+192.168.1.115				Hewlett Packard
+192.168.1.79				HUAWEI TECHNOLOGIES CO.,LTD
+```
+</pre><p></p><p>-------------------------------------------------------------------------</p><p></p><p>Vemos que hay una máquina VMWare con ip 192.168.1.25</p><p></p><p>Comprobamos que la máquina esté activa:</p><p></p><p>&nbsp;└─$ ping -c 1 192.168.1.25 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p><pre> PING 192.168.1.25 (192.168.1.25) 56(84) bytes of data.
  64 bytes from 192.168.1.25: icmp_seq=1 ttl=64 time=3.08 ms
  
  --- 192.168.1.25 ping statistics ---
