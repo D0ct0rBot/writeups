@@ -5,6 +5,8 @@ Realizamos un escaneo en la red:
 ```bash
 > sudo arp-scan -I eth0 --localnet
 ```
+![sudo arp-scan -I eth0 --localnet](arp-scan.png)
+
 ```bash
 Interface: eth0, type: EN10MB, MAC: 08:00:27:22:46:4f, IPv4: 
 192.168.1.80
