@@ -23,12 +23,22 @@ Starting arp-scan 1.9.8 with 256 hosts (https://github.com/royhills/arp-scan)
 192.168.1.115				Hewlett Packard
 192.168.1.79				HUAWEI TECHNOLOGIES CO.,LTD
 ```
-</pre><p></p><p>-------------------------------------------------------------------------</p><p></p><p>Vemos que hay una máquina VMWare con ip 192.168.1.25</p><p></p><p>Comprobamos que la máquina esté activa:</p><p></p><p>&nbsp;└─$ ping -c 1 192.168.1.25 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p><pre> PING 192.168.1.25 (192.168.1.25) 56(84) bytes of data.
+---
+Vemos que hay una máquina VMWare con ip 192.168.1.25
+Comprobamos que la máquina esté activa:
+```bash
+> ping -c 1 192.168.1.25
+```
+```bash
+PING 192.168.1.25 (192.168.1.25) 56(84) bytes of data.
  64 bytes from 192.168.1.25: icmp_seq=1 ttl=64 time=3.08 ms
  
  --- 192.168.1.25 ping statistics ---
  1 packets transmitted, 1 received, 0% packet loss, time 0ms
- rtt min/avg/max/mdev = 3.076/3.076/3.076/0.000 ms</pre><p>&nbsp;</p><p>-------------------------------------------------------------------------</p><p></p><p>Ahora, realizamos un escaneo simple de puertos:</p><p></p><p>sudo nmap -sS -p1-1000 -Pn 192.168.1.25</p><pre>Starting Nmap 7.93 ( https://nmap.org ) at 2023-01-15 13:51 EST
+ rtt min/avg/max/mdev = 3.076/3.076/3.076/0.000 ms
+ ```
+ ---
+ Ahora, realizamos un escaneo simple de puertos:</p><p></p><p>sudo nmap -sS -p1-1000 -Pn 192.168.1.25</p><pre>Starting Nmap 7.93 ( https://nmap.org ) at 2023-01-15 13:51 EST
 Nmap scan report for ubuntu.home (192.168.1.25)
 Host is up (0.0086s latency).
 Not shown: 999 closed tcp ports (reset)
