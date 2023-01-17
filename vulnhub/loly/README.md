@@ -1,6 +1,5 @@
 https://github.github.com/gfm
-
-#
+# Loly
 Realizamos un escaneo en la red:
 ```bash
 > sudo arp-scan -I eth0 --localnet
@@ -8,11 +7,13 @@ Realizamos un escaneo en la red:
 ![sudo arp-scan -I eth0 --localnet](arp-scan.png)
 
 ---
-Vemos que hay una máquina VMWare con ip 192.168.1.25
+Vemos que hay una máquina VMWare con ip 192.168.1.25. 
 Comprobamos que la máquina esté activa:
+
 ```bash
 > ping -c 1 192.168.1.25
 ```
+
 ```bash
 PING 192.168.1.25 (192.168.1.25) 56(84) bytes of data.
 64 bytes from 192.168.1.25: icmp_seq=1 ttl=64 time=3.08 ms
@@ -21,8 +22,10 @@ PING 192.168.1.25 (192.168.1.25) 56(84) bytes of data.
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 3.076/3.076/3.076/0.000 ms
 ```
+
 ---
 Ahora, realizamos un escaneo simple de puertos:
+
 ```bash
 > sudo nmap -sS -p1-1000 -Pn 192.168.1.25
 ```
@@ -38,10 +41,12 @@ MAC Address: 00:0C:29:01:03:D9 (VMware)
 
 Nmap done: 1 IP address (1 host up) scanned in 0.62 seconds
 ```
-Inicialmente, parece haber un puerto abierto: el 80.
----
 
+Inicialmente, parece haber un puerto abierto: el 80.
+
+---
 Miramos que version de servidor http se está utilizando:
+
 ```bash
 > sudo nmap -sV -p 80 -n -Pn 192.168.1.25 
 ```
@@ -59,9 +64,9 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 8.48 seconds
 ```
+
 ---
-Ahora intentamos mirar qué posible sistema operativo está corriendo dicho servicio, haciendo una búsqueda em google con las siguientes palabras clave:
-nginx 1.10.3 Launchpad y allí nos aparecerá lo más probable la versión del SO sobre el que corre el servicio.
+Ahora intentamos mirar qué posible sistema operativo está corriendo dicho servicio, haciendo una búsqueda em google con las siguientes palabras clave: nginx 1.10.3 Launchpad, y allí nos aparecerá lo más probable la versión del SO sobre el que corre el servicio.
 
 Al parecer está corriendo sobre Ubuntu xenial.
 
@@ -71,23 +76,46 @@ Miramos qué tecnologías web están corriendo sobre ese servidor:
 ```bash
 > whatweb 192.168.1.25
 ```
+
 ```bash
 http://192.168.1.25 [200 OK] Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Linux][nginx/1.10.3 (Ubuntu)], IP[192.168.1.25], Title[Welcome to nginx!], nginx[1.10.3]
+```bash
+
 ---
 Y ahora miramos la página principal:
 ![whatweb](2023-01-16_15-45.png)
 
 ---
-Como no hay nada, buscaremos directorios ocultos posibles:</p><p></p><p>wfuzz -c --hc 404 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://192.168.1.25/FUZZ&nbsp;</p><p></p><pre> 000000009:   200        25 L     69 W       612 Ch      &quot;# Suite 300, San Franci
-                                                        sco, California, 94105, 
-                                                        USA.&quot;                   
- 000000587:   301        7 L      13 W       194 Ch      &quot;wordpress&quot;             
- 000045240:   200        25 L     69 W       612 Ch      &quot;http://192.168.1.25/&quot;  </pre><p></p><p>Podemos ver que hay un directorio wordpress</p><p></p><p>-------------------------------------------------------------------------</p><p></p><p>Dentro del directorio wordpress miramos qué posibles subdirectorios puede haber o páginas.</p><p>wfuzz -c --hc 404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt &nbsp;http://192.168.1.25/wordpress/FUZZ wfuzz -c --hc 404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt &nbsp;http://192.168.1.25/wordpress/FUZZ&nbsp;</p><p></p><pre>000000013:   200        496 L    1474 W     28194 Ch    &quot;#&quot;                     
-000000241:   301        7 L      13 W       194 Ch      &quot;wp-content&quot;            
-000000786:   301        7 L      13 W       194 Ch      &quot;wp-includes&quot;           
-000007180:   301        7 L      13 W       194 Ch      &quot;wp-admin&quot;              
-000045240:   200        496 L    1474 W     28194 Ch    &quot;http://192.168.1.25/wor
-                                                       dpress/&quot;  </pre><p></p>
+Como no hay nada, buscaremos directorios ocultos posibles:
+
+```bash
+> wfuzz -c --hc 404 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://192.168.1.25/FUZZ
+```
+
+```bash
+000000009:   200        25 L     69 W       612 Ch      "# Suite 300, San Franci"
+							"sco, California, 94105," 
+							"USA."
+000000587:   301        7 L      13 W       194 Ch     "wordpress"             
+000045240:   200        25 L     69 W       612 Ch     "http://192.168.1.25/#"
+```
+Podemos ver que hay un directorio wordpress
+
+---
+Dentro del directorio wordpress miramos qué posibles subdirectorios puede haber o páginas.
+
+```bash
+> wfuzz -c --hc 404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://192.168.1.25/wordpress/FUZZ 
+```
+```bash
+000000013:   200        496 L    1474 W     28194 Ch    "#"                     
+000000241:   301        7 L      13 W       194 Ch      "wp-content"            
+000000786:   301        7 L      13 W       194 Ch      "wp-includes"           
+000007180:   301        7 L      13 W       194 Ch      "wp-admin"              
+000045240:   200        496 L    1474 W     28194 Ch    "http://192.168.1.25/wordpress/"
+						   
+						   
+						   </pre><p></p>
 	<p>Al acceder al directorio wordpress desde el navegador esto es lo que vemos:</p>
 	<figure>
     <img alt="2023 01 16 15 49" title="2023 01 16 15 49" src="file:///home/kali/Documents/vulnhub/loly/writeup/2023-01-16_15-49.png"/>
