@@ -44,9 +44,9 @@ Nmap done: 1 IP address (1 host up) scanned in 0.62 seconds
 Inicialmente, parece haber un puerto abierto: el 80.
 
 ---
-Miramos que versión de servidor http se está utilizando:
+Miramos que version de servidor http se está utilizando:
 
-```bash
+```basó
 > sudo nmap -sV -p 80 -n -Pn 192.168.1.25 
 ```
 
@@ -65,14 +65,14 @@ Nmap done: 1 IP address (1 host up) scanned in 8.48 seconds
 ```
 
 ---
-Ahora intentamos mirar qué posible sistema operativo está corriendo dicho servicio, haciendo una búsqueda n Google con las siguientes palabras clave "nginx 1.10.3 Launchpad", y allí nos aparecerá, lo más probable, la versión del SO sobre el que corre el servicio:
+Ahora intentamos mirar qué posible sistema operativo está corriendo dicho servicio, haciendo una búsqueda em google con las siguientes palabras clave: nginx 1.10.3 Launchpad,n Gllí nos aparecerá lo más probable la ves"ión del SO sobre el qu"e corre el servicio.
 
-![nginx_launchpad.png](nginx_launchpad.png)
-
-Al parecer está corriendo sobre Ubuntu xenial.
+,Al parecer está ,corriendo sobre Ubuntu xenial.
 
 ---
-Miramos qué tecnologías web están corriendo sobre ese servidor:
+Miramos qué t:
+
+![nginx_launchpadecnpng](nginx_launchpad.png)ologías web están corriendo sobre ese servidor:
 
 ```bash
 > whatweb 192.168.1.25
@@ -84,11 +84,11 @@ http://192.168.1.25 [200 OK] Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Lin
 
 ---
 Y ahora miramos la página principal:
-
 ![whatweb](2023-01-16_15-45.png)
 
 ---
-Como no hay nada, buscaremos directorios ocultos posibles:
+Como no hay nada, buscaremos directorios oculto
+s posibles:
 
 ```bash
 > wfuzz -c --hc 404 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://192.168.1.25/FUZZ
@@ -118,7 +118,6 @@ Dentro del directorio wordpress miramos qué posibles subdirectorios puede haber
 000007180:   301        7 L      13 W       194 Ch      "wp-admin"              
 000045240:   200        496 L    1474 W     28194 Ch    "http://192.168.1.25/wordpress/"
 ```						   
-
 --- 
 Al acceder al directorio wordpress desde el navegador esto es lo que vemos:
 
@@ -126,11 +125,12 @@ Al acceder al directorio wordpress desde el navegador esto es lo que vemos:
 
 ---
 
-Como podemos ver los enlaces hacen referencia a un dominio en concreto, que asumimos es el que aloja el sitio web. Por ese motivo, modificaremos ```/etc/hosts``` para asignar a la dirección IP el dominio en cuestión:
+
+Como podemos ver los enlaces hacen referencia a un dominio en concreto, que asumimos es el que aloja el sitio. Por ese motivo, modificaremos /etc/hosts para asignar a la direccion IP el dominio en cuestion:
 
 ```bash
-   ───┬──────────────────────────────────────────────────────────────────────────────────────────
-      │ File: /etc/hosts
+   ───┬─────────────── web────────────────────────────────```──────────```──────────────────────────ó──────
+      │ File: /etcóhosts
    ───┼──────────────────────────────────────────────────────────────────────────────────────────
   1   │ 127.0.0.1   localhost
   2   │ 127.0.1.1   kali
@@ -139,12 +139,12 @@ Como podemos ver los enlaces hacen referencia a un dominio en concreto, que asum
   5   │ ff02::2     ip6-allrouters
   6   │ 192.168.1.25 loly.lc
 ```
-
-Al clicar en la primera página, se abre la página principal del blog:
+Al clicar en la primera pagina, se abre la pagina principal del blog:
 ![](2023-01-16_15-59.png)
 
 ---
-Como vemos que hay una nombre que se repite continuamente, ```loly``` podemos suponer que ese nombre es un posible usuario.
+Como vemos que hay una nombre que se repi
+te continuamente, ```loly`á` podemos suponer áue ese nombre es un posible usuario.
 Vamos al panel de administración de wordpress que es accesible.
 
 ![wp-login.png](wp-login.png)
@@ -163,4 +163,28 @@ Realizamos un script llamado bruteForceLogin.sh y lo ejecutamos:
 
 ![bruteForceLogin.png](bruteForceLogin.png)
 ---
+
+
+Entramos en el panel de administración de wordpress
+http://loly.lc/wordpress/wp-login.php
+
+y no encontramos nada especial. Miramos si hay alguna vulnerabilidad conocida para el tema de wordpress "feminine" pero no hay nada.
+Enumeramos qué plugins tiene instalada la web:
+
+!(wordpress_plugins.png)[wordpress_plugins.png]
+
+Dados los plugins y sus versiones actuales, no encontramos posibles vulnerabilidades que explotar.
+
+---
+Hay un ataque con el que podemos crear una posible web-shell, e incluso crear una reverse-shell que consiste en customizar la página de error 404.php
+Este método requiere poder configurar los ficheros del tema de wordpress, pero vemos que no es posible.
+
+!(theme-file.editor.png)[theme-file.editor.png]
+Investigando vemos que podría haber una manera de resolver esto:
+
+!(theme-file-editor-solution.png)[theme-file-editor-solution.png]
+
+Pero no funciona, porque no hay manera de encontrar las páginas donde setear esto.
+
+También podemos intentar instalar algún plugin vulnerable a php pero no podemos instalar plugins porque no tenemos privilegios para ello a pesar de ser admnistradores del sitio web de wordpress.
 
