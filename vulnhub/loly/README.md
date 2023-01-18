@@ -134,7 +134,29 @@ Como podemos ver los enlaces hacen referencia a un dominio en concreto, que asum
   3   │ ::1     localhost ip6-localhost ip6-loopback
   4   │ ff02::1     ip6-allnodes
   5   │ ff02::2     ip6-allrouters
-  6   │ 192.168.1.25 loly.lc</pre><p>&nbsp;&nbsp;</p>
+  6   │ 192.168.1.25 loly.lc
 ```
 Al clicar en la primera pagina, se abre la pagina principal del blog:
 ![](2023-01-16_15-59.png)
+
+---
+Como vemos que hay una nombre que se repite continuamente, ```loly``` podemos suponer que ese nombre es un posible usuario.
+Vamos al panel de administración de wordpress que es accesible.
+
+![wp-login.png](wp-login.png)
+
+Antes de nada probamos las típicas credenciales por defecto: Admin (no password), Admin / Admin, Admin / Admin123 etc...
+Como no nos deja logearnos, podemos probar otras alternativas con el usuario Loly.
+Tampoco.
+
+Dado que hay mucha probabilidad de que loly sea un usuario válido, podemos intentar hacer un ataque de fuerza bruta para averiguar las credenciales.
+
+Realizamos un script llamado bruteForceLogin.sh y lo ejecutamos:
+
+```bash
+./bruteforceLogin.sh loly /usr/share/wordlists/rockyou.txt  
+```
+
+![bruteForceLogin.png](bruteForceLogin.png)
+---
+
