@@ -129,8 +129,8 @@ Al acceder al directorio wordpress desde el navegador esto es lo que vemos:
 Como podemos ver los enlaces hacen referencia a un dominio en concreto, que asumimos es el que aloja el sitio. Por ese motivo, modificaremos /etc/hosts para asignar a la direccion IP el dominio en cuestion:
 
 ```bash
-   ───┬─────────────── web────────────────────────────────```──────────```──────────────────────────ó──────
-      │ File: /etcóhosts
+   ───┬───────────────────────────────────────────────────────────────────────────────────ó──────
+      │ File: /etc/hosts
    ───┼──────────────────────────────────────────────────────────────────────────────────────────
   1   │ 127.0.0.1   localhost
   2   │ 127.0.1.1   kali
@@ -139,23 +139,22 @@ Como podemos ver los enlaces hacen referencia a un dominio en concreto, que asum
   5   │ ff02::2     ip6-allrouters
   6   │ 192.168.1.25 loly.lc
 ```
-Al clicar en la primera pagina, se abre la pagina principal del blog:
+Al clicar en la primera página, se abre la página principal del blog:
 ![](2023-01-16_15-59.png)
 
 ---
-Como vemos que hay una nombre que se repi
-te continuamente, ```loly`á` podemos suponer áue ese nombre es un posible usuario.
+Como vemos que hay una nombre que se repite continuamente, ```loly``` podemos suponer que ese nombre es un posible usuario.
 Vamos al panel de administración de wordpress que es accesible.
 
 ![wp-login.png](wp-login.png)
 
-Antes de nada probamos las típicas credenciales por defecto: Admin (no password), Admin / Admin, Admin / Admin123 etc...
-Como no nos deja logearnos, podemos probar otras alternativas con el usuario Loly.
+Antes de nada probamos las típicas credenciales por defecto: ~Admin~ (no password), ~Admin / Admin~, ~Admin / Admin123~ etc...
+Como no nos deja logearnos, podemos probar otras alternativas con el usuario ~loly~.
 Tampoco.
 
 Dado que hay mucha probabilidad de que loly sea un usuario válido, podemos intentar hacer un ataque de fuerza bruta para averiguar las credenciales.
 
-Realizamos un script llamado bruteForceLogin.sh y lo ejecutamos:
+Realizamos un script llamado ```bruteForceLogin.sh``` y lo ejecutamos:
 
 ```bash
 ./bruteforceLogin.sh loly /usr/share/wordlists/rockyou.txt  
@@ -171,7 +170,7 @@ http://loly.lc/wordpress/wp-login.php
 y no encontramos nada especial. Miramos si hay alguna vulnerabilidad conocida para el tema de wordpress "feminine" pero no hay nada.
 Enumeramos qué plugins tiene instalada la web:
 
-!(wordpress_plugins.png)[wordpress_plugins.png]
+![wordpress_plugins.png](wordpress_plugins.png)
 
 Dados los plugins y sus versiones actuales, no encontramos posibles vulnerabilidades que explotar.
 
@@ -179,12 +178,13 @@ Dados los plugins y sus versiones actuales, no encontramos posibles vulnerabilid
 Hay un ataque con el que podemos crear una posible web-shell, e incluso crear una reverse-shell que consiste en customizar la página de error 404.php
 Este método requiere poder configurar los ficheros del tema de wordpress, pero vemos que no es posible.
 
-!(theme-file.editor.png)[theme-file.editor.png]
+![theme-file.editor.png](theme-file.editor.png)
 Investigando vemos que podría haber una manera de resolver esto:
 
-!(theme-file-editor-solution.png)[theme-file-editor-solution.png]
+![theme-file-editor-solution.png](theme-file-editor-solution.png)
 
 Pero no funciona, porque no hay manera de encontrar las páginas donde setear esto.
 
 También podemos intentar instalar algún plugin vulnerable a php pero no podemos instalar plugins porque no tenemos privilegios para ello a pesar de ser admnistradores del sitio web de wordpress.
+![cannot_install_pluggins.png](cannot_install_pluggins.png)
 
