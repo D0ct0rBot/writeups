@@ -178,7 +178,7 @@ Dados los plugins y sus versiones actuales, no encontramos posibles vulnerabilid
 Hay un ataque con el que podemos crear una posible web-shell, e incluso crear una reverse-shell que consiste en customizar la página de error 404.php
 Este método requiere poder configurar los ficheros del tema de wordpress, pero vemos que no es posible.
 
-![theme-file.editor.png](theme-file.editor.png)
+![theme-file-editor.png](theme-file-editor.png)
 Investigando vemos que podría haber una manera de resolver esto:
 
 ![theme-file-editor-solution.png](theme-file-editor-solution.png)
