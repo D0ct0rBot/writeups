@@ -8,7 +8,7 @@ Realizamos un escaneo en la red:
 
 ![sudo arp-scan -I eth0 --localnet](arp-scan.png)
 
---- ---------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 Vemos que hay una máquina VMWare con ip 192.168.1.25. 
 Comprobamos que la máquina esté activa:
@@ -26,7 +26,7 @@ PING 192.168.1.25 (192.168.1.25) 56(84) bytes of data.
 rtt min/avg/max/mdev = 3.076/3.076/3.076/0.000 ms
 ```
 
----
+-------------------------------------------------------------------------------
 
 Ahora, realizamos un escaneo simple de puertos:
 
@@ -48,7 +48,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.62 seconds
 
 Inicialmente, parece haber un puerto abierto: el 80.
 
----
+-------------------------------------------------------------------------------
 
 Miramos que version de servidor http se está utilizando:
 
@@ -70,14 +70,14 @@ Service detection performed. Please report any incorrect results at https://nmap
 Nmap done: 1 IP address (1 host up) scanned in 8.48 seconds
 ```
 
----
+-------------------------------------------------------------------------------
 
 Ahora intentamos mirar qué posible sistema operativo está corriendo dicho servicio, haciendo una búsqueda em google con las siguientes palabras clave: nginx 1.10.3 Launchpad,n Gllí nos aparecerá lo más probable la vesión del SO sobre el que corre el servicio. 
 Al parecer está ,corriendo sobre ```Ubuntu Xenial```.
 
 ![nginx_launchpadecnpng](nginx_launchpad.png)
 
----
+-------------------------------------------------------------------------------
 
 Miramos qué tologías web están corriendo sobre ese servidor:
 
@@ -89,12 +89,12 @@ Miramos qué tologías web están corriendo sobre ese servidor:
 http://192.168.1.25 [200 OK] Country[RESERVED][ZZ], HTML5, HTTPServer[Ubuntu Linux][nginx/1.10.3 (Ubuntu)], IP[192.168.1.25], Title[Welcome to nginx!], nginx[1.10.3]
 ```
 
----
+-------------------------------------------------------------------------------
 
 Y ahora miramos la página principal:
 ![whatweb](2023-01-16_15-45.png)
 
----
+-------------------------------------------------------------------------------
 
 Como no hay nada, buscaremos directorios ocultos posibles:
 
@@ -112,7 +112,7 @@ Como no hay nada, buscaremos directorios ocultos posibles:
 
 Podemos ver que hay un directorio wordpress.
 
----
+-------------------------------------------------------------------------------
 
 Dentro del directorio wordpress miramos qué posibles subdirectorios puede haber o páginas.
 
@@ -127,7 +127,7 @@ Dentro del directorio wordpress miramos qué posibles subdirectorios puede haber
 000007180:   301        7 L      13 W       194 Ch      "wp-admin"              
 000045240:   200        496 L    1474 W     28194 Ch    "http://192.168.1.25/wordpress/"
 ```						   
---- 
+-------------------------------------------------------------------------------
 
 Al acceder al directorio wordpress desde el navegador esto es lo que vemos:
 
@@ -154,7 +154,7 @@ Al clicar en la primera página, se abre la página principal del blog:
 
 ![](2023-01-16_15-59.png)
 
----
+-------------------------------------------------------------------------------
 
 Como vemos que hay una nombre que se repite continuamente, ```loly``` podemos suponer que ese nombre es un posible usuario.
 Vamos al panel de administración de wordpress que es accesible.
@@ -175,7 +175,7 @@ Realizamos un script llamado ```bruteForceLogin.sh``` y lo ejecutamos:
 
 ![bruteForceLogin.png](bruteForceLogin.png)
 
----
+-------------------------------------------------------------------------------
 
 Entramos en el panel de administración de wordpress:
 
@@ -188,7 +188,7 @@ Enumeramos qué plugins tiene instalada la web:
 
 Dados los plugins y sus versiones actuales, no encontramos posibles vulnerabilidades que explotar.
 
----
+-------------------------------------------------------------------------------
 
 Hay un ataque con el que podemos crear una posible web-shell, e incluso crear una reverse-shell que consiste en customizar la página de error 404.php
 Este método requiere poder configurar los ficheros del tema de wordpress, pero vemos que no es posible.
@@ -281,6 +281,8 @@ https://www.bluehost.com/help/article/awordpress-find-database
 
 ![where_is_wordpress_db.png](where_is_wordpress_db.png)
 
+-------------------------------------------------------------------------------
+
 Así pues vamos al directorio home de www-data
 ~/html/wordpress$ y alli está el fichero wp-config.php
 
@@ -341,7 +343,7 @@ MariaDB[(none)]> connect wordpress
 
 Tras mirar un tiempo, no encontramos nada relevante, por lo que abandonamos esta vía.
 
----
+-------------------------------------------------------------------------------
 
 Probamos a usar el password de la base de datos como password para la cuenta loly.
 
@@ -354,7 +356,7 @@ loly@ubuntu:/var/www/html/wordpress/wp-content/banners$
 
 y funciona correctamente!
 
---- ---------------------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 ```bash
 >  ls -la /home/loly
@@ -372,8 +374,29 @@ drwxr-xr-x 3 root root 4096 Aug 19  2020 ..
 -rw-r--r-- 1 loly loly    0 Aug 19  2020 .sudo_as_admin_successful
 -rw------- 1 loly loly  614 Aug 20  2020 .viminfo
 ```
+-------------------------------------------------------------------------------
 
---- ---------------------------------------------------------------------------
+```bash
+loly@ubuntu:~$ cat .bash_history 
+sudo -l
+id
+su root
+cd /var/www/html
+ls
+rm -r latest.zip 
+cd wordpress/
+ls
+cat wp-config.php 
+more wp-config.php 
+passwd
+sudo vim /etc/sudoers
+su root
+sudo vim /etc/shadow
+sudo passwd root
+su root
+```
+
+-------------------------------------------------------------------------------
 
 https://askubuntu.com/questions/57808/what-is-the-popularity-contest-package-for
 
@@ -390,3 +413,4 @@ drwx-wx--T 2 root crontab 4096 Jan 21 01:55 crontabs
 loly@ubuntu:/var/spool/cron$ cd crontabs/
 bash: cd: crontabs/: Permission denied
 ```
+-------------------------------------------------------------------------------
