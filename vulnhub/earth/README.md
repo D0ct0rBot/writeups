@@ -72,3 +72,6 @@ OpenSSL/1.1.1l mod_wsgi/4.7.1 Python/3.9], IP[192.168.1.53],
 OpenSSL[1.1.1l], Python[3.9], Title[400 Bad Request]
 ```
 
+Si inspeccionamos las webs mediante un navegador, vemos que ambos puertos dan Bad Request (400) como respuesta.
+
+
