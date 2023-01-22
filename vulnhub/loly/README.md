@@ -161,8 +161,8 @@ Vamos al panel de administración de wordpress que es accesible.
 
 ![wp-login.png](wp-login.png)
 
-Antes de nada probamos las típicas credenciales por defecto: ~Admin~ (no password), ~Admin / Admin~, ~Admin / Admin123~ etc...
-Como no nos deja logearnos, podemos probar otras alternativas con el usuario ~loly~.
+Antes de nada probamos las típicas credenciales por defecto: Admin (no password), Admin / Admin, Admin / Admin123 etc...
+Como no nos deja logearnos, podemos probar otras alternativas con el usuario **loly**.
 Tampoco.
 
 Dado que hay mucha probabilidad de que loly sea un usuario válido, podemos intentar hacer un ataque de fuerza bruta para averiguar las credenciales.
