@@ -349,7 +349,7 @@ Tras mirar un tiempo, no encontramos nada relevante, por lo que abandonamos esta
 Probamos a usar el password de la base de datos como password para la cuenta loly.
 
 ```bash
-su loly
+> su loly
 password: lolyisabeautifulgirl
 
 loly@ubuntu:/var/www/html/wordpress/wp-content/banners$
@@ -420,13 +420,15 @@ Google.
 ![sudo_as_admin_successful_2.png](sudo_as_admin_successful_2.png)
 
 Siguiendo mirando otras cosas mirarmos los ficheros de configuración de cron. 
-Vemos que en uno de los archivos hay un script que se ejecuta regularmente llamado popularity_contest.
-Buscando en Google.
+Vemos que en uno de los archivos hay un script que se ejecuta regularmente llamado "popularity_contest".
+
 -------------------------------------------------------------------------------
 
-https://askubuntu.com/questions/57808/what-is-the-popularity-contest-package-for
+Buscando en Google: linux popularity_contest script
+Encomntramos la siguiente página que nos da algo de información:
 
-![popularity_contest.png](popularity_contest.png.png)
+> https://askubuntu.com/questions/57808/what-is-the-popularity-contest-package-for
+![popularity_contest.png](popularity_contest.png)
 
 Seguimos investigando, esta vez inspeccionando los logs de /var/logs/auth.log y /var/logs/syslog.log
 
@@ -470,10 +472,11 @@ Por aquí llegamos a una vía muerta, así que hay que buscar otra vía para esc
 
 Miramos qué posibles exploits hay para el sistema operativo host.
 
+```bash
 > searchsploit ubuntu 4.4 privilege escalation
+```
 
 ```bash
-$ searchsploit ubuntu 4.4 privilege scalation
 ------------------------------------------------------------ ---------------------------------
  Exploit Title                                              |  Path
 ------------------------------------------------------------ ---------------------------------
