@@ -271,16 +271,28 @@ drwxr-xr-x 3 root root 4096 Aug 19  2020 ..
 ```
 Buscando en el sistema de archivos 
 
-cosas qe fueron saliendo
+cosas que fueron saliendo
 
-whoami
-no hay sudo -l
-no find . -perm ...
+```bash
+> sudo -l
+```
+
+No hay comandos que pueden ejectuarse con privilegios de root 
+
+```bash
+find / -perm /4000
+```
+
+No hay ficheros con privilegios especiales para poder vulnerar el sistema.
+
+Tampoco hay procesos con capabilities especiales que puedan ser vulnerados.
+
+-------------------------------------------------------------------------------
 
 Buscando en internet donde se encuentra la base de datos de Wordpress:
 https://www.bluehost.com/help/article/awordpress-find-database
 
-![where_is_wordpress_db.png](where_is_wordpress_db.png)
+![whereis_wordpress_db.png](whereis_wordpress_db.png)
 
 -------------------------------------------------------------------------------
 
