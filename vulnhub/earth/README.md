@@ -13,7 +13,7 @@ Parece que la máquina es de VirtualBox por el tipo de mac address que comienza 
 Hacemos un ping para ver si está online (o en cambio la info está cacheada)
 
 ```bash
-ping -c 1 192.168.1.53
+> ping -c 1 192.168.1.53
 ```
 
 ```bash
@@ -28,7 +28,7 @@ rtt min/avg/max/mdev = 15.385/15.385/15.385/0.000 ms
 Y ahora realizamos un escaneo rápido para ver qué servicios están corriendo en la máquina:
 
 ```bash
-sudo nmap -sS -n -p1-1000 -Pn 192.168.1.53 
+> sudo nmap -sS -n -p1-1000 -Pn 192.168.1.53 
 ```
 
 ```bash
@@ -91,7 +91,7 @@ Nmap done: 1 IP address (1 host up) scanned in 25.59 seconds
 Ahora podemos mirar qué tecnologías web están corriendo en la máquina víctima.
 
 ```bash
-whatweb 192.168.1.53:80                                     
+> whatweb 192.168.1.53:80                                     
 ```
 
 ```bash
@@ -103,7 +103,7 @@ UncommonHeaders[x-content-type-options,referrer-policy]
 ```
 
 ```bash
-whatweb 192.168.1.53:443
+> whatweb 192.168.1.53:443
 ```
 
 ```bash
@@ -134,8 +134,6 @@ Como no sabemos si se estará efectuando virtual hosting en la máquina que depe
 Ahora vamos a mirar que vemos en el browser:
 
 
-Vamos a ver si podemos descubrir páginas no listadas:
-
 para http://192.168.1.53
 
 ![http_192_168_1_53.png](http_192_168_1_53.png)
@@ -146,4 +144,25 @@ para http://earth.local o https://earth.local o http://terratest.earth.local
 
 para https://terratest.earth.local
 
-![https_terratest_earth_local.png](https_terratest__earth_local.png)
+![https_terratest_earth_local.png](https_terratest_earth_local.png)
+
+Y ahora volvemos a mirar whatweb pero con los dominios:
+
+```bash
+> whatweb http://earth.local                         
+```
+
+```bash
+http://earth.local [200 OK] Apache[2.4.51][mod_wsgi/4.7.1], Cookies[csrftoken], Country[RESERVED][ZZ], Django, HTML5, HTTPServer[Fedora Linux][Apache/2.4.51 (Fedora) OpenSSL/1.1.1l mod_wsgi/4.7.1 Python/3.9], IP[192.168.1.53], OpenSSL[1.1.1l], Python[3.9], Title[Earth Secure Messaging], UncommonHeaders[x-content-type-options,referrer-policy], X-Frame-Options[DENY]
+```
+
+```bash
+whatweb https://terratest.earth.local
+```
+
+```bash
+https://terratest.earth.local [200 OK] Apache[2.4.51][mod_wsgi/4.7.1], Country[RESERVED][ZZ], HTTPServer[Fedora Linux][Apache/2.4.51 (Fedora) OpenSSL/1.1.1l mod_wsgi/4.7.1 Python/3.9], IP[192.168.1.53], OpenSSL[1.1.1l], Python[3.9]
+```                                                        
+-------------------------------------------------------------------------------
+
+Vamos a ver si podemos descubrir páginas no listadas:
