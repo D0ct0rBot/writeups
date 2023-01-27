@@ -146,6 +146,8 @@ para https://terratest.earth.local
 
 ![https_terratest_earth_local.png](https_terratest_earth_local.png)
 
+-------------------------------------------------------------------------------
+
 Y ahora volvemos a mirar whatweb pero con los dominios:
 
 ```bash
@@ -194,6 +196,10 @@ Requests/sec.: 0
 ```
 
 Podemos ver que en la enumeración existe una página admin.
+
+-------------------------------------------------------------------------------
+
+Veamos qué pinta tiene la página admin en el navegador:
 
 ![http_earth_local_admin.png](http_earth_local_admin.png)
 
@@ -246,6 +252,8 @@ Este token ya estaba mencionado en el código fuente de la página:
 
 No obstante este token va cambiando cada vez que se refresca la página.
 
+-------------------------------------------------------------------------------
+
 Por otra parte, la página principal también mostraba un formulario de entrada de datos que podemos probar:
 
 ![http_earth_local_test_message.png](http_earth_local_test_message.png)
@@ -261,6 +269,8 @@ Y si enviamos varias veces el mismo mensaje, la codificación es la misma, por t
 
 Para el mensaje "Esto es un mensaje de prueba." y para key "Test key." Esta es la codificación.
 1116071b000e16595b3a451e114e1804134b740116545019101c4c354b
+
+-------------------------------------------------------------------------------
 
 Estaría bien averiguar el algoritmo de codificación porque así igual podríamos decodificar los otros mensajes.
 
@@ -290,3 +300,57 @@ Sin embargo, la longitud del mensaje decodificado es muy similar a la del mensaj
 > echo "Esto es un mensaje de prueba." | wc -c
 30
 ```
+
+Si cambiamos la key, el mensaje codificado cambia:
+
+```
+Text: "Esto es un mensaje de prueba."
+key: "0"
+output: "7543445510554310455e105d555e43515a5510545510404245555251"
+```
+
+Así que podemos pensar que la key forma parte de los parámetros de entrada del algoritmo de codificación.
+
+-------------------------------------------------------------------------------
+
+Podríamos probar a hacer una XOR con ambos parámetros y ver qué devuelve, pero si no es algo así de simple, entonces se puede complicar mucho.
+Antes de ponernos a programar un script para hacer una prueba, podemos buscar en internet a ver si hay alguna herramienta online de codificación/decodificación en formato XOR.
+
+Google: XOR Encoder
+> https://www.dcode.fr/xor-cipher
+
+Introducimos el texto de prueba y la key de entrada (0 = 0x30 en ascii) y si ponemos que nos de el resultado como lista de carácteres en hexadecimal, esto es lo que obyenemos:
+
+![xor_encode.png](xor_encode.png)
+
+Y vemos que tiene muy buena pinta, dado que la cadena de carácteres obtenido en la página principal para dicho texto con la misma clave, produce los mismos valores hexadecimales al decodificarla:
+
+> echo 7543445510554310455e105d555e43515a5510545510404245555251 | xxd -r -p | xxd 
+00000000: 7543 4455 1055 4310 455e 105d 555e 4351  uCDU.UC.E^.]U^CQ
+00000010: 5a55 1054 5510 4042 4555 5251            ZU.TU.@BEURQ
+                                                                 
+Es decir el proceso que se realiza en la página earth.local para codificar un mensaje es:
+
+Entramos un mensaje y sale un mensaje codificado
+mensaje -> XOR key -> xxd -> mensaje codificado
+
+y, por tanto, el proceso de decodificación con XOR sería:
+
+Entramos un mensaje codificado y sale el mensaje normal
+mensaje codificado -> xxd -r -> XOR key -> mensaje 
+
+-------------------------------------------------------------------------------
+
+En el panel de autenticación, probamos entradas típicas como:
+
+- admin / admin,
+- admin / admin123,
+- admin / 0n5M1RVM351oxMM7D7tnQE3h9BR7jniIswkjUGFXGHXd0JlJZcC6DZlgAR017BgS
+- admin / (vacío) <- El formulario no lo permite.
+- earth / admin
+- earth / admin123
+- earth / 0n5M1RVM351oxMM7D7tnQE3h9BR7jniIswkjUGFXGHXd0JlJZcC6DZlgAR017BgS
+
+Ninguna de las credenciales nos da acceso. Así que probaremos a realizar un ataque de fuerza bruta,
+para posibles usuario admin o earth
+
