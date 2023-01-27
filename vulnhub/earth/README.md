@@ -326,18 +326,25 @@ Introducimos el texto de prueba y la key de entrada (0 = 0x30 en ascii) y si pon
 Y vemos que tiene muy buena pinta, dado que la cadena de carácteres obtenido en la página principal para dicho texto con la misma clave, produce los mismos valores hexadecimales al decodificarla:
 
 > echo 7543445510554310455e105d555e43515a5510545510404245555251 | xxd -r -p | xxd 
+
 00000000: 7543 4455 1055 4310 455e 105d 555e 4351  uCDU.UC.E^.]U^CQ
 00000010: 5a55 1054 5510 4042 4555 5251            ZU.TU.@BEURQ
                                                                  
 Es decir el proceso que se realiza en la página earth.local para codificar un mensaje es:
 
-Entramos un mensaje y sale un mensaje codificado
+Entramos un mensaje y sale un mensaje codificado.
+
+```
 mensaje -> XOR key -> xxd -> mensaje codificado
+```
 
 y, por tanto, el proceso de decodificación con XOR sería:
 
-Entramos un mensaje codificado y sale el mensaje normal
+Entramos un mensaje codificado y sale el mensaje normal.
+
+```
 mensaje codificado -> xxd -r -> XOR key -> mensaje 
+```
 
 -------------------------------------------------------------------------------
 
