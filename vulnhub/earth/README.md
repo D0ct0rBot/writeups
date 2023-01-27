@@ -157,7 +157,7 @@ http://earth.local [200 OK] Apache[2.4.51][mod_wsgi/4.7.1], Cookies[csrftoken], 
 ```
 
 ```bash
-whatweb https://terratest.earth.local
+> whatweb https://terratest.earth.local
 ```
 
 ```bash
@@ -168,7 +168,7 @@ https://terratest.earth.local [200 OK] Apache[2.4.51][mod_wsgi/4.7.1], Country[R
 Vamos a ver si podemos descubrir páginas no listadas:
 
 ```bash
-wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://earth.local/FUZZ     
+> wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://earth.local/FUZZ     
 ```
 
 ```bash
@@ -255,4 +255,38 @@ Y esto es lo que se ve en burpsuite:
 ![burpsuite_main_window_message.png](burpsuite_main_window_message.png)
 
 Como podemos ver, cada vez que se envía un mensaje se añade una entrada con un mensaje, al parecer codificado.
+Y si enviamos varias veces el mismo mensaje, la codificación es la misma, por tanto, no parece que la codificación dependa de csrfmiddlewaretoken.
 
+![encoded_message.png](encoded_message.png)
+
+Para el mensaje "Esto es un mensaje de prueba." y para key "Test key." Esta es la codificación.
+1116071b000e16595b3a451e114e1804134b740116545019101c4c354b
+
+Estaría bien averiguar el algoritmo de codificación porque así igual podríamos decodificar los otros mensajes.
+
+Da la sensación de que esas cadenas de carácteres es código en hexadecimal, por lo que podemos probar a decodificarlo on xxd:
+
+```bash
+> echo 1116071b000e16595b3a451e114e1804134b740116545019101c4c354b | xxd -r -p > testmessage.txt
+```
+
+La secuencia de carácteres obtenida no es ascii, y contiene carácteres de control.
+
+```bash
+> xxd testmessage.txt 
+
+00000000: 1116 071b 000e 1659 5b3a 451e 114e 1804  .......Y[:E..N..
+00000010: 134b 7401 1654 5019 101c 4c35 4b         .Kt..TP...L5K
+```
+
+Sin embargo, la longitud del mensaje decodificado es muy similar a la del mensaje de entrada:
+
+```bash
+> echo 1116071b000e16595b3a451e114e1804134b740116545019101c4c354b | xxd -r -p | wc -c
+29
+```
+
+```bash
+> echo "Esto es un mensaje de prueba." | wc -c
+30
+```
