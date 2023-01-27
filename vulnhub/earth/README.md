@@ -166,3 +166,93 @@ https://terratest.earth.local [200 OK] Apache[2.4.51][mod_wsgi/4.7.1], Country[R
 -------------------------------------------------------------------------------
 
 Vamos a ver si podemos descubrir páginas no listadas:
+
+```bash
+wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://earth.local/FUZZ     
+```
+
+```bash
+********************************************************
+* Wfuzz 3.1.0 - The Web Fuzzer                         *
+********************************************************
+
+Target: http://earth.local/FUZZ
+Total requests: 220560
+
+=====================================================================
+ID           Response   Lines    Word       Chars       Payload                     
+=====================================================================
+000000014:   200        33 L     76 W       2595 Ch     "http://earth.local/"       
+000000259:   301        0 L      0 W        0 Ch        "admin"                     
+000045240:   200        33 L     76 W       2595 Ch     "http://earth.local/"       
+000138620:   503        9 L      34 W       299 Ch      "u-god"                     
+
+Total time: 0
+Processed Requests: 220560
+Filtered Requests: 220543
+Requests/sec.: 0
+```
+
+Podemos ver que en la enumeración existe una página admin.
+
+![http_earth_local_admin.png](http_earth_local_admin.png)
+
+Y esta página abre un panel de autenticación:
+
+![http_earth_local_admin_login.png](http_earth_local_admin_login.png)
+
+Y si abrimos burpsuite, podemos ver como se envían los valores de los campos:
+
+![burpsuite_login_panel.png](burpsuite_login_panel.png)
+
+Como podemos ver hay una cookie:
+
+```
+Cookie: csrftoken=0n5M1RVM351oxMM7D7tnQE3h9BR7jniIswkjUGFXGHXd0JlJZcC6DZlgAR017BgS
+```
+
+También hay otro token como variable post que se envía junto al username y el password:
+
+```
+csrfmiddlewaretoken=w1i2HKd3nHrGde7kjXiemQZhxlCnSiijYaxzAzXe0jnvGbGWF2rX9bhgYBLhGwgt&username=username&password=password
+```
+
+Este token ya estaba mencionado en el código fuente de la página:
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Earth Secure Messaging Admin</title>
+ 
+<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<h1 class="aligncenter">Log In</h1>
+<form method="post">
+
+
+<input type="hidden" name="csrfmiddlewaretoken" value="I8gG1qDs8tH7XjGT1akqfpeilMx3nlRuBN1beVG1sMVsNEu3SKVeJZ0JaYxYUgWX">
+
+
+<p><label for="id_username">Username:</label> <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username"></p>
+<p><label for="id_password">Password:</label> <input type="password" name="password" autocomplete="current-password" required id="id_password"></p>
+<button type="submit">Log In</button>
+</form>
+</body>
+</html>
+```
+
+No obstante este token va cambiando cada vez que se refresca la página.
+
+Por otra parte, la página principal también mostraba un formulario de entrada de datos que podemos probar:
+
+![http_earth_local_test_message.png](http_earth_local_test_message.png)
+
+Y esto es lo que se ve en burpsuite:
+
+![burpsuite_main_window_message.png](burpsuite_main_window_message.png)
+
+Como podemos ver, cada vez que se envía un mensaje se añade una entrada con un mensaje, al parecer codificado.
+
