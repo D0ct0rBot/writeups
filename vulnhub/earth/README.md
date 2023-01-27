@@ -301,7 +301,9 @@ Sin embargo, la longitud del mensaje decodificado es muy similar a la del mensaj
 30
 ```
 
-Si cambiamos la key, el mensaje codificado cambia:
+ESto nos puede dar una pista del tipo de algoritmo usado en la codificación.
+
+Además, si cambiamos la key, el mensaje codificado cambia:
 
 ```
 Text: "Esto es un mensaje de prueba."
