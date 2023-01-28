@@ -352,6 +352,10 @@ Entramos un mensaje codificado y sale el mensaje normal.
 mensaje codificado -> xxd -r -> XOR key -> mensaje 
 ```
 
+Crearemos un script para dados 2 parámetros de entrada, un fichero y un texto, nos genere un mensaje codificado/decodificado
+
+![xordecode.py](xordecode.py)
+
 -------------------------------------------------------------------------------
 
 En el panel de autenticación, probamos entradas típicas como:
@@ -365,5 +369,224 @@ En el panel de autenticación, probamos entradas típicas como:
 - earth / 0n5M1RVM351oxMM7D7tnQE3h9BR7jniIswkjUGFXGHXd0JlJZcC6DZlgAR017BgS
 
 Ninguna de las credenciales nos da acceso. Así que probaremos a realizar un ataque de fuerza bruta,
-para posibles usuario admin o earth
+para posibles usuario admin, earth o terratest
 
+Nota: 0n5M1RVM351oxMM7D7tnQE3h9BR7jniIswkjUGFXGHXd0JlJZcC6DZlgAR017BgS es el valor extraño que hemos encontrado como cookie para la variable *csrftoke* en el código html. Buscando por google, al final averiguamos que esta variable en la cookie, forma parte de un mecanismo para evitar ataques tipo CSRF (Cross Site Request Forgery) y no nos va a llevar a ningún lugar al realizae la intrusión.
+
+-------------------------------------------------------------------------------
+
+Seguimos investigando realizando más enumeraciones. Estas son las enumeracione realizadas:
+
+Para earth.local
+	subdominios
+	gobuster dns --domain earth.local --wordlist /usr/share/SecLists/Discovery/DNS/subdomains-top1million-110000.txt
+		Nada
+
+Para http://earth.local
+
+	Ficheros backup con gobuster
+	gobuster dir -d --url http://earth.local --wordlist /usr/share/SecLists/Discovery/Web-Content/common.txt -x txt,html,php,js,gz,tar.gz,zip 
+		Nada
+
+	Ficheros backup con gobuster añadiendo /
+	gobuster dir -f -d --url http://earth.local --wordlist /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -x bak,php.bak,tar.gz,zip,txt 
+		Nada
+
+	Más bak files con wfuzz
+	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://earth.local/FUZZ.bak
+		Nada
+
+Para http://earth.local/admin
+	Directorios 
+	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://earth.local/admin/FUZZ
+		000000053:   200        18 L     50 W       746 Ch      "login"                
+		000001225:   302        0 L      0 W        0 Ch        "logout"               
+		000045240:   200        15 L     33 W       306 Ch      "http://earth.local/admin/"
+
+Para http://earth.local/static 
+	Ficheros y directorios con gobuster
+	gobuster dir --url http://earth.local/static --wordlist /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -x html,php,js,gz,tar.gz,zip,txt
+		Nada
+
+	Ficheros backup con gobuster
+	gobuster dir -d --url http://earth.local/static --wordlist /usr/share/SecLists/Discovery/Web-Content/common.txt -x txt,html,php,js,gz,tar.gz,zip 
+		Nada
+
+Para http://terratest.earth.local
+	Directorios
+	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://terratest.earth.local/FUZZ  
+
+	php files
+	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://terratest.earth.local/FUZZ.php
+
+	js files
+	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://terratest.earth.local/FUZZ.js
+
+Para https://terratest.earth.local:443
+	Directorios
+	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt https://terratest.earth.local:443/FUZZ
+
+	Ficheros backup con gobuster
+	gobuster dir -d -k --url https://terratest.earth.local:443 --wordlist /usr/share/SecLists/Discovery/Web-Content/common.txt -x txt,html,php,js,gz,tar.gz,zip 
+		/index.html           (Status: 200) [Size: 26]
+		/index.html           (Status: 200) [Size: 26]
+		/robots.txt           (Status: 200) [Size: 521]
+		/robots.txt           (Status: 200) [Size: 521]
+-------------------------------------------------------------------------------
+
+Como podemos ver, hay un fichero robots.txt que podemos intentar mirar:
+
+https://terratest.earth.local/robots.txt
+
+```
+User-Agent: *
+Disallow: /*.asp
+Disallow: /*.aspx
+Disallow: /*.bat
+Disallow: /*.c
+Disallow: /*.cfm
+Disallow: /*.cgi
+Disallow: /*.com
+Disallow: /*.dll
+Disallow: /*.exe
+Disallow: /*.htm
+Disallow: /*.html
+Disallow: /*.inc
+Disallow: /*.jhtml
+Disallow: /*.jsa
+Disallow: /*.json
+Disallow: /*.jsp
+Disallow: /*.log
+Disallow: /*.mdb
+Disallow: /*.nsf
+Disallow: /*.php
+Disallow: /*.phtml
+Disallow: /*.pl
+Disallow: /*.reg
+Disallow: /*.sh
+Disallow: /*.shtml
+Disallow: /*.sql
+Disallow: /*.txt
+Disallow: /*.xml
+Disallow: /testingnotes.*
+```
+
+Vemos que hay una entrada para no permitir el acceso a ficheros "testingnotes.*" a los rastreadores.
+
+(para información sobre como funiona los ficheros robots.txt:
+
+https://developers.google.com/search/docs/crawling-indexing/robots/robots_txt?hl=es#syntax)
+
+-------------------------------------------------------------------------------
+
+Probamos a ver si existe un fichero como testingnotes.txt 
+En caso de no encontramos nada, siempre podríamos intentar realizar una fuerza bruta sobre extensiones, pero en este caso no es neceario.
+
+https://terratest.earth.local/testingnotes.txt
+
+```
+Testing secure messaging system notes:
+*Using XOR encryption as the algorithm, should be safe as used in RSA.
+*Earth has confirmed they have received our sent messages.
+*testdata.txt was used to test encryption.
+*terra used as username for admin portal.
+Todo:
+*How do we send our monthly keys to Earth securely? Or should we change keys weekly?
+*Need to test different key lengths to protect against bruteforce. How long should the key be?
+*Need to improve the interface of the messaging interface and the admin panel, it's currently very basic.
+```
+
+Como vemos la codificación de los mensajes se realizaba utilizando XOR
+
+También se puede ver que se utiliza un fichero testdata.txt para testear la encriptación, podemos mirar si podemos acceder al fichero desde la web, y en ese caso podríamos obtener la key utilizada.
+
+Vemos que el username para el portal de administración es terra.
+
+Así pues, mientras investigamos si podemos obtener la key vamos a realizar un ataque de fuerza bruta para entrar en el panel de aministración.
+
+-------------------------------------------------------------------------------
+
+Podemos pues intentar un ataque de fuerza bruta para intentar entrar en el panel:
+
+
+```bash
+> hydra -l terra -P /usr/share/wordlists/rockyou.txt -f -u -vV terratest.earth.local http-form-post "/admin/login:username=^USER^&password=^PASS^:Please enter a correct username and password"
+```
+
+Esta vía no lleva a ningún lado. 
+
+-------------------------------------------------------------------------------
+
+Vemos que tenemos acceso al fichero testdata.txt
+
+https://terratest.earth.local/testdata.txt
+
+Este es el contenido del fichero testdata.txt:
+
+```
+According to radiometric dating estimation and other evidence, Earth formed over 4.5 billion years ago. Within the first billion years of Earth's history, life appeared in the oceans and began to affect Earth's atmosphere and surface, leading to the proliferation of anaerobic and, later, aerobic organisms. Some geological evidence indicates that life may have arisen as early as 4.1 billion years ago.
+```
+
+-------------------------------------------------------------------------------
+
+
+Matemáticamente la funcion XOR se comporta de la siguiente manera:
+
+a XOR b = c
+y
+c XOR b = a
+
+pero también:
+
+a XOR c = b
+o
+c XOR a = b
+
+
+Si sustituimos las letras por palabras con significado:
+
+
+Mensaje XOR clave = MensajeEncriptado
+
+y para realizar el paso inverso:
+
+MensajeEncriptado XOR clave = Mensaje
+
+pero también:
+
+Mensaje XOR MensajeEncriptado = clave
+o
+MensajeEncriptado XOR Mensaje = clave
+
+Utlizaremos como segundo parámetro el texto de prueba.
+
+```bash
+> key=$(cat testdata.txt)
+```
+
+Ahora hemos de coger uno de los mensajes encriptados que aparecen inicialmente en la web y lo utilizaremos como mensaje fuente:
+
+```bash
+> echo 2402111b1a0705070a41000a431a000a0e0a0f04104601164d050f070c0f15540d1018000000000c0c06410f0901420e105c0d074d04181a01041c170d4f4c2c0c13000d430e0e1c0a0006410b420d074d55404645031b18040a03074d181104111b410f000a4c41335d1c1d040f4e070d04521201111f1d4d031d090f010e00471c07001647481a0b412b1217151a531b4304001e151b171a4441020e030741054418100c130b1745081c541c0b0949020211040d1b410f090142030153091b4d150153040714110b174c2c0c13000d441b410f13080d12145c0d0708410f1d014101011a050d0a084d540906090507090242150b141c1d08411e010a0d1b120d110d1d040e1a450c0e410f090407130b5601164d00001749411e151c061e454d0011170c0a080d470a1006055a010600124053360e1f1148040906010e130c00090d4e02130b05015a0b104d0800170c0213000d104c1d050000450f01070b47080318445c090308410f010c12171a48021f49080006091a48001d47514c50445601190108011d451817151a104c080a0e5a > encodedmsg.txt
+```
+
+Recordemos que este texto ha sufrido el proceso de ser convertido a texto donde cada valor codificado se representa en hexadecimal.
+Antes de realizar el proceso de obtención de la key original, debemos pasar los datos de hexadeimal a mensaje encritpado con XOR.
+
+```bash
+> cat encodedmsg.txt | xxd -r -d > encodedmesg.dat 
+```
+
+Y ya podemos realizar el proceso de obtención de la clave original utilizando el script que creamos al principio.
+
+```bash
+> python3 xordecode.py encodedmsg.dat $key 
+```
+
+```bash
+earthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimat
+```
+
+Así pues la clave utilizada parece ser la siguiente *earthclimatechangebad4humans*
+
+-------------------------------------------------------------------------------
