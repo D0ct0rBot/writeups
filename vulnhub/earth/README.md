@@ -590,3 +590,13 @@ earthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4hu
 Así pues la clave utilizada parece ser la siguiente *earthclimatechangebad4humans*
 
 -------------------------------------------------------------------------------
+
+Probando en el panel de login con el username *terra* y el password *earthclimatechangebad4humans* logramos acceder al sistema:
+
+![adminpanel.png](adminpanel.png)
+
+-------------------------------------------------------------------------------
+
+Vemos que en el panel podemos escribir commandos como si de una webshell se tratara:
+
+![adminpanel_command.png](adminpanel_command.png)
