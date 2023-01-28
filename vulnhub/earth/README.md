@@ -377,64 +377,104 @@ Nota: 0n5M1RVM351oxMM7D7tnQE3h9BR7jniIswkjUGFXGHXd0JlJZcC6DZlgAR017BgS es el val
 
 Seguimos investigando realizando más enumeraciones. Estas son las enumeracione realizadas:
 
-Para earth.local
-	subdominios
+- Para earth.local
+
+	- Subdominios
+
+	```bash
 	gobuster dns --domain earth.local --wordlist /usr/share/SecLists/Discovery/DNS/subdomains-top1million-110000.txt
 		Nada
+	```
 
-Para http://earth.local
+- Para http://earth.local
 
-	Ficheros backup con gobuster
+	- Ficheros backup con gobuster
+
+	```bash
 	gobuster dir -d --url http://earth.local --wordlist /usr/share/SecLists/Discovery/Web-Content/common.txt -x txt,html,php,js,gz,tar.gz,zip 
 		Nada
+	```
 
-	Ficheros backup con gobuster añadiendo /
+	- Ficheros backup con gobuster añadiendo /
+
+	```bash
 	gobuster dir -f -d --url http://earth.local --wordlist /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -x bak,php.bak,tar.gz,zip,txt 
 		Nada
+	```
 
-	Más bak files con wfuzz
+	- Más bak files con wfuzz
+
+	```bash
 	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://earth.local/FUZZ.bak
 		Nada
+	```
 
-Para http://earth.local/admin
-	Directorios 
+- Para http://earth.local/admin
+
+	- Directorios 
+
+	```bash
 	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://earth.local/admin/FUZZ
 		000000053:   200        18 L     50 W       746 Ch      "login"                
 		000001225:   302        0 L      0 W        0 Ch        "logout"               
 		000045240:   200        15 L     33 W       306 Ch      "http://earth.local/admin/"
+	```
 
-Para http://earth.local/static 
-	Ficheros y directorios con gobuster
+- Para http://earth.local/static 
+
+	- Ficheros y directorios con gobuster
+
+	```bash
 	gobuster dir --url http://earth.local/static --wordlist /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -x html,php,js,gz,tar.gz,zip,txt
 		Nada
+	```
+	
+	- Ficheros backup con gobuster
 
-	Ficheros backup con gobuster
+	```bash
 	gobuster dir -d --url http://earth.local/static --wordlist /usr/share/SecLists/Discovery/Web-Content/common.txt -x txt,html,php,js,gz,tar.gz,zip 
 		Nada
+	```
 
-Para http://terratest.earth.local
-	Directorios
+- Para http://terratest.earth.local
+
+	- Directorios
+
+	```bash
 	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://terratest.earth.local/FUZZ  
+	```
 
-	php files
+	- php files
+	```bash
 	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://terratest.earth.local/FUZZ.php
+	```
 
-	js files
+	- js files
+	```bash
 	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://terratest.earth.local/FUZZ.js
+	```
 
-Para https://terratest.earth.local:443
-	Directorios
+- Para https://terratest.earth.local:443
+
+	- Directorios
+
+	```bash
 	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt https://terratest.earth.local:443/FUZZ
+	```
 
-	Ficheros backup con gobuster
+	- Ficheros backup con gobuster
+
+	```bash
 	gobuster dir -d -k --url https://terratest.earth.local:443 --wordlist /usr/share/SecLists/Discovery/Web-Content/common.txt -x txt,html,php,js,gz,tar.gz,zip 
 		/index.html           (Status: 200) [Size: 26]
 		/index.html           (Status: 200) [Size: 26]
 		/robots.txt           (Status: 200) [Size: 521]
 		/robots.txt           (Status: 200) [Size: 521]
+	```
+
 -------------------------------------------------------------------------------
 
-Como podemos ver, hay un fichero robots.txt que podemos intentar mirar:
+Como podemos ver, hay un fichero **robots.txt** que podemos intentar mirar:
 
 https://terratest.earth.local/robots.txt
 
@@ -471,16 +511,16 @@ Disallow: /*.xml
 Disallow: /testingnotes.*
 ```
 
-Vemos que hay una entrada para no permitir el acceso a ficheros "testingnotes.*" a los rastreadores.
+Vemos que hay una entrada para no permitir el acceso a ficheros ** "testingnotes.*" ** a los rastreadores.
 
-(para información sobre como funiona los ficheros robots.txt:
+(para información sobre como funiona los ficheros *robots.txt*:
 
 https://developers.google.com/search/docs/crawling-indexing/robots/robots_txt?hl=es#syntax)
 
 -------------------------------------------------------------------------------
 
-Probamos a ver si existe un fichero como testingnotes.txt 
-En caso de no encontramos nada, siempre podríamos intentar realizar una fuerza bruta sobre extensiones, pero en este caso no es neceario.
+Probamos a ver si existe un fichero como **testingnotes.txt** 
+En caso de no encontramos nada, siempre podríamos intentar realizar una fuerza bruta sobre extensiones, pero en este caso no es necesario.
 
 https://terratest.earth.local/testingnotes.txt
 
@@ -498,16 +538,15 @@ Todo:
 
 Como vemos la codificación de los mensajes se realizaba utilizando XOR
 
-También se puede ver que se utiliza un fichero testdata.txt para testear la encriptación, podemos mirar si podemos acceder al fichero desde la web, y en ese caso podríamos obtener la key utilizada.
+También se puede ver que se utiliza un fichero **testdata.txt** para testear la encriptación, podemos mirar si podemos acceder al fichero desde la web, y en ese caso podríamos obtener la key utilizada.
 
-Vemos que el username para el portal de administración es terra.
+Vemos que el username para el portal de administración es **terra**.
 
 Así pues, mientras investigamos si podemos obtener la key vamos a realizar un ataque de fuerza bruta para entrar en el panel de aministración.
 
 -------------------------------------------------------------------------------
 
-Podemos pues intentar un ataque de fuerza bruta para intentar entrar en el panel:
-
+Utilizando *hydra* realizamos el ataque de fuerza bruta para intentar entrar en el panel:
 
 ```bash
 > hydra -l terra -P /usr/share/wordlists/rockyou.txt -f -u -vV terratest.earth.local http-form-post "/admin/login:username=^USER^&password=^PASS^:Please enter a correct username and password"
@@ -517,21 +556,22 @@ Esta vía no lleva a ningún lado.
 
 -------------------------------------------------------------------------------
 
-Vemos que tenemos acceso al fichero testdata.txt
+Vemos que tenemos acceso al fichero **testdata.txt**.
 
 https://terratest.earth.local/testdata.txt
 
-Este es el contenido del fichero testdata.txt:
+Este es el contenido del fichero:
 
-```
+```bash
+> cat testdata.txt
 According to radiometric dating estimation and other evidence, Earth formed over 4.5 billion years ago. Within the first billion years of Earth's history, life appeared in the oceans and began to affect Earth's atmosphere and surface, leading to the proliferation of anaerobic and, later, aerobic organisms. Some geological evidence indicates that life may have arisen as early as 4.1 billion years ago.
 ```
 
 -------------------------------------------------------------------------------
 
-
 Matemáticamente la funcion XOR se comporta de la siguiente manera:
 
+```
 a XOR b = c
 y
 c XOR b = a
@@ -541,11 +581,12 @@ pero también:
 a XOR c = b
 o
 c XOR a = b
-
+```
 
 Si sustituimos las letras por palabras con significado:
 
 
+```
 Mensaje XOR clave = MensajeEncriptado
 
 y para realizar el paso inverso:
@@ -558,7 +599,8 @@ Mensaje XOR MensajeEncriptado = clave
 o
 MensajeEncriptado XOR Mensaje = clave
 
-Utlizaremos como segundo parámetro el texto de prueba.
+Utilizaremos como segundo parámetro el texto de prueba.
+```
 
 ```bash
 > key=$(cat testdata.txt)
@@ -600,3 +642,5 @@ Probando en el panel de login con el username *terra* y el password *earthclimat
 Vemos que en el panel podemos escribir commandos como si de una webshell se tratara:
 
 ![adminpanel_command.png](adminpanel_command.png)
+
+-------------------------------------------------------------------------------
