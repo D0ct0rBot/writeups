@@ -659,6 +659,8 @@ Estos podrían ser los comandos a utilizar:
 
 Al introducir cualquiera de los anteriores comandos en la webshell, vemos que nos da un mensaje de error y da la sensación que tienen cierto código de control para evitar posibles reverse shells: 
 
+![adminpanel_remote_forbidden.png](adminpanel_remote_forbidden.png)
+
 Una posible idea es partir el comando en 2 partes de manera que no pueda detectar la dirección ip
 
 ```bash
