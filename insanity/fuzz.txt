@@ -1,0 +1,60 @@
+********************************************************
+* Wfuzz 3.1.0 - The Web Fuzzer                         *
+********************************************************
+
+Target: http://192.168.1.127/FUZZ
+Total requests: 220560
+
+=====================================================================
+ID           Response   Lines    Word       Chars       Payload               
+=====================================================================
+
+000000001:   200        479 L    1477 W     22263 Ch    "# directory-list-2.3-
+                                                        medium.txt"           
+000000003:   200        479 L    1477 W     22263 Ch    "# Copyright 2007 Jame
+                                                        s Fisher"             
+000000005:   200        479 L    1477 W     22263 Ch    "# This work is licens
+                                                        ed under the Creative 
+                                                        Commons"              
+000000002:   200        479 L    1477 W     22263 Ch    "#"                   
+000000004:   200        479 L    1477 W     22263 Ch    "#"                   
+000000006:   200        479 L    1477 W     22263 Ch    "# Attribution-Share A
+                                                        like 3.0 License. To v
+                                                        iew a copy of this"   
+000000008:   200        479 L    1477 W     22263 Ch    "# or send a letter to
+                                                         Creative Commons, 171
+                                                         Second Street,"      
+000000011:   200        479 L    1477 W     22263 Ch    "# Priority ordered ca
+                                                        se-sensitive list, whe
+                                                        re entries were found"
+000000012:   200        479 L    1477 W     22263 Ch    "# on at least 2 diffe
+                                                        rent hosts"           
+000000010:   200        479 L    1477 W     22263 Ch    "#"                   
+000000019:   301        7 L      20 W       234 Ch      "news"                
+000000007:   200        479 L    1477 W     22263 Ch    "# license, visit http
+                                                        ://creativecommons.org
+                                                        /licenses/by-sa/3.0/" 
+000000009:   200        479 L    1477 W     22263 Ch    "# Suite 300, San Fran
+                                                        cisco, California, 941
+                                                        05, USA."             
+000000013:   200        479 L    1477 W     22263 Ch    "#"                   
+000000014:   200        479 L    1477 W     22263 Ch    "http://192.168.1.127/
+                                                        "                     
+000000039:   301        7 L      20 W       233 Ch      "img"                 
+000000182:   301        7 L      20 W       234 Ch      "data"                
+000000550:   301        7 L      20 W       233 Ch      "css"                 
+000000953:   301        7 L      20 W       232 Ch      "js"                  
+000001543:   301        7 L      20 W       237 Ch      "webmail"             
+000002771:   301        7 L      20 W       235 Ch      "fonts"               
+000003471:   301        7 L      20 W       240 Ch      "monitoring"          
+000005377:   200        1 L      10 W       57 Ch       "licence"             
+000010825:   301        7 L      20 W       240 Ch      "phpmyadmin"          
+000045240:   200        479 L    1477 W     22263 Ch    "http://192.168.1.127/
+                                                        "                     
+ /usr/lib/python3/dist-packages/wfuzz/wfuzz.py:80: UserWarning:Finishing pending requests...
+
+Total time: 0
+Processed Requests: 196328
+Filtered Requests: 196303
+Requests/sec.: 0
+

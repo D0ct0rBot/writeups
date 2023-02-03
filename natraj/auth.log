@@ -1,0 +1,963 @@
+Jun  3 09:41:14 ubuntu systemd-logind[434]: New seat seat0.
+Jun  3 09:41:14 ubuntu systemd-logind[434]: Watching system buttons on /dev/input/event0 (Power Button)
+Jun  3 09:41:15 ubuntu sshd[457]: Server listening on 0.0.0.0 port 22.
+Jun  3 09:41:15 ubuntu sshd[457]: Server listening on :: port 22.
+Jun  3 09:41:15 ubuntu systemd-logind[434]: Watching system buttons on /dev/input/event1 (AT Translated Set 2 keyboard)
+Jun  3 09:41:47 ubuntu sshd[612]: Accepted password for natraj from 192.168.1.103 port 49859 ssh2
+Jun  3 09:41:47 ubuntu sshd[612]: pam_unix(sshd:session): session opened for user natraj by (uid=0)
+Jun  3 09:41:47 ubuntu systemd-logind[434]: New session 1 of user natraj.
+Jun  3 09:41:47 ubuntu systemd: pam_unix(systemd-user:session): session opened for user natraj by (uid=0)
+Jun  3 09:41:59 ubuntu sudo:   natraj : TTY=pts/0 ; PWD=/home/natraj ; USER=root ; COMMAND=/bin/bash
+Jun  3 09:41:59 ubuntu sudo: pam_unix(sudo:session): session opened for user root by natraj(uid=0)
+Jun  3 09:42:01 ubuntu CRON[680]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jun  3 09:42:01 ubuntu CRON[680]: pam_unix(cron:session): session closed for user root
+Jun  3 09:43:01 ubuntu CRON[684]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jun  3 09:43:01 ubuntu CRON[684]: pam_unix(cron:session): session closed for user root
+Jun  3 09:43:48 ubuntu sshd[612]: pam_unix(sshd:session): session closed for user natraj
+Jun  3 09:43:48 ubuntu sudo: pam_unix(sudo:session): session closed for user root
+Jun  3 09:43:48 ubuntu systemd-logind[434]: Removed session 1.
+Jun  3 09:44:01 ubuntu CRON[695]: pam_unix(cron:session): session opened for user root by (uid=0)
+Jun  3 09:44:01 ubuntu CRON[695]: pam_unix(cron:session): session closed for user root
+Dec 11 11:34:38 ubuntu systemd-logind[424]: New seat seat0.
+Dec 11 11:34:38 ubuntu systemd-logind[424]: Watching system buttons on /dev/input/event0 (Power Button)
+Dec 11 11:34:38 ubuntu sshd[445]: Server listening on 0.0.0.0 port 22.
+Dec 11 11:34:38 ubuntu sshd[445]: Server listening on :: port 22.
+Dec 11 11:34:39 ubuntu systemd-logind[424]: Watching system buttons on /dev/input/event1 (AT Translated Set 2 keyboard)
+Dec 11 11:35:01 ubuntu CRON[655]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:35:01 ubuntu CRON[655]: pam_unix(cron:session): session closed for user root
+Dec 11 11:36:01 ubuntu CRON[748]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:36:01 ubuntu CRON[748]: pam_unix(cron:session): session closed for user root
+Dec 11 11:36:29 ubuntu sshd[445]: Received signal 15; terminating.
+Dec 11 11:36:36 ubuntu systemd-logind[436]: New seat seat0.
+Dec 11 11:36:36 ubuntu systemd-logind[436]: Watching system buttons on /dev/input/event0 (Power Button)
+Dec 11 11:36:36 ubuntu sshd[472]: Server listening on 0.0.0.0 port 22.
+Dec 11 11:36:36 ubuntu sshd[472]: Server listening on :: port 22.
+Dec 11 10:36:39 ubuntu systemd-logind[436]: Watching system buttons on /dev/input/event1 (AT Translated Set 2 keyboard)
+Dec 11 10:37:03 ubuntu CRON[617]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:37:03 ubuntu CRON[617]: pam_unix(cron:session): session closed for user root
+Dec 11 10:38:01 ubuntu CRON[620]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:38:01 ubuntu CRON[620]: pam_unix(cron:session): session closed for user root
+Dec 11 10:39:01 ubuntu CRON[624]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:39:01 ubuntu CRON[623]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:39:01 ubuntu CRON[624]: pam_unix(cron:session): session closed for user root
+Dec 11 10:39:01 ubuntu CRON[623]: pam_unix(cron:session): session closed for user root
+Dec 11 10:40:01 ubuntu CRON[628]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:40:01 ubuntu CRON[628]: pam_unix(cron:session): session closed for user root
+Dec 11 10:41:01 ubuntu CRON[631]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:41:01 ubuntu CRON[631]: pam_unix(cron:session): session closed for user root
+Dec 11 10:42:01 ubuntu CRON[635]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:42:01 ubuntu CRON[635]: pam_unix(cron:session): session closed for user root
+Dec 11 10:43:01 ubuntu CRON[638]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:43:01 ubuntu CRON[638]: pam_unix(cron:session): session closed for user root
+Dec 11 10:44:01 ubuntu CRON[641]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:44:01 ubuntu CRON[641]: pam_unix(cron:session): session closed for user root
+Dec 11 10:45:01 ubuntu CRON[644]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:45:01 ubuntu CRON[644]: pam_unix(cron:session): session closed for user root
+Dec 11 10:46:01 ubuntu CRON[647]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:46:01 ubuntu CRON[647]: pam_unix(cron:session): session closed for user root
+Dec 11 10:47:01 ubuntu CRON[650]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:47:01 ubuntu CRON[650]: pam_unix(cron:session): session closed for user root
+Dec 11 10:48:01 ubuntu CRON[654]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:48:01 ubuntu CRON[654]: pam_unix(cron:session): session closed for user root
+Dec 11 10:49:01 ubuntu CRON[674]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:49:01 ubuntu CRON[674]: pam_unix(cron:session): session closed for user root
+Dec 11 10:50:01 ubuntu CRON[677]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:50:01 ubuntu CRON[677]: pam_unix(cron:session): session closed for user root
+Dec 11 10:51:01 ubuntu CRON[680]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:51:01 ubuntu CRON[680]: pam_unix(cron:session): session closed for user root
+Dec 11 10:52:01 ubuntu CRON[685]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:52:01 ubuntu CRON[685]: pam_unix(cron:session): session closed for user root
+Dec 11 10:53:01 ubuntu CRON[689]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:53:01 ubuntu CRON[689]: pam_unix(cron:session): session closed for user root
+Dec 11 10:54:01 ubuntu CRON[692]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:54:01 ubuntu CRON[692]: pam_unix(cron:session): session closed for user root
+Dec 11 10:55:01 ubuntu CRON[695]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:55:01 ubuntu CRON[695]: pam_unix(cron:session): session closed for user root
+Dec 11 10:56:01 ubuntu CRON[698]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:56:01 ubuntu CRON[698]: pam_unix(cron:session): session closed for user root
+Dec 11 10:57:01 ubuntu CRON[701]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:57:01 ubuntu CRON[701]: pam_unix(cron:session): session closed for user root
+Dec 11 10:58:01 ubuntu CRON[705]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:58:01 ubuntu CRON[705]: pam_unix(cron:session): session closed for user root
+Dec 11 10:59:01 ubuntu CRON[708]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 10:59:01 ubuntu CRON[708]: pam_unix(cron:session): session closed for user root
+Dec 11 11:00:01 ubuntu CRON[711]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:00:01 ubuntu CRON[711]: pam_unix(cron:session): session closed for user root
+Dec 11 11:01:01 ubuntu CRON[714]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:01:01 ubuntu CRON[714]: pam_unix(cron:session): session closed for user root
+Dec 11 11:02:01 ubuntu CRON[717]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:02:01 ubuntu CRON[717]: pam_unix(cron:session): session closed for user root
+Dec 11 11:03:01 ubuntu CRON[722]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:03:01 ubuntu CRON[722]: pam_unix(cron:session): session closed for user root
+Dec 11 11:04:01 ubuntu CRON[725]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:04:01 ubuntu CRON[725]: pam_unix(cron:session): session closed for user root
+Dec 11 11:05:01 ubuntu CRON[728]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:05:01 ubuntu CRON[728]: pam_unix(cron:session): session closed for user root
+Dec 11 11:06:01 ubuntu CRON[731]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:06:01 ubuntu CRON[731]: pam_unix(cron:session): session closed for user root
+Dec 11 11:07:01 ubuntu CRON[735]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:07:01 ubuntu CRON[735]: pam_unix(cron:session): session closed for user root
+Dec 11 11:08:01 ubuntu CRON[739]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:08:01 ubuntu CRON[739]: pam_unix(cron:session): session closed for user root
+Dec 11 11:09:01 ubuntu CRON[743]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:09:01 ubuntu CRON[742]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:09:01 ubuntu CRON[743]: pam_unix(cron:session): session closed for user root
+Dec 11 11:09:01 ubuntu CRON[742]: pam_unix(cron:session): session closed for user root
+Dec 11 11:10:01 ubuntu CRON[747]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:10:01 ubuntu CRON[747]: pam_unix(cron:session): session closed for user root
+Dec 11 11:11:01 ubuntu CRON[750]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:11:01 ubuntu CRON[750]: pam_unix(cron:session): session closed for user root
+Dec 11 11:12:01 ubuntu CRON[753]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:12:01 ubuntu CRON[753]: pam_unix(cron:session): session closed for user root
+Dec 11 11:13:01 ubuntu CRON[758]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:13:01 ubuntu CRON[758]: pam_unix(cron:session): session closed for user root
+Dec 11 11:14:01 ubuntu CRON[761]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:14:01 ubuntu CRON[761]: pam_unix(cron:session): session closed for user root
+Dec 11 11:15:01 ubuntu CRON[764]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:15:01 ubuntu CRON[764]: pam_unix(cron:session): session closed for user root
+Dec 11 11:16:01 ubuntu CRON[767]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:16:01 ubuntu CRON[767]: pam_unix(cron:session): session closed for user root
+Dec 11 11:17:01 ubuntu CRON[770]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:17:01 ubuntu CRON[771]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:17:01 ubuntu CRON[771]: pam_unix(cron:session): session closed for user root
+Dec 11 11:17:01 ubuntu CRON[770]: pam_unix(cron:session): session closed for user root
+Dec 11 11:18:01 ubuntu CRON[777]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:18:01 ubuntu CRON[777]: pam_unix(cron:session): session closed for user root
+Dec 11 11:19:01 ubuntu CRON[780]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:19:01 ubuntu CRON[780]: pam_unix(cron:session): session closed for user root
+Dec 11 11:20:01 ubuntu CRON[783]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:20:01 ubuntu CRON[783]: pam_unix(cron:session): session closed for user root
+Dec 11 11:21:01 ubuntu CRON[786]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:21:01 ubuntu CRON[786]: pam_unix(cron:session): session closed for user root
+Dec 11 11:22:01 ubuntu CRON[790]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:22:01 ubuntu CRON[790]: pam_unix(cron:session): session closed for user root
+Dec 11 11:23:01 ubuntu CRON[794]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:23:01 ubuntu CRON[794]: pam_unix(cron:session): session closed for user root
+Dec 11 11:24:01 ubuntu CRON[797]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:24:01 ubuntu CRON[797]: pam_unix(cron:session): session closed for user root
+Dec 11 11:25:01 ubuntu CRON[800]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:25:01 ubuntu CRON[800]: pam_unix(cron:session): session closed for user root
+Dec 11 11:26:01 ubuntu CRON[804]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:26:01 ubuntu CRON[804]: pam_unix(cron:session): session closed for user root
+Dec 11 11:27:01 ubuntu CRON[807]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:27:01 ubuntu CRON[807]: pam_unix(cron:session): session closed for user root
+Dec 11 11:28:01 ubuntu CRON[811]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:28:01 ubuntu CRON[811]: pam_unix(cron:session): session closed for user root
+Dec 11 11:29:01 ubuntu CRON[814]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:29:01 ubuntu CRON[814]: pam_unix(cron:session): session closed for user root
+Dec 11 11:30:01 ubuntu CRON[817]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:30:01 ubuntu CRON[817]: pam_unix(cron:session): session closed for user root
+Dec 11 11:31:01 ubuntu CRON[820]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:31:01 ubuntu CRON[820]: pam_unix(cron:session): session closed for user root
+Dec 11 11:32:01 ubuntu CRON[823]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:32:01 ubuntu CRON[823]: pam_unix(cron:session): session closed for user root
+Dec 11 11:33:01 ubuntu CRON[827]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:33:01 ubuntu CRON[827]: pam_unix(cron:session): session closed for user root
+Dec 11 11:34:01 ubuntu CRON[830]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:34:01 ubuntu CRON[830]: pam_unix(cron:session): session closed for user root
+Dec 11 11:35:01 ubuntu CRON[833]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:35:01 ubuntu CRON[833]: pam_unix(cron:session): session closed for user root
+Dec 11 11:36:01 ubuntu CRON[837]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:36:01 ubuntu CRON[837]: pam_unix(cron:session): session closed for user root
+Dec 11 11:37:01 ubuntu CRON[841]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:37:01 ubuntu CRON[841]: pam_unix(cron:session): session closed for user root
+Dec 11 11:38:01 ubuntu CRON[845]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:38:01 ubuntu CRON[845]: pam_unix(cron:session): session closed for user root
+Dec 11 11:39:01 ubuntu CRON[848]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:39:01 ubuntu CRON[849]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:39:01 ubuntu CRON[849]: pam_unix(cron:session): session closed for user root
+Dec 11 11:39:01 ubuntu CRON[848]: pam_unix(cron:session): session closed for user root
+Dec 11 11:40:01 ubuntu CRON[901]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:40:01 ubuntu CRON[901]: pam_unix(cron:session): session closed for user root
+Dec 11 11:41:01 ubuntu CRON[904]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:41:01 ubuntu CRON[904]: pam_unix(cron:session): session closed for user root
+Dec 11 11:42:01 ubuntu CRON[907]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:42:01 ubuntu CRON[907]: pam_unix(cron:session): session closed for user root
+Dec 11 11:43:01 ubuntu CRON[911]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:43:01 ubuntu CRON[911]: pam_unix(cron:session): session closed for user root
+Dec 11 11:44:01 ubuntu CRON[914]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:44:01 ubuntu CRON[914]: pam_unix(cron:session): session closed for user root
+Dec 11 11:45:01 ubuntu CRON[917]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:45:01 ubuntu CRON[917]: pam_unix(cron:session): session closed for user root
+Dec 11 11:46:01 ubuntu CRON[920]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:46:01 ubuntu CRON[920]: pam_unix(cron:session): session closed for user root
+Dec 11 11:47:01 ubuntu CRON[923]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:47:01 ubuntu CRON[923]: pam_unix(cron:session): session closed for user root
+Dec 11 11:48:01 ubuntu CRON[927]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:48:01 ubuntu CRON[927]: pam_unix(cron:session): session closed for user root
+Dec 11 11:49:01 ubuntu CRON[930]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:49:01 ubuntu CRON[930]: pam_unix(cron:session): session closed for user root
+Dec 11 11:50:01 ubuntu CRON[933]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:50:01 ubuntu CRON[933]: pam_unix(cron:session): session closed for user root
+Dec 11 11:51:01 ubuntu CRON[936]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:51:01 ubuntu CRON[936]: pam_unix(cron:session): session closed for user root
+Dec 11 11:52:01 ubuntu CRON[941]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:52:01 ubuntu CRON[941]: pam_unix(cron:session): session closed for user root
+Dec 11 11:53:01 ubuntu CRON[945]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:53:01 ubuntu CRON[945]: pam_unix(cron:session): session closed for user root
+Dec 11 11:54:01 ubuntu CRON[948]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:54:01 ubuntu CRON[948]: pam_unix(cron:session): session closed for user root
+Dec 11 11:55:01 ubuntu CRON[951]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:55:01 ubuntu CRON[951]: pam_unix(cron:session): session closed for user root
+Dec 11 11:56:01 ubuntu CRON[954]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:56:01 ubuntu CRON[954]: pam_unix(cron:session): session closed for user root
+Dec 11 11:57:01 ubuntu CRON[957]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:57:01 ubuntu CRON[957]: pam_unix(cron:session): session closed for user root
+Dec 11 11:58:01 ubuntu CRON[961]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:58:01 ubuntu CRON[961]: pam_unix(cron:session): session closed for user root
+Dec 11 11:59:01 ubuntu CRON[964]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 11:59:01 ubuntu CRON[964]: pam_unix(cron:session): session closed for user root
+Dec 11 12:00:01 ubuntu CRON[967]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:00:01 ubuntu CRON[967]: pam_unix(cron:session): session closed for user root
+Dec 11 12:01:01 ubuntu CRON[971]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:01:01 ubuntu CRON[971]: pam_unix(cron:session): session closed for user root
+Dec 11 12:02:01 ubuntu CRON[974]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:02:01 ubuntu CRON[974]: pam_unix(cron:session): session closed for user root
+Dec 11 12:03:01 ubuntu CRON[978]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:03:01 ubuntu CRON[978]: pam_unix(cron:session): session closed for user root
+Dec 11 12:04:01 ubuntu CRON[981]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:04:01 ubuntu CRON[981]: pam_unix(cron:session): session closed for user root
+Dec 11 12:05:01 ubuntu CRON[984]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:05:01 ubuntu CRON[984]: pam_unix(cron:session): session closed for user root
+Dec 11 12:06:01 ubuntu CRON[987]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:06:01 ubuntu CRON[987]: pam_unix(cron:session): session closed for user root
+Dec 11 12:07:01 ubuntu CRON[991]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:07:01 ubuntu CRON[991]: pam_unix(cron:session): session closed for user root
+Dec 11 12:08:01 ubuntu CRON[995]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:08:01 ubuntu CRON[995]: pam_unix(cron:session): session closed for user root
+Dec 11 12:09:01 ubuntu CRON[999]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:09:01 ubuntu CRON[998]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:09:01 ubuntu CRON[999]: pam_unix(cron:session): session closed for user root
+Dec 11 12:09:01 ubuntu CRON[998]: pam_unix(cron:session): session closed for user root
+Dec 11 12:10:01 ubuntu CRON[1052]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:10:01 ubuntu CRON[1052]: pam_unix(cron:session): session closed for user root
+Dec 11 12:11:01 ubuntu CRON[1055]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:11:01 ubuntu CRON[1055]: pam_unix(cron:session): session closed for user root
+Dec 11 12:12:01 ubuntu CRON[1058]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:12:01 ubuntu CRON[1058]: pam_unix(cron:session): session closed for user root
+Dec 11 12:13:01 ubuntu CRON[1062]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:13:01 ubuntu CRON[1062]: pam_unix(cron:session): session closed for user root
+Dec 11 12:14:01 ubuntu CRON[1065]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:14:01 ubuntu CRON[1065]: pam_unix(cron:session): session closed for user root
+Dec 11 12:15:01 ubuntu CRON[1068]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:15:01 ubuntu CRON[1068]: pam_unix(cron:session): session closed for user root
+Dec 11 12:16:01 ubuntu CRON[1071]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:16:01 ubuntu CRON[1071]: pam_unix(cron:session): session closed for user root
+Dec 11 12:17:01 ubuntu CRON[1075]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:17:01 ubuntu CRON[1074]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:17:01 ubuntu CRON[1075]: pam_unix(cron:session): session closed for user root
+Dec 11 12:17:01 ubuntu CRON[1074]: pam_unix(cron:session): session closed for user root
+Dec 11 12:18:01 ubuntu CRON[1081]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:18:01 ubuntu CRON[1081]: pam_unix(cron:session): session closed for user root
+Dec 11 12:19:01 ubuntu CRON[1084]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:19:01 ubuntu CRON[1084]: pam_unix(cron:session): session closed for user root
+Dec 11 12:20:01 ubuntu CRON[1087]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:20:01 ubuntu CRON[1087]: pam_unix(cron:session): session closed for user root
+Dec 11 12:21:01 ubuntu CRON[1091]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:21:02 ubuntu CRON[1091]: pam_unix(cron:session): session closed for user root
+Dec 11 12:22:02 ubuntu CRON[1095]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:22:02 ubuntu CRON[1095]: pam_unix(cron:session): session closed for user root
+Dec 11 12:23:01 ubuntu CRON[1099]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:23:01 ubuntu CRON[1099]: pam_unix(cron:session): session closed for user root
+Dec 11 12:24:01 ubuntu CRON[1102]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:24:01 ubuntu CRON[1102]: pam_unix(cron:session): session closed for user root
+Dec 11 12:25:01 ubuntu CRON[1105]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:25:01 ubuntu CRON[1105]: pam_unix(cron:session): session closed for user root
+Dec 11 12:26:01 ubuntu CRON[1108]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:26:01 ubuntu CRON[1108]: pam_unix(cron:session): session closed for user root
+Dec 11 12:27:01 ubuntu CRON[1111]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:27:01 ubuntu CRON[1111]: pam_unix(cron:session): session closed for user root
+Dec 11 12:28:01 ubuntu CRON[1116]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:28:01 ubuntu CRON[1116]: pam_unix(cron:session): session closed for user root
+Dec 11 12:29:01 ubuntu CRON[1119]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:29:01 ubuntu CRON[1119]: pam_unix(cron:session): session closed for user root
+Dec 11 12:30:01 ubuntu CRON[1122]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:30:01 ubuntu CRON[1122]: pam_unix(cron:session): session closed for user root
+Dec 11 12:31:01 ubuntu CRON[1125]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:31:01 ubuntu CRON[1125]: pam_unix(cron:session): session closed for user root
+Dec 11 12:32:01 ubuntu CRON[1128]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:32:01 ubuntu CRON[1128]: pam_unix(cron:session): session closed for user root
+Dec 11 12:33:01 ubuntu CRON[1131]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:33:01 ubuntu CRON[1131]: pam_unix(cron:session): session closed for user root
+Dec 11 12:34:01 ubuntu CRON[1135]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:34:01 ubuntu CRON[1135]: pam_unix(cron:session): session closed for user root
+Dec 11 12:35:01 ubuntu CRON[1138]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:35:01 ubuntu CRON[1138]: pam_unix(cron:session): session closed for user root
+Dec 11 12:36:01 ubuntu CRON[1141]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:36:01 ubuntu CRON[1141]: pam_unix(cron:session): session closed for user root
+Dec 11 12:37:01 ubuntu CRON[1146]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:37:01 ubuntu CRON[1146]: pam_unix(cron:session): session closed for user root
+Dec 11 12:38:01 ubuntu CRON[1149]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:38:01 ubuntu CRON[1149]: pam_unix(cron:session): session closed for user root
+Dec 11 12:39:01 ubuntu CRON[1154]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:39:01 ubuntu CRON[1153]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:39:01 ubuntu CRON[1154]: pam_unix(cron:session): session closed for user root
+Dec 11 12:39:01 ubuntu CRON[1153]: pam_unix(cron:session): session closed for user root
+Dec 11 12:40:01 ubuntu CRON[1206]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:40:01 ubuntu CRON[1206]: pam_unix(cron:session): session closed for user root
+Dec 11 12:41:01 ubuntu CRON[1209]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:41:01 ubuntu CRON[1209]: pam_unix(cron:session): session closed for user root
+Dec 11 12:42:01 ubuntu CRON[1212]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:42:01 ubuntu CRON[1212]: pam_unix(cron:session): session closed for user root
+Dec 11 12:43:01 ubuntu CRON[1216]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:43:01 ubuntu CRON[1216]: pam_unix(cron:session): session closed for user root
+Dec 11 12:44:01 ubuntu CRON[1219]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:44:01 ubuntu CRON[1219]: pam_unix(cron:session): session closed for user root
+Dec 11 12:45:01 ubuntu CRON[1222]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:45:01 ubuntu CRON[1222]: pam_unix(cron:session): session closed for user root
+Dec 11 12:46:01 ubuntu CRON[1225]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:46:01 ubuntu CRON[1225]: pam_unix(cron:session): session closed for user root
+Dec 11 12:47:01 ubuntu CRON[1228]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:47:01 ubuntu CRON[1228]: pam_unix(cron:session): session closed for user root
+Dec 11 12:48:01 ubuntu CRON[1231]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:48:01 ubuntu CRON[1231]: pam_unix(cron:session): session closed for user root
+Dec 11 12:49:01 ubuntu CRON[1236]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:49:01 ubuntu CRON[1236]: pam_unix(cron:session): session closed for user root
+Dec 11 12:50:01 ubuntu CRON[1239]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:50:01 ubuntu CRON[1239]: pam_unix(cron:session): session closed for user root
+Dec 11 12:51:01 ubuntu CRON[1242]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:51:01 ubuntu CRON[1242]: pam_unix(cron:session): session closed for user root
+Dec 11 12:52:01 ubuntu CRON[1246]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:52:01 ubuntu CRON[1246]: pam_unix(cron:session): session closed for user root
+Dec 11 12:53:01 ubuntu CRON[1249]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:53:01 ubuntu CRON[1249]: pam_unix(cron:session): session closed for user root
+Dec 11 12:54:01 ubuntu CRON[1253]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:54:01 ubuntu CRON[1253]: pam_unix(cron:session): session closed for user root
+Dec 11 12:55:01 ubuntu CRON[1256]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:55:01 ubuntu CRON[1256]: pam_unix(cron:session): session closed for user root
+Dec 11 12:56:01 ubuntu CRON[1259]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:56:01 ubuntu CRON[1259]: pam_unix(cron:session): session closed for user root
+Dec 11 12:57:01 ubuntu CRON[1263]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:57:01 ubuntu CRON[1263]: pam_unix(cron:session): session closed for user root
+Dec 11 12:58:01 ubuntu CRON[1266]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:58:01 ubuntu CRON[1266]: pam_unix(cron:session): session closed for user root
+Dec 11 12:59:01 ubuntu CRON[1270]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 12:59:01 ubuntu CRON[1270]: pam_unix(cron:session): session closed for user root
+Dec 11 13:00:01 ubuntu CRON[1273]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:00:01 ubuntu CRON[1273]: pam_unix(cron:session): session closed for user root
+Dec 11 13:01:01 ubuntu CRON[1276]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:01:01 ubuntu CRON[1276]: pam_unix(cron:session): session closed for user root
+Dec 11 13:02:01 ubuntu CRON[1279]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:02:01 ubuntu CRON[1279]: pam_unix(cron:session): session closed for user root
+Dec 11 13:03:01 ubuntu CRON[1282]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:03:01 ubuntu CRON[1282]: pam_unix(cron:session): session closed for user root
+Dec 11 13:04:01 ubuntu CRON[1286]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:04:01 ubuntu CRON[1286]: pam_unix(cron:session): session closed for user root
+Dec 11 13:05:01 ubuntu CRON[1290]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:05:01 ubuntu CRON[1290]: pam_unix(cron:session): session closed for user root
+Dec 11 13:07:26 ubuntu systemd-logind[420]: New seat seat0.
+Dec 11 13:07:26 ubuntu systemd-logind[420]: Watching system buttons on /dev/input/event0 (Power Button)
+Dec 11 13:07:26 ubuntu systemd-logind[420]: Watching system buttons on /dev/input/event1 (AT Translated Set 2 keyboard)
+Dec 11 13:07:27 ubuntu sshd[556]: Server listening on 0.0.0.0 port 22.
+Dec 11 13:07:27 ubuntu sshd[556]: Server listening on :: port 22.
+Dec 11 13:08:01 ubuntu CRON[613]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:08:01 ubuntu CRON[613]: pam_unix(cron:session): session closed for user root
+Dec 11 13:09:01 ubuntu CRON[617]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:09:01 ubuntu CRON[616]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:09:01 ubuntu CRON[617]: pam_unix(cron:session): session closed for user root
+Dec 11 13:09:01 ubuntu CRON[616]: pam_unix(cron:session): session closed for user root
+Dec 11 13:10:01 ubuntu CRON[669]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:10:01 ubuntu CRON[669]: pam_unix(cron:session): session closed for user root
+Dec 11 13:11:01 ubuntu CRON[672]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:11:01 ubuntu CRON[672]: pam_unix(cron:session): session closed for user root
+Dec 11 13:12:01 ubuntu CRON[675]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:12:01 ubuntu CRON[675]: pam_unix(cron:session): session closed for user root
+Dec 11 13:13:01 ubuntu CRON[679]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:13:01 ubuntu CRON[679]: pam_unix(cron:session): session closed for user root
+Dec 11 13:14:01 ubuntu CRON[682]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:14:01 ubuntu CRON[682]: pam_unix(cron:session): session closed for user root
+Dec 11 13:15:01 ubuntu CRON[685]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:15:01 ubuntu CRON[685]: pam_unix(cron:session): session closed for user root
+Dec 11 13:16:01 ubuntu CRON[688]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:16:01 ubuntu CRON[688]: pam_unix(cron:session): session closed for user root
+Dec 11 13:17:01 ubuntu CRON[692]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:17:01 ubuntu CRON[691]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:17:01 ubuntu CRON[692]: pam_unix(cron:session): session closed for user root
+Dec 11 13:17:01 ubuntu CRON[691]: pam_unix(cron:session): session closed for user root
+Dec 11 13:18:01 ubuntu CRON[697]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:18:01 ubuntu CRON[697]: pam_unix(cron:session): session closed for user root
+Dec 11 13:19:01 ubuntu CRON[701]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:19:01 ubuntu CRON[701]: pam_unix(cron:session): session closed for user root
+Dec 11 13:19:48 ubuntu sshd[704]: Did not receive identification string from 192.168.1.79 port 43338
+Dec 11 13:19:58 ubuntu sshd[705]: Did not receive identification string from 192.168.1.79 port 53158
+Dec 11 13:20:01 ubuntu CRON[706]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:20:01 ubuntu CRON[706]: pam_unix(cron:session): session closed for user root
+Dec 11 13:20:32 ubuntu sshd[709]: Did not receive identification string from 192.168.1.79 port 42136
+Dec 11 13:21:01 ubuntu CRON[710]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:21:01 ubuntu CRON[710]: pam_unix(cron:session): session closed for user root
+Dec 11 13:22:01 ubuntu CRON[713]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:22:01 ubuntu CRON[713]: pam_unix(cron:session): session closed for user root
+Dec 11 13:23:01 ubuntu CRON[718]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:23:01 ubuntu CRON[718]: pam_unix(cron:session): session closed for user root
+Dec 11 13:24:01 ubuntu CRON[722]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:24:01 ubuntu CRON[722]: pam_unix(cron:session): session closed for user root
+Dec 11 13:25:01 ubuntu CRON[725]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:25:01 ubuntu CRON[725]: pam_unix(cron:session): session closed for user root
+Dec 11 13:26:01 ubuntu CRON[728]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:26:01 ubuntu CRON[728]: pam_unix(cron:session): session closed for user root
+Dec 11 13:27:01 ubuntu CRON[731]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:27:01 ubuntu CRON[731]: pam_unix(cron:session): session closed for user root
+Dec 11 13:28:01 ubuntu CRON[734]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:28:01 ubuntu CRON[734]: pam_unix(cron:session): session closed for user root
+Dec 11 13:29:01 ubuntu CRON[738]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:29:01 ubuntu CRON[738]: pam_unix(cron:session): session closed for user root
+Dec 11 13:30:01 ubuntu CRON[741]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:30:01 ubuntu CRON[741]: pam_unix(cron:session): session closed for user root
+Dec 11 13:31:01 ubuntu CRON[744]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:31:01 ubuntu CRON[744]: pam_unix(cron:session): session closed for user root
+Dec 11 13:32:01 ubuntu CRON[747]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:32:01 ubuntu CRON[747]: pam_unix(cron:session): session closed for user root
+Dec 11 13:33:01 ubuntu CRON[750]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:33:01 ubuntu CRON[750]: pam_unix(cron:session): session closed for user root
+Dec 11 13:34:01 ubuntu CRON[754]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:34:01 ubuntu CRON[754]: pam_unix(cron:session): session closed for user root
+Dec 11 13:35:01 ubuntu CRON[757]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:35:01 ubuntu CRON[757]: pam_unix(cron:session): session closed for user root
+Dec 11 13:36:01 ubuntu CRON[767]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:36:01 ubuntu CRON[767]: pam_unix(cron:session): session closed for user root
+Dec 11 13:37:01 ubuntu CRON[770]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:37:01 ubuntu CRON[770]: pam_unix(cron:session): session closed for user root
+Dec 11 13:38:01 ubuntu CRON[773]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:38:01 ubuntu CRON[773]: pam_unix(cron:session): session closed for user root
+Dec 11 13:39:01 ubuntu CRON[779]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:39:01 ubuntu CRON[778]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:39:01 ubuntu CRON[779]: pam_unix(cron:session): session closed for user root
+Dec 11 13:39:01 ubuntu CRON[778]: pam_unix(cron:session): session closed for user root
+Dec 11 13:40:01 ubuntu CRON[836]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:40:01 ubuntu CRON[836]: pam_unix(cron:session): session closed for user root
+Dec 11 13:41:01 ubuntu CRON[839]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:41:01 ubuntu CRON[839]: pam_unix(cron:session): session closed for user root
+Dec 11 13:42:01 ubuntu CRON[842]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:42:01 ubuntu CRON[842]: pam_unix(cron:session): session closed for user root
+Dec 11 13:43:01 ubuntu CRON[846]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:43:01 ubuntu CRON[846]: pam_unix(cron:session): session closed for user root
+Dec 11 13:44:01 ubuntu CRON[849]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:44:01 ubuntu CRON[849]: pam_unix(cron:session): session closed for user root
+Dec 11 13:45:01 ubuntu CRON[852]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:45:01 ubuntu CRON[852]: pam_unix(cron:session): session closed for user root
+Dec 11 13:46:01 ubuntu CRON[856]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:46:01 ubuntu CRON[856]: pam_unix(cron:session): session closed for user root
+Dec 11 13:47:01 ubuntu CRON[859]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:47:01 ubuntu CRON[859]: pam_unix(cron:session): session closed for user root
+Dec 11 13:48:01 ubuntu CRON[862]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:48:01 ubuntu CRON[862]: pam_unix(cron:session): session closed for user root
+Dec 11 13:49:01 ubuntu CRON[866]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:49:01 ubuntu CRON[866]: pam_unix(cron:session): session closed for user root
+Dec 11 13:50:01 ubuntu CRON[869]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:50:01 ubuntu CRON[869]: pam_unix(cron:session): session closed for user root
+Dec 11 13:51:01 ubuntu CRON[872]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:51:01 ubuntu CRON[872]: pam_unix(cron:session): session closed for user root
+Dec 11 13:52:01 ubuntu CRON[875]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:52:01 ubuntu CRON[875]: pam_unix(cron:session): session closed for user root
+Dec 11 13:53:01 ubuntu CRON[878]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:53:01 ubuntu CRON[878]: pam_unix(cron:session): session closed for user root
+Dec 11 13:54:01 ubuntu CRON[882]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:54:01 ubuntu CRON[882]: pam_unix(cron:session): session closed for user root
+Dec 11 13:55:01 ubuntu CRON[885]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:55:01 ubuntu CRON[885]: pam_unix(cron:session): session closed for user root
+Dec 11 13:56:01 ubuntu CRON[888]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:56:01 ubuntu CRON[888]: pam_unix(cron:session): session closed for user root
+Dec 11 13:57:01 ubuntu CRON[891]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:57:01 ubuntu CRON[891]: pam_unix(cron:session): session closed for user root
+Dec 11 13:58:01 ubuntu CRON[894]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:58:01 ubuntu CRON[894]: pam_unix(cron:session): session closed for user root
+Dec 11 13:59:01 ubuntu CRON[898]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 13:59:01 ubuntu CRON[898]: pam_unix(cron:session): session closed for user root
+Dec 11 14:00:01 ubuntu CRON[901]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:00:01 ubuntu CRON[901]: pam_unix(cron:session): session closed for user root
+Dec 11 14:01:01 ubuntu CRON[904]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:01:01 ubuntu CRON[904]: pam_unix(cron:session): session closed for user root
+Dec 11 14:02:01 ubuntu CRON[907]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:02:01 ubuntu CRON[907]: pam_unix(cron:session): session closed for user root
+Dec 11 14:03:01 ubuntu CRON[910]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:03:01 ubuntu CRON[910]: pam_unix(cron:session): session closed for user root
+Dec 11 14:04:01 ubuntu CRON[914]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:04:01 ubuntu CRON[914]: pam_unix(cron:session): session closed for user root
+Dec 11 14:05:01 ubuntu CRON[918]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:05:01 ubuntu CRON[918]: pam_unix(cron:session): session closed for user root
+Dec 11 14:06:01 ubuntu CRON[937]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:06:01 ubuntu CRON[937]: pam_unix(cron:session): session closed for user root
+Dec 11 14:07:01 ubuntu CRON[940]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:07:01 ubuntu CRON[940]: pam_unix(cron:session): session closed for user root
+Dec 11 14:08:01 ubuntu CRON[943]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:08:01 ubuntu CRON[943]: pam_unix(cron:session): session closed for user root
+Dec 11 14:09:01 ubuntu CRON[948]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:09:01 ubuntu CRON[947]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:09:01 ubuntu CRON[948]: pam_unix(cron:session): session closed for user root
+Dec 11 14:09:01 ubuntu CRON[947]: pam_unix(cron:session): session closed for user root
+Dec 11 14:10:01 ubuntu CRON[1005]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:10:01 ubuntu CRON[1005]: pam_unix(cron:session): session closed for user root
+Dec 11 14:11:01 ubuntu CRON[1008]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:11:01 ubuntu CRON[1008]: pam_unix(cron:session): session closed for user root
+Dec 11 14:12:01 ubuntu CRON[1018]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:12:01 ubuntu CRON[1018]: pam_unix(cron:session): session closed for user root
+Dec 11 14:13:01 ubuntu CRON[1028]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:13:01 ubuntu CRON[1028]: pam_unix(cron:session): session closed for user root
+Dec 11 14:14:01 ubuntu CRON[1032]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:14:01 ubuntu CRON[1032]: pam_unix(cron:session): session closed for user root
+Dec 11 14:15:01 ubuntu CRON[1035]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:15:01 ubuntu CRON[1035]: pam_unix(cron:session): session closed for user root
+Dec 11 14:16:01 ubuntu CRON[1038]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:16:01 ubuntu CRON[1038]: pam_unix(cron:session): session closed for user root
+Dec 11 14:17:01 ubuntu CRON[1042]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:17:01 ubuntu CRON[1041]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:17:01 ubuntu CRON[1042]: pam_unix(cron:session): session closed for user root
+Dec 11 14:17:01 ubuntu CRON[1041]: pam_unix(cron:session): session closed for user root
+Dec 11 14:18:01 ubuntu CRON[1047]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:18:01 ubuntu CRON[1047]: pam_unix(cron:session): session closed for user root
+Dec 11 14:19:01 ubuntu CRON[1052]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:19:01 ubuntu CRON[1052]: pam_unix(cron:session): session closed for user root
+Dec 11 14:20:01 ubuntu CRON[1055]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:20:01 ubuntu CRON[1055]: pam_unix(cron:session): session closed for user root
+Dec 11 14:21:01 ubuntu CRON[1058]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:21:01 ubuntu CRON[1058]: pam_unix(cron:session): session closed for user root
+Dec 11 14:22:01 ubuntu CRON[1061]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:22:02 ubuntu CRON[1061]: pam_unix(cron:session): session closed for user root
+Dec 11 14:23:01 ubuntu CRON[1064]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:23:01 ubuntu CRON[1064]: pam_unix(cron:session): session closed for user root
+Dec 11 14:24:01 ubuntu CRON[1068]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:24:01 ubuntu CRON[1068]: pam_unix(cron:session): session closed for user root
+Dec 11 14:25:01 ubuntu CRON[1071]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:25:01 ubuntu CRON[1071]: pam_unix(cron:session): session closed for user root
+Dec 11 14:26:01 ubuntu CRON[1074]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:26:01 ubuntu CRON[1074]: pam_unix(cron:session): session closed for user root
+Dec 11 14:27:01 ubuntu CRON[1077]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:27:01 ubuntu CRON[1077]: pam_unix(cron:session): session closed for user root
+Dec 11 14:28:01 ubuntu CRON[1080]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:28:01 ubuntu CRON[1080]: pam_unix(cron:session): session closed for user root
+Dec 11 14:29:01 ubuntu CRON[1083]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:29:01 ubuntu CRON[1083]: pam_unix(cron:session): session closed for user root
+Dec 11 14:30:01 ubuntu CRON[1087]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:30:01 ubuntu CRON[1087]: pam_unix(cron:session): session closed for user root
+Dec 11 14:31:01 ubuntu CRON[1090]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:31:01 ubuntu CRON[1090]: pam_unix(cron:session): session closed for user root
+Dec 11 14:32:01 ubuntu CRON[1093]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:32:01 ubuntu CRON[1093]: pam_unix(cron:session): session closed for user root
+Dec 11 14:33:01 ubuntu CRON[1096]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:33:01 ubuntu CRON[1096]: pam_unix(cron:session): session closed for user root
+Dec 11 14:34:01 ubuntu CRON[1099]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:34:01 ubuntu CRON[1099]: pam_unix(cron:session): session closed for user root
+Dec 11 14:35:01 ubuntu CRON[1103]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:35:01 ubuntu CRON[1103]: pam_unix(cron:session): session closed for user root
+Dec 11 14:36:01 ubuntu CRON[1106]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:36:01 ubuntu CRON[1106]: pam_unix(cron:session): session closed for user root
+Dec 11 14:37:01 ubuntu CRON[1109]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:37:01 ubuntu CRON[1109]: pam_unix(cron:session): session closed for user root
+Dec 11 14:38:01 ubuntu CRON[1112]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:38:01 ubuntu CRON[1112]: pam_unix(cron:session): session closed for user root
+Dec 11 14:39:01 ubuntu CRON[1170]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:39:01 ubuntu CRON[1169]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:39:01 ubuntu CRON[1170]: pam_unix(cron:session): session closed for user root
+Dec 11 14:39:01 ubuntu CRON[1169]: pam_unix(cron:session): session closed for user root
+Dec 11 14:40:01 ubuntu CRON[1175]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:40:01 ubuntu CRON[1175]: pam_unix(cron:session): session closed for user root
+Dec 11 14:41:01 ubuntu CRON[1178]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:41:01 ubuntu CRON[1178]: pam_unix(cron:session): session closed for user root
+Dec 11 14:42:01 ubuntu CRON[1181]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:42:01 ubuntu CRON[1181]: pam_unix(cron:session): session closed for user root
+Dec 11 14:43:01 ubuntu CRON[1184]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:43:01 ubuntu CRON[1184]: pam_unix(cron:session): session closed for user root
+Dec 11 14:44:01 ubuntu CRON[1187]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:44:01 ubuntu CRON[1187]: pam_unix(cron:session): session closed for user root
+Dec 11 14:45:01 ubuntu CRON[1191]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:45:01 ubuntu CRON[1191]: pam_unix(cron:session): session closed for user root
+Dec 11 14:46:01 ubuntu CRON[1194]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:46:01 ubuntu CRON[1194]: pam_unix(cron:session): session closed for user root
+Dec 11 14:47:01 ubuntu CRON[1198]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:47:01 ubuntu CRON[1198]: pam_unix(cron:session): session closed for user root
+Dec 11 14:48:01 ubuntu CRON[1201]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:48:01 ubuntu CRON[1201]: pam_unix(cron:session): session closed for user root
+Dec 11 14:49:01 ubuntu CRON[1204]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:49:01 ubuntu CRON[1204]: pam_unix(cron:session): session closed for user root
+Dec 11 14:50:01 ubuntu CRON[1208]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:50:01 ubuntu CRON[1208]: pam_unix(cron:session): session closed for user root
+Dec 11 14:51:01 ubuntu CRON[1211]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:51:01 ubuntu CRON[1211]: pam_unix(cron:session): session closed for user root
+Dec 11 14:52:01 ubuntu CRON[1214]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:52:01 ubuntu CRON[1214]: pam_unix(cron:session): session closed for user root
+Dec 11 14:53:01 ubuntu CRON[1217]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:53:01 ubuntu CRON[1217]: pam_unix(cron:session): session closed for user root
+Dec 11 14:54:01 ubuntu CRON[1221]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:54:01 ubuntu CRON[1221]: pam_unix(cron:session): session closed for user root
+Dec 11 14:55:01 ubuntu CRON[1225]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:55:01 ubuntu CRON[1225]: pam_unix(cron:session): session closed for user root
+Dec 11 14:56:01 ubuntu CRON[1228]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:56:01 ubuntu CRON[1228]: pam_unix(cron:session): session closed for user root
+Dec 11 14:57:01 ubuntu CRON[1231]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:57:01 ubuntu CRON[1231]: pam_unix(cron:session): session closed for user root
+Dec 11 14:58:01 ubuntu CRON[1234]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:58:01 ubuntu CRON[1234]: pam_unix(cron:session): session closed for user root
+Dec 11 14:59:01 ubuntu CRON[1238]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 14:59:01 ubuntu CRON[1238]: pam_unix(cron:session): session closed for user root
+Dec 11 15:00:01 ubuntu CRON[1242]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 15:00:01 ubuntu CRON[1242]: pam_unix(cron:session): session closed for user root
+Dec 11 15:01:01 ubuntu CRON[1245]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 15:01:01 ubuntu CRON[1245]: pam_unix(cron:session): session closed for user root
+Dec 11 15:02:01 ubuntu CRON[1248]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 15:02:01 ubuntu CRON[1248]: pam_unix(cron:session): session closed for user root
+Dec 11 15:03:01 ubuntu CRON[1251]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 15:03:01 ubuntu CRON[1251]: pam_unix(cron:session): session closed for user root
+Dec 11 15:04:01 ubuntu CRON[1255]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 15:04:01 ubuntu CRON[1255]: pam_unix(cron:session): session closed for user root
+Dec 11 15:05:01 ubuntu CRON[1258]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 15:05:01 ubuntu CRON[1258]: pam_unix(cron:session): session closed for user root
+Dec 11 15:06:01 ubuntu CRON[1261]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 15:06:01 ubuntu CRON[1261]: pam_unix(cron:session): session closed for user root
+Dec 11 15:07:01 ubuntu CRON[1264]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 15:07:01 ubuntu CRON[1264]: pam_unix(cron:session): session closed for user root
+Dec 11 15:08:01 ubuntu CRON[1267]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 11 15:08:01 ubuntu CRON[1267]: pam_unix(cron:session): session closed for user root
+Dec 12 12:27:45 ubuntu systemd-logind[496]: New seat seat0.
+Dec 12 12:27:45 ubuntu systemd-logind[496]: Watching system buttons on /dev/input/event0 (Power Button)
+Dec 12 12:27:45 ubuntu systemd-logind[496]: Watching system buttons on /dev/input/event1 (AT Translated Set 2 keyboard)
+Dec 12 12:27:47 ubuntu sshd[608]: Server listening on 0.0.0.0 port 22.
+Dec 12 12:27:47 ubuntu sshd[608]: Server listening on :: port 22.
+Dec 12 12:28:01 ubuntu CRON[735]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:28:01 ubuntu CRON[735]: pam_unix(cron:session): session closed for user root
+Dec 12 12:29:01 ubuntu CRON[740]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:29:01 ubuntu CRON[740]: pam_unix(cron:session): session closed for user root
+Dec 12 12:30:01 ubuntu CRON[743]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:30:01 ubuntu CRON[743]: pam_unix(cron:session): session closed for user root
+Dec 12 12:31:01 ubuntu CRON[746]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:31:01 ubuntu CRON[746]: pam_unix(cron:session): session closed for user root
+Dec 12 12:32:01 ubuntu CRON[749]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:32:01 ubuntu CRON[749]: pam_unix(cron:session): session closed for user root
+Dec 12 12:33:01 ubuntu CRON[753]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:33:01 ubuntu CRON[753]: pam_unix(cron:session): session closed for user root
+Dec 12 12:34:01 ubuntu CRON[756]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:34:01 ubuntu CRON[756]: pam_unix(cron:session): session closed for user root
+Dec 12 12:35:01 ubuntu CRON[759]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:35:01 ubuntu CRON[759]: pam_unix(cron:session): session closed for user root
+Dec 12 12:36:01 ubuntu CRON[762]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:36:01 ubuntu CRON[762]: pam_unix(cron:session): session closed for user root
+Dec 12 12:37:01 ubuntu CRON[765]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:37:01 ubuntu CRON[765]: pam_unix(cron:session): session closed for user root
+Dec 12 12:38:01 ubuntu CRON[768]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:38:01 ubuntu CRON[768]: pam_unix(cron:session): session closed for user root
+Dec 12 12:39:01 ubuntu CRON[772]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:39:01 ubuntu CRON[773]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:39:01 ubuntu CRON[773]: pam_unix(cron:session): session closed for user root
+Dec 12 12:39:01 ubuntu CRON[772]: pam_unix(cron:session): session closed for user root
+Dec 12 12:40:01 ubuntu CRON[826]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:40:01 ubuntu CRON[826]: pam_unix(cron:session): session closed for user root
+Dec 12 12:41:01 ubuntu CRON[829]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:41:01 ubuntu CRON[829]: pam_unix(cron:session): session closed for user root
+Dec 12 12:42:01 ubuntu CRON[832]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:42:01 ubuntu CRON[832]: pam_unix(cron:session): session closed for user root
+Dec 12 12:43:01 ubuntu CRON[836]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:43:01 ubuntu CRON[836]: pam_unix(cron:session): session closed for user root
+Dec 12 12:44:01 ubuntu CRON[840]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:44:01 ubuntu CRON[840]: pam_unix(cron:session): session closed for user root
+Dec 12 12:45:01 ubuntu CRON[843]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:45:01 ubuntu CRON[843]: pam_unix(cron:session): session closed for user root
+Dec 12 12:46:01 ubuntu CRON[846]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:46:01 ubuntu CRON[846]: pam_unix(cron:session): session closed for user root
+Dec 12 12:47:01 ubuntu CRON[849]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:47:01 ubuntu CRON[849]: pam_unix(cron:session): session closed for user root
+Dec 12 12:48:01 ubuntu CRON[852]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:48:01 ubuntu CRON[852]: pam_unix(cron:session): session closed for user root
+Dec 12 12:49:01 ubuntu CRON[856]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:49:01 ubuntu CRON[856]: pam_unix(cron:session): session closed for user root
+Dec 12 12:50:01 ubuntu CRON[859]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:50:01 ubuntu CRON[859]: pam_unix(cron:session): session closed for user root
+Dec 12 12:51:01 ubuntu CRON[878]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:51:01 ubuntu CRON[878]: pam_unix(cron:session): session closed for user root
+Dec 12 12:52:01 ubuntu CRON[881]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:52:01 ubuntu CRON[881]: pam_unix(cron:session): session closed for user root
+Dec 12 12:53:01 ubuntu CRON[884]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:53:01 ubuntu CRON[884]: pam_unix(cron:session): session closed for user root
+Dec 12 12:54:01 ubuntu CRON[904]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:54:01 ubuntu CRON[904]: pam_unix(cron:session): session closed for user root
+Dec 12 12:55:01 ubuntu CRON[914]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:55:01 ubuntu CRON[914]: pam_unix(cron:session): session closed for user root
+Dec 12 12:56:01 ubuntu CRON[917]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:56:01 ubuntu CRON[917]: pam_unix(cron:session): session closed for user root
+Dec 12 12:57:01 ubuntu CRON[920]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:57:01 ubuntu CRON[920]: pam_unix(cron:session): session closed for user root
+Dec 12 12:58:01 ubuntu CRON[924]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:58:01 ubuntu CRON[924]: pam_unix(cron:session): session closed for user root
+Dec 12 12:59:01 ubuntu CRON[927]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 12:59:01 ubuntu CRON[927]: pam_unix(cron:session): session closed for user root
+Dec 12 13:00:01 ubuntu CRON[931]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:00:01 ubuntu CRON[931]: pam_unix(cron:session): session closed for user root
+Dec 12 13:01:01 ubuntu CRON[934]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:01:01 ubuntu CRON[934]: pam_unix(cron:session): session closed for user root
+Dec 12 13:02:01 ubuntu CRON[937]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:02:01 ubuntu CRON[937]: pam_unix(cron:session): session closed for user root
+Dec 12 13:03:01 ubuntu CRON[940]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:03:01 ubuntu CRON[940]: pam_unix(cron:session): session closed for user root
+Dec 12 13:04:01 ubuntu CRON[944]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:04:01 ubuntu CRON[944]: pam_unix(cron:session): session closed for user root
+Dec 12 13:05:01 ubuntu CRON[947]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:05:01 ubuntu CRON[947]: pam_unix(cron:session): session closed for user root
+Dec 12 13:06:01 ubuntu CRON[957]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:06:01 ubuntu CRON[957]: pam_unix(cron:session): session closed for user root
+Dec 12 13:07:01 ubuntu CRON[960]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:07:01 ubuntu CRON[960]: pam_unix(cron:session): session closed for user root
+Dec 12 13:08:01 ubuntu CRON[970]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:08:01 ubuntu CRON[970]: pam_unix(cron:session): session closed for user root
+Dec 12 13:09:01 ubuntu CRON[975]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:09:01 ubuntu CRON[974]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:09:01 ubuntu CRON[975]: pam_unix(cron:session): session closed for user root
+Dec 12 13:09:01 ubuntu CRON[974]: pam_unix(cron:session): session closed for user root
+Dec 12 13:10:01 ubuntu CRON[1040]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:10:01 ubuntu CRON[1040]: pam_unix(cron:session): session closed for user root
+Dec 12 13:11:01 ubuntu CRON[1043]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:11:01 ubuntu CRON[1043]: pam_unix(cron:session): session closed for user root
+Dec 12 13:12:01 ubuntu CRON[1077]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:12:01 ubuntu CRON[1077]: pam_unix(cron:session): session closed for user root
+Dec 12 13:13:01 ubuntu CRON[1196]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:13:01 ubuntu CRON[1196]: pam_unix(cron:session): session closed for user root
+Dec 12 13:14:01 ubuntu CRON[1208]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:14:01 ubuntu CRON[1208]: pam_unix(cron:session): session closed for user root
+Dec 12 13:15:01 ubuntu CRON[1254]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:15:01 ubuntu CRON[1254]: pam_unix(cron:session): session closed for user root
+Dec 12 13:16:01 ubuntu CRON[1260]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:16:01 ubuntu CRON[1260]: pam_unix(cron:session): session closed for user root
+Dec 12 13:17:01 ubuntu CRON[1269]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:17:01 ubuntu CRON[1268]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:17:01 ubuntu CRON[1269]: pam_unix(cron:session): session closed for user root
+Dec 12 13:17:01 ubuntu CRON[1268]: pam_unix(cron:session): session closed for user root
+Dec 12 13:18:01 ubuntu CRON[1307]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:18:01 ubuntu CRON[1307]: pam_unix(cron:session): session closed for user root
+Dec 12 13:19:01 ubuntu CRON[1316]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:19:01 ubuntu CRON[1316]: pam_unix(cron:session): session closed for user root
+Dec 12 13:20:01 ubuntu CRON[1357]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:20:01 ubuntu CRON[1357]: pam_unix(cron:session): session closed for user root
+Dec 12 13:21:01 ubuntu CRON[1360]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:21:01 ubuntu CRON[1360]: pam_unix(cron:session): session closed for user root
+Dec 12 13:22:01 ubuntu CRON[1363]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:22:01 ubuntu CRON[1363]: pam_unix(cron:session): session closed for user root
+Dec 12 13:23:01 ubuntu CRON[1366]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:23:01 ubuntu CRON[1366]: pam_unix(cron:session): session closed for user root
+Dec 12 13:24:01 ubuntu CRON[1370]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:24:01 ubuntu CRON[1370]: pam_unix(cron:session): session closed for user root
+Dec 12 13:25:01 ubuntu CRON[1373]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:25:01 ubuntu CRON[1373]: pam_unix(cron:session): session closed for user root
+Dec 12 13:26:01 ubuntu CRON[1376]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:26:01 ubuntu CRON[1376]: pam_unix(cron:session): session closed for user root
+Dec 12 13:27:01 ubuntu CRON[1379]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:27:01 ubuntu CRON[1379]: pam_unix(cron:session): session closed for user root
+Dec 12 13:28:01 ubuntu CRON[1382]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:28:01 ubuntu CRON[1382]: pam_unix(cron:session): session closed for user root
+Dec 12 13:29:01 ubuntu CRON[1386]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:29:01 ubuntu CRON[1386]: pam_unix(cron:session): session closed for user root
+Dec 12 13:30:01 ubuntu CRON[1390]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:30:01 ubuntu CRON[1390]: pam_unix(cron:session): session closed for user root
+Dec 12 13:31:01 ubuntu CRON[1393]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:31:01 ubuntu CRON[1393]: pam_unix(cron:session): session closed for user root
+Dec 12 13:32:01 ubuntu CRON[1396]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:32:01 ubuntu CRON[1396]: pam_unix(cron:session): session closed for user root
+Dec 12 13:33:01 ubuntu CRON[1399]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:33:01 ubuntu CRON[1399]: pam_unix(cron:session): session closed for user root
+Dec 12 13:34:01 ubuntu CRON[1403]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:34:01 ubuntu CRON[1403]: pam_unix(cron:session): session closed for user root
+Dec 12 13:35:01 ubuntu CRON[1407]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:35:01 ubuntu CRON[1407]: pam_unix(cron:session): session closed for user root
+Dec 12 13:36:01 ubuntu CRON[1410]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:36:01 ubuntu CRON[1410]: pam_unix(cron:session): session closed for user root
+Dec 12 13:37:01 ubuntu CRON[1413]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:37:01 ubuntu CRON[1413]: pam_unix(cron:session): session closed for user root
+Dec 12 13:38:01 ubuntu CRON[1416]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:38:01 ubuntu CRON[1416]: pam_unix(cron:session): session closed for user root
+Dec 12 13:39:01 ubuntu CRON[1420]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:39:01 ubuntu CRON[1419]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:39:01 ubuntu CRON[1420]: pam_unix(cron:session): session closed for user root
+Dec 12 13:39:01 ubuntu CRON[1419]: pam_unix(cron:session): session closed for user root
+Dec 12 13:40:01 ubuntu CRON[1478]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:40:01 ubuntu CRON[1478]: pam_unix(cron:session): session closed for user root
+Dec 12 13:40:30 ubuntu sshd[1481]: Invalid user mahacal from 192.168.1.79 port 41558
+Dec 12 13:40:38 ubuntu sshd[1481]: pam_unix(sshd:auth): check pass; user unknown
+Dec 12 13:40:38 ubuntu sshd[1481]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=192.168.1.79
+Dec 12 13:40:39 ubuntu sshd[1481]: Failed password for invalid user mahacal from 192.168.1.79 port 41558 ssh2
+Dec 12 13:40:41 ubuntu sshd[1481]: Connection closed by invalid user mahacal 192.168.1.79 port 41558 [preauth]
+Dec 12 13:41:01 ubuntu CRON[1483]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:41:01 ubuntu CRON[1483]: pam_unix(cron:session): session closed for user root
+Dec 12 13:42:01 ubuntu CRON[1486]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:42:01 ubuntu CRON[1486]: pam_unix(cron:session): session closed for user root
+Dec 12 13:43:01 ubuntu CRON[1489]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:43:01 ubuntu CRON[1489]: pam_unix(cron:session): session closed for user root
+Dec 12 13:44:01 ubuntu CRON[1492]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:44:01 ubuntu CRON[1492]: pam_unix(cron:session): session closed for user root
+Dec 12 13:45:01 ubuntu CRON[1496]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:45:01 ubuntu CRON[1496]: pam_unix(cron:session): session closed for user root
+Dec 12 13:45:35 ubuntu sshd[1499]: Invalid user mahacal from 192.168.1.79 port 37438
+Dec 12 13:45:35 ubuntu sshd[1499]: fatal: userauth_pubkey: sshpkt_get_cstring failed: incomplete message [preauth]
+Dec 12 13:45:46 ubuntu sshd[1501]: Invalid user pepe from 192.168.1.79 port 37156
+Dec 12 13:45:46 ubuntu sshd[1501]: fatal: userauth_pubkey: sshpkt_get_cstring failed: incomplete message [preauth]
+Dec 12 13:46:01 ubuntu CRON[1503]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:46:01 ubuntu CRON[1503]: pam_unix(cron:session): session closed for user root
+Dec 12 13:47:01 ubuntu CRON[1506]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:47:01 ubuntu CRON[1506]: pam_unix(cron:session): session closed for user root
+Dec 12 13:48:01 ubuntu CRON[1509]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:48:01 ubuntu CRON[1509]: pam_unix(cron:session): session closed for user root
+Dec 12 13:49:01 ubuntu CRON[1512]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:49:01 ubuntu CRON[1512]: pam_unix(cron:session): session closed for user root
+Dec 12 13:50:01 ubuntu CRON[1516]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:50:01 ubuntu CRON[1516]: pam_unix(cron:session): session closed for user root
+Dec 12 13:51:01 ubuntu CRON[1519]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:51:01 ubuntu CRON[1519]: pam_unix(cron:session): session closed for user root
+Dec 12 13:52:01 ubuntu CRON[1522]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:52:01 ubuntu CRON[1522]: pam_unix(cron:session): session closed for user root
+Dec 12 13:53:01 ubuntu CRON[1525]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:53:01 ubuntu CRON[1525]: pam_unix(cron:session): session closed for user root
+Dec 12 13:54:01 ubuntu CRON[1528]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:54:01 ubuntu CRON[1528]: pam_unix(cron:session): session closed for user root
+Dec 12 13:55:01 ubuntu CRON[1532]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:55:01 ubuntu CRON[1532]: pam_unix(cron:session): session closed for user root
+Dec 12 13:56:01 ubuntu CRON[1535]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:56:01 ubuntu CRON[1535]: pam_unix(cron:session): session closed for user root
+Dec 12 13:57:01 ubuntu CRON[1538]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:57:01 ubuntu CRON[1538]: pam_unix(cron:session): session closed for user root
+Dec 12 13:58:01 ubuntu CRON[1541]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:58:01 ubuntu CRON[1541]: pam_unix(cron:session): session closed for user root
+Dec 12 13:59:01 ubuntu CRON[1545]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 13:59:01 ubuntu CRON[1545]: pam_unix(cron:session): session closed for user root
+Dec 12 14:00:01 ubuntu CRON[1549]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:00:01 ubuntu CRON[1549]: pam_unix(cron:session): session closed for user root
+Dec 12 14:01:01 ubuntu CRON[1552]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:01:01 ubuntu CRON[1552]: pam_unix(cron:session): session closed for user root
+Dec 12 14:02:01 ubuntu CRON[1555]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:02:01 ubuntu CRON[1555]: pam_unix(cron:session): session closed for user root
+Dec 12 14:03:01 ubuntu CRON[1558]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:03:01 ubuntu CRON[1558]: pam_unix(cron:session): session closed for user root
+Dec 12 14:04:01 ubuntu CRON[1561]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:04:01 ubuntu CRON[1561]: pam_unix(cron:session): session closed for user root
+Dec 12 14:05:01 ubuntu CRON[1566]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:05:01 ubuntu CRON[1566]: pam_unix(cron:session): session closed for user root
+Dec 12 14:06:01 ubuntu CRON[1569]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:06:01 ubuntu CRON[1569]: pam_unix(cron:session): session closed for user root
+Dec 12 14:07:01 ubuntu CRON[1572]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:07:01 ubuntu CRON[1572]: pam_unix(cron:session): session closed for user root
+Dec 12 14:08:01 ubuntu CRON[1575]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:08:01 ubuntu CRON[1575]: pam_unix(cron:session): session closed for user root
+Dec 12 14:09:01 ubuntu CRON[1632]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:09:01 ubuntu CRON[1631]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:09:01 ubuntu CRON[1632]: pam_unix(cron:session): session closed for user root
+Dec 12 14:09:01 ubuntu CRON[1631]: pam_unix(cron:session): session closed for user root
+Dec 12 14:10:01 ubuntu CRON[1637]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:10:01 ubuntu CRON[1637]: pam_unix(cron:session): session closed for user root
+Dec 12 14:11:01 ubuntu CRON[1640]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:11:01 ubuntu CRON[1640]: pam_unix(cron:session): session closed for user root
+Dec 12 14:12:01 ubuntu CRON[1643]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:12:01 ubuntu CRON[1643]: pam_unix(cron:session): session closed for user root
+Dec 12 14:13:01 ubuntu CRON[1646]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:13:01 ubuntu CRON[1646]: pam_unix(cron:session): session closed for user root
+Dec 12 14:14:01 ubuntu CRON[1650]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:14:01 ubuntu CRON[1650]: pam_unix(cron:session): session closed for user root
+Dec 12 14:15:01 ubuntu CRON[1653]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:15:01 ubuntu CRON[1653]: pam_unix(cron:session): session closed for user root
+Dec 12 14:16:01 ubuntu CRON[1656]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:16:01 ubuntu CRON[1656]: pam_unix(cron:session): session closed for user root
+Dec 12 14:17:01 ubuntu CRON[1660]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:17:01 ubuntu CRON[1659]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:17:01 ubuntu CRON[1660]: pam_unix(cron:session): session closed for user root
+Dec 12 14:17:01 ubuntu CRON[1659]: pam_unix(cron:session): session closed for user root
+Dec 12 14:18:01 ubuntu CRON[1665]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:18:01 ubuntu CRON[1665]: pam_unix(cron:session): session closed for user root
+Dec 12 14:19:01 ubuntu CRON[1668]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:19:01 ubuntu CRON[1668]: pam_unix(cron:session): session closed for user root
+Dec 12 14:20:01 ubuntu CRON[1672]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:20:01 ubuntu CRON[1672]: pam_unix(cron:session): session closed for user root
+Dec 12 14:21:01 ubuntu CRON[1675]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:21:01 ubuntu CRON[1675]: pam_unix(cron:session): session closed for user root
+Dec 12 14:22:01 ubuntu CRON[1678]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:22:01 ubuntu CRON[1678]: pam_unix(cron:session): session closed for user root
+Dec 12 14:23:01 ubuntu CRON[1681]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:23:01 ubuntu CRON[1681]: pam_unix(cron:session): session closed for user root
+Dec 12 14:24:01 ubuntu CRON[1684]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:24:01 ubuntu CRON[1684]: pam_unix(cron:session): session closed for user root
+Dec 12 14:25:01 ubuntu CRON[1688]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:25:01 ubuntu CRON[1688]: pam_unix(cron:session): session closed for user root
+Dec 12 14:26:01 ubuntu CRON[1692]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:26:01 ubuntu CRON[1692]: pam_unix(cron:session): session closed for user root
+Dec 12 14:27:01 ubuntu CRON[1695]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:27:01 ubuntu CRON[1695]: pam_unix(cron:session): session closed for user root
+Dec 12 14:28:01 ubuntu CRON[1698]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:28:01 ubuntu CRON[1698]: pam_unix(cron:session): session closed for user root
+Dec 12 14:29:01 ubuntu CRON[1701]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:29:01 ubuntu CRON[1701]: pam_unix(cron:session): session closed for user root
+Dec 12 14:30:01 ubuntu CRON[1705]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:30:01 ubuntu CRON[1705]: pam_unix(cron:session): session closed for user root
+Dec 12 14:31:01 ubuntu CRON[1708]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:31:01 ubuntu CRON[1708]: pam_unix(cron:session): session closed for user root
+Dec 12 14:32:01 ubuntu CRON[1711]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:32:01 ubuntu CRON[1711]: pam_unix(cron:session): session closed for user root
+Dec 12 14:33:01 ubuntu CRON[1714]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:33:01 ubuntu CRON[1714]: pam_unix(cron:session): session closed for user root
+Dec 12 14:34:01 ubuntu CRON[1718]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:34:01 ubuntu CRON[1718]: pam_unix(cron:session): session closed for user root
+Dec 12 14:35:01 ubuntu CRON[1722]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:35:01 ubuntu CRON[1722]: pam_unix(cron:session): session closed for user root
+Dec 12 14:36:01 ubuntu CRON[1725]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:36:01 ubuntu CRON[1725]: pam_unix(cron:session): session closed for user root
+Dec 12 14:37:01 ubuntu CRON[1728]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:37:01 ubuntu CRON[1728]: pam_unix(cron:session): session closed for user root
+Dec 12 14:38:01 ubuntu CRON[1731]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:38:01 ubuntu CRON[1731]: pam_unix(cron:session): session closed for user root
+Dec 12 14:39:01 ubuntu CRON[1734]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:39:01 ubuntu CRON[1735]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:39:01 ubuntu CRON[1734]: pam_unix(cron:session): session closed for user root
+Dec 12 14:39:01 ubuntu CRON[1735]: pam_unix(cron:session): session closed for user root
+Dec 12 14:40:01 ubuntu CRON[1794]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:40:01 ubuntu CRON[1794]: pam_unix(cron:session): session closed for user root
+Dec 12 14:41:01 ubuntu CRON[1797]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:41:01 ubuntu CRON[1797]: pam_unix(cron:session): session closed for user root
+Dec 12 14:42:01 ubuntu CRON[1800]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:42:01 ubuntu CRON[1800]: pam_unix(cron:session): session closed for user root
+Dec 12 14:43:01 ubuntu CRON[1803]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:43:01 ubuntu CRON[1803]: pam_unix(cron:session): session closed for user root
+Dec 12 14:44:01 ubuntu CRON[1807]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:44:01 ubuntu CRON[1807]: pam_unix(cron:session): session closed for user root
+Dec 12 14:45:01 ubuntu CRON[1810]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:45:01 ubuntu CRON[1810]: pam_unix(cron:session): session closed for user root
+Dec 12 14:46:01 ubuntu CRON[1814]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:46:01 ubuntu CRON[1814]: pam_unix(cron:session): session closed for user root
+Dec 12 14:47:01 ubuntu CRON[1817]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:47:01 ubuntu CRON[1817]: pam_unix(cron:session): session closed for user root
+Dec 12 14:48:01 ubuntu CRON[1820]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:48:01 ubuntu CRON[1820]: pam_unix(cron:session): session closed for user root
+Dec 12 14:49:01 ubuntu CRON[1823]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:49:01 ubuntu CRON[1823]: pam_unix(cron:session): session closed for user root
+Dec 12 14:50:01 ubuntu CRON[1827]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 12 14:50:01 ubuntu CRON[1827]: pam_unix(cron:session): session closed for user root
+Dec 12 14:50:04 ubuntu sshd[608]: Received signal 15; terminating.
+Dec 13 04:17:02 ubuntu systemd-logind[455]: New seat seat0.
+Dec 13 04:17:02 ubuntu systemd-logind[455]: Watching system buttons on /dev/input/event0 (Power Button)
+Dec 13 04:17:02 ubuntu systemd-logind[455]: Watching system buttons on /dev/input/event1 (AT Translated Set 2 keyboard)
+Dec 13 04:17:02 ubuntu sshd[533]: Server listening on 0.0.0.0 port 22.
+Dec 13 04:17:02 ubuntu sshd[533]: Server listening on :: port 22.
+Dec 13 04:18:03 ubuntu CRON[683]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:18:03 ubuntu CRON[683]: pam_unix(cron:session): session closed for user root
+Dec 13 04:19:01 ubuntu CRON[686]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:19:01 ubuntu CRON[686]: pam_unix(cron:session): session closed for user root
+Dec 13 04:20:01 ubuntu CRON[689]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:20:01 ubuntu CRON[689]: pam_unix(cron:session): session closed for user root
+Dec 13 04:21:01 ubuntu CRON[692]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:21:01 ubuntu CRON[692]: pam_unix(cron:session): session closed for user root
+Dec 13 04:22:01 ubuntu CRON[696]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:22:01 ubuntu CRON[696]: pam_unix(cron:session): session closed for user root
+Dec 13 04:23:01 ubuntu CRON[700]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:23:01 ubuntu CRON[700]: pam_unix(cron:session): session closed for user root
+Dec 13 04:24:01 ubuntu CRON[703]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:24:01 ubuntu CRON[703]: pam_unix(cron:session): session closed for user root
+Dec 13 04:25:01 ubuntu CRON[706]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:25:01 ubuntu CRON[706]: pam_unix(cron:session): session closed for user root
+Dec 13 04:26:01 ubuntu CRON[709]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:26:01 ubuntu CRON[709]: pam_unix(cron:session): session closed for user root
+Dec 13 04:27:01 ubuntu CRON[712]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:27:01 ubuntu CRON[712]: pam_unix(cron:session): session closed for user root
+Dec 13 04:28:01 ubuntu CRON[716]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:28:01 ubuntu CRON[716]: pam_unix(cron:session): session closed for user root
+Dec 13 04:29:01 ubuntu CRON[719]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:29:01 ubuntu CRON[719]: pam_unix(cron:session): session closed for user root
+Dec 13 04:30:01 ubuntu CRON[723]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:30:01 ubuntu CRON[723]: pam_unix(cron:session): session closed for user root
+Dec 13 04:31:01 ubuntu CRON[726]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:31:01 ubuntu CRON[726]: pam_unix(cron:session): session closed for user root
+Dec 13 04:32:01 ubuntu CRON[730]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:32:01 ubuntu CRON[730]: pam_unix(cron:session): session closed for user root
+Dec 13 04:33:01 ubuntu CRON[734]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:33:01 ubuntu CRON[734]: pam_unix(cron:session): session closed for user root
+Dec 13 04:34:01 ubuntu CRON[737]: pam_unix(cron:session): session opened for user root by (uid=0)
+Dec 13 04:34:01 ubuntu CRON[737]: pam_unix(cron:session): session closed for user root

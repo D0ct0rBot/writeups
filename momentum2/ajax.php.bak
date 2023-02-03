@@ -1,0 +1,14 @@
+   
+   
+    //The boss told me to add one more Upper Case letter at the end of the cookie
+   if(isset($_COOKIE['admin']) && $_COOKIE['admin'] == '&G6u@B6uDXMq&Ms'){
+
+       //[+] Add if $_POST['secure'] == 'val1d'
+        $valid_ext = array("pdf","php","txt");
+   }
+   else{
+
+        $valid_ext = array("txt");
+   }
+
+   // Remember success upload returns 1 

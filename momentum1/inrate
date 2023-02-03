@@ -1,0 +1,4 @@
+# Nmap 7.93 scan initiated Mon Jan 30 07:45:04 2023 as: nmap -sS -n -p60000-65535 -minrate 5000 192.168.1.142
+Host: 192.168.1.142 ()	Status: Up
+Host: 192.168.1.142 ()	Ports: 	Ignored State: closed (5536)
+# Nmap done at Mon Jan 30 07:45:14 2023 -- 2 IP addresses (1 host up) scanned in 10.06 seconds

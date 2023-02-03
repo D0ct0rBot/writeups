@@ -1,0 +1,105 @@
+[38;5;238m───────┬──────────────────────────────────────────────────────────────────────────────────────────[0m
+       [38;5;238m│ [0mFile: [1mtargeted[0m
+[38;5;238m───────┼──────────────────────────────────────────────────────────────────────────────────────────[0m
+[38;5;238m   1[0m   [38;5;238m│[0m [38;2;248;248;242m# Nmap 7.93 scan initiated Sun Nov 27 16:43:48 2022 as: nmap -sC -sV -p22,80,5000,31337 -[0m
+[38;5;238m    [0m   [38;5;238m│[0m [38;2;248;248;242moN targeted 10.0.2.4[0m
+[38;5;238m   2[0m   [38;5;238m│[0m [38;2;248;248;242mNmap scan report for 10.0.2.4[0m
+[38;5;238m   3[0m   [38;5;238m│[0m [38;2;248;248;242mHost is up (0.00034s latency).[0m
+[38;5;238m   4[0m   [38;5;238m│[0m 
+[38;5;238m   5[0m   [38;5;238m│[0m [38;2;248;248;242mPORT      STATE SERVICE VERSION[0m
+[38;5;238m   6[0m   [38;5;238m│[0m [38;2;248;248;242m22/tcp    open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)[0m
+[38;5;238m   7[0m   [38;5;238m│[0m [38;2;248;248;242m| ssh-hostkey: [0m
+[38;5;238m   8[0m   [38;5;238m│[0m [38;2;248;248;242m|   2048 e64423acb2d982e79058155e4023ed65 (RSA)[0m
+[38;5;238m   9[0m   [38;5;238m│[0m [38;2;248;248;242m|   256 ae04856ecb104f554aad969ef2ce184f (ECDSA)[0m
+[38;5;238m  10[0m   [38;5;238m│[0m [38;2;248;248;242m|_  256 f708561997b5031018667e7d2e0a4742 (ED25519)[0m
+[38;5;238m  11[0m   [38;5;238m│[0m [38;2;248;248;242m80/tcp    open  http    lighttpd 1.4.45[0m
+[38;5;238m  12[0m   [38;5;238m│[0m [38;2;248;248;242m|_http-server-header: lighttpd/1.4.45[0m
+[38;5;238m  13[0m   [38;5;238m│[0m [38;2;248;248;242m|_http-title: Custom-ers[0m
+[38;5;238m  14[0m   [38;5;238m│[0m [38;2;248;248;242m5000/tcp  open  http    Werkzeug httpd 1.0.1 (Python 3.6.9)[0m
+[38;5;238m  15[0m   [38;5;238m│[0m [38;2;248;248;242m|_http-server-header: Werkzeug/1.0.1 Python/3.6.9[0m
+[38;5;238m  16[0m   [38;5;238m│[0m [38;2;248;248;242m|_http-title: Site doesn't have a title (text/html; charset=utf-8).[0m
+[38;5;238m  17[0m   [38;5;238m│[0m [38;2;248;248;242m31337/tcp open  Elite?[0m
+[38;5;238m  18[0m   [38;5;238m│[0m [38;2;248;248;242m| fingerprint-strings: [0m
+[38;5;238m  19[0m   [38;5;238m│[0m [38;2;248;248;242m|   DNSStatusRequestTCP, DNSVersionBindReqTCP, NULL: [0m
+[38;5;238m  20[0m   [38;5;238m│[0m [38;2;248;248;242m|     username>[0m
+[38;5;238m  21[0m   [38;5;238m│[0m [38;2;248;248;242m|   GenericLines, GetRequest, HTTPOptions, RTSPRequest, SIPOptions: [0m
+[38;5;238m  22[0m   [38;5;238m│[0m [38;2;248;248;242m|     username> password> authentication failed[0m
+[38;5;238m  23[0m   [38;5;238m│[0m [38;2;248;248;242m|   Help: [0m
+[38;5;238m  24[0m   [38;5;238m│[0m [38;2;248;248;242m|     username> password>[0m
+[38;5;238m  25[0m   [38;5;238m│[0m [38;2;248;248;242m|   RPCCheck: [0m
+[38;5;238m  26[0m   [38;5;238m│[0m [38;2;248;248;242m|     username> Traceback (most recent call last):[0m
+[38;5;238m  27[0m   [38;5;238m│[0m [38;2;248;248;242m|     File "/opt/.tick-serv/tickets.py", line 105, in <module>[0m
+[38;5;238m  28[0m   [38;5;238m│[0m [38;2;248;248;242m|     main()[0m
+[38;5;238m  29[0m   [38;5;238m│[0m [38;2;248;248;242m|     File "/opt/.tick-serv/tickets.py", line 93, in main[0m
+[38;5;238m  30[0m   [38;5;238m│[0m [38;2;248;248;242m|     username = input("username> ")[0m
+[38;5;238m  31[0m   [38;5;238m│[0m [38;2;248;248;242m|     File "/usr/lib/python3.6/codecs.py", line 321, in decode[0m
+[38;5;238m  32[0m   [38;5;238m│[0m [38;2;248;248;242m|     (result, consumed) = self._buffer_decode(data, self.errors, final)[0m
+[38;5;238m  33[0m   [38;5;238m│[0m [38;2;248;248;242m|     UnicodeDecodeError: 'utf-8' codec can't decode byte 0x80 in position 0: invalid sta[0m
+[38;5;238m    [0m   [38;5;238m│[0m [38;2;248;248;242mrt byte[0m
+[38;5;238m  34[0m   [38;5;238m│[0m [38;2;248;248;242m|   SSLSessionReq: [0m
+[38;5;238m  35[0m   [38;5;238m│[0m [38;2;248;248;242m|     username> Traceback (most recent call last):[0m
+[38;5;238m  36[0m   [38;5;238m│[0m [38;2;248;248;242m|     File "/opt/.tick-serv/tickets.py", line 105, in <module>[0m
+[38;5;238m  37[0m   [38;5;238m│[0m [38;2;248;248;242m|     main()[0m
+[38;5;238m  38[0m   [38;5;238m│[0m [38;2;248;248;242m|     File "/opt/.tick-serv/tickets.py", line 93, in main[0m
+[38;5;238m  39[0m   [38;5;238m│[0m [38;2;248;248;242m|     username = input("username> ")[0m
+[38;5;238m  40[0m   [38;5;238m│[0m [38;2;248;248;242m|     File "/usr/lib/python3.6/codecs.py", line 321, in decode[0m
+[38;5;238m  41[0m   [38;5;238m│[0m [38;2;248;248;242m|     (result, consumed) = self._buffer_decode(data, self.errors, final)[0m
+[38;5;238m  42[0m   [38;5;238m│[0m [38;2;248;248;242m|     UnicodeDecodeError: 'utf-8' codec can't decode byte 0xd7 in position 13: invalid co[0m
+[38;5;238m    [0m   [38;5;238m│[0m [38;2;248;248;242mntinuation byte[0m
+[38;5;238m  43[0m   [38;5;238m│[0m [38;2;248;248;242m|   TerminalServerCookie: [0m
+[38;5;238m  44[0m   [38;5;238m│[0m [38;2;248;248;242m|     username> Traceback (most recent call last):[0m
+[38;5;238m  45[0m   [38;5;238m│[0m [38;2;248;248;242m|     File "/opt/.tick-serv/tickets.py", line 105, in <module>[0m
+[38;5;238m  46[0m   [38;5;238m│[0m [38;2;248;248;242m|     main()[0m
+[38;5;238m  47[0m   [38;5;238m│[0m [38;2;248;248;242m|     File "/opt/.tick-serv/tickets.py", line 93, in main[0m
+[38;5;238m  48[0m   [38;5;238m│[0m [38;2;248;248;242m|     username = input("username> ")[0m
+[38;5;238m  49[0m   [38;5;238m│[0m [38;2;248;248;242m|     File "/usr/lib/python3.6/codecs.py", line 321, in decode[0m
+[38;5;238m  50[0m   [38;5;238m│[0m [38;2;248;248;242m|     (result, consumed) = self._buffer_decode(data, self.errors, final)[0m
+[38;5;238m  51[0m   [38;5;238m│[0m [38;2;248;248;242m|_    UnicodeDecodeError: 'utf-8' codec can't decode byte 0xe0 in position 5: invalid con[0m
+[38;5;238m    [0m   [38;5;238m│[0m [38;2;248;248;242mtinuation byte[0m
+[38;5;238m  52[0m   [38;5;238m│[0m [38;2;248;248;242m1 service unrecognized despite returning data. If you know the service/version, please su[0m
+[38;5;238m    [0m   [38;5;238m│[0m [38;2;248;248;242mbmit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :[0m
+[38;5;238m  53[0m   [38;5;238m│[0m [38;2;248;248;242mSF-Port31337-TCP:V=7.93%I=7%D=11/27%Time=6383DA1C%P=x86_64-pc-linux-gnu%r([0m
+[38;5;238m  54[0m   [38;5;238m│[0m [38;2;248;248;242mSF:NULL,A,"username>\x20")%r(GetRequest,2A,"username>\x20password>\x20auth[0m
+[38;5;238m  55[0m   [38;5;238m│[0m [38;2;248;248;242mSF:entication\x20failed\n")%r(SIPOptions,2A,"username>\x20password>\x20aut[0m
+[38;5;238m  56[0m   [38;5;238m│[0m [38;2;248;248;242mSF:hentication\x20failed\n")%r(GenericLines,2A,"username>\x20password>\x20[0m
+[38;5;238m  57[0m   [38;5;238m│[0m [38;2;248;248;242mSF:authentication\x20failed\n")%r(HTTPOptions,2A,"username>\x20password>\x[0m
+[38;5;238m  58[0m   [38;5;238m│[0m [38;2;248;248;242mSF:20authentication\x20failed\n")%r(RTSPRequest,2A,"username>\x20password>[0m
+[38;5;238m  59[0m   [38;5;238m│[0m [38;2;248;248;242mSF:\x20authentication\x20failed\n")%r(RPCCheck,1A9,"username>\x20Traceback[0m
+[38;5;238m  60[0m   [38;5;238m│[0m [38;2;248;248;242mSF:\x20\(most\x20recent\x20call\x20last\):\n\x20\x20File\x20\"/opt/\.tick-[0m
+[38;5;238m  61[0m   [38;5;238m│[0m [38;2;248;248;242mSF:serv/tickets\.py\",\x20line\x20105,\x20in\x20<module>\n\x20\x20\x20\x20[0m
+[38;5;238m  62[0m   [38;5;238m│[0m [38;2;248;248;242mSF:main\(\)\n\x20\x20File\x20\"/opt/\.tick-serv/tickets\.py\",\x20line\x20[0m
+[38;5;238m  63[0m   [38;5;238m│[0m [38;2;248;248;242mSF:93,\x20in\x20main\n\x20\x20\x20\x20username\x20=\x20input\(\"username>\[0m
+[38;5;238m  64[0m   [38;5;238m│[0m [38;2;248;248;242mSF:x20\"\)\n\x20\x20File\x20\"/usr/lib/python3\.6/codecs\.py\",\x20line\x2[0m
+[38;5;238m  65[0m   [38;5;238m│[0m [38;2;248;248;242mSF:0321,\x20in\x20decode\n\x20\x20\x20\x20\(result,\x20consumed\)\x20=\x20[0m
+[38;5;238m  66[0m   [38;5;238m│[0m [38;2;248;248;242mSF:self\._buffer_decode\(data,\x20self\.errors,\x20final\)\nUnicodeDecodeE[0m
+[38;5;238m  67[0m   [38;5;238m│[0m [38;2;248;248;242mSF:rror:\x20'utf-8'\x20codec\x20can't\x20decode\x20byte\x200x80\x20in\x20p[0m
+[38;5;238m  68[0m   [38;5;238m│[0m [38;2;248;248;242mSF:osition\x200:\x20invalid\x20start\x20byte\n")%r(DNSVersionBindReqTCP,A,[0m
+[38;5;238m  69[0m   [38;5;238m│[0m [38;2;248;248;242mSF:"username>\x20")%r(DNSStatusRequestTCP,A,"username>\x20")%r(Help,14,"us[0m
+[38;5;238m  70[0m   [38;5;238m│[0m [38;2;248;248;242mSF:ername>\x20password>\x20")%r(SSLSessionReq,1B1,"username>\x20Traceback\[0m
+[38;5;238m  71[0m   [38;5;238m│[0m [38;2;248;248;242mSF:x20\(most\x20recent\x20call\x20last\):\n\x20\x20File\x20\"/opt/\.tick-s[0m
+[38;5;238m  72[0m   [38;5;238m│[0m [38;2;248;248;242mSF:erv/tickets\.py\",\x20line\x20105,\x20in\x20<module>\n\x20\x20\x20\x20m[0m
+[38;5;238m  73[0m   [38;5;238m│[0m [38;2;248;248;242mSF:ain\(\)\n\x20\x20File\x20\"/opt/\.tick-serv/tickets\.py\",\x20line\x209[0m
+[38;5;238m  74[0m   [38;5;238m│[0m [38;2;248;248;242mSF:3,\x20in\x20main\n\x20\x20\x20\x20username\x20=\x20input\(\"username>\x[0m
+[38;5;238m  75[0m   [38;5;238m│[0m [38;2;248;248;242mSF:20\"\)\n\x20\x20File\x20\"/usr/lib/python3\.6/codecs\.py\",\x20line\x20[0m
+[38;5;238m  76[0m   [38;5;238m│[0m [38;2;248;248;242mSF:321,\x20in\x20decode\n\x20\x20\x20\x20\(result,\x20consumed\)\x20=\x20s[0m
+[38;5;238m  77[0m   [38;5;238m│[0m [38;2;248;248;242mSF:elf\._buffer_decode\(data,\x20self\.errors,\x20final\)\nUnicodeDecodeEr[0m
+[38;5;238m  78[0m   [38;5;238m│[0m [38;2;248;248;242mSF:ror:\x20'utf-8'\x20codec\x20can't\x20decode\x20byte\x200xd7\x20in\x20po[0m
+[38;5;238m  79[0m   [38;5;238m│[0m [38;2;248;248;242mSF:sition\x2013:\x20invalid\x20continuation\x20byte\n")%r(TerminalServerCo[0m
+[38;5;238m  80[0m   [38;5;238m│[0m [38;2;248;248;242mSF:okie,1B0,"username>\x20Traceback\x20\(most\x20recent\x20call\x20last\):[0m
+[38;5;238m  81[0m   [38;5;238m│[0m [38;2;248;248;242mSF:\n\x20\x20File\x20\"/opt/\.tick-serv/tickets\.py\",\x20line\x20105,\x20[0m
+[38;5;238m  82[0m   [38;5;238m│[0m [38;2;248;248;242mSF:in\x20<module>\n\x20\x20\x20\x20main\(\)\n\x20\x20File\x20\"/opt/\.tick[0m
+[38;5;238m  83[0m   [38;5;238m│[0m [38;2;248;248;242mSF:-serv/tickets\.py\",\x20line\x2093,\x20in\x20main\n\x20\x20\x20\x20user[0m
+[38;5;238m  84[0m   [38;5;238m│[0m [38;2;248;248;242mSF:name\x20=\x20input\(\"username>\x20\"\)\n\x20\x20File\x20\"/usr/lib/pyt[0m
+[38;5;238m  85[0m   [38;5;238m│[0m [38;2;248;248;242mSF:hon3\.6/codecs\.py\",\x20line\x20321,\x20in\x20decode\n\x20\x20\x20\x20[0m
+[38;5;238m  86[0m   [38;5;238m│[0m [38;2;248;248;242mSF:\(result,\x20consumed\)\x20=\x20self\._buffer_decode\(data,\x20self\.er[0m
+[38;5;238m  87[0m   [38;5;238m│[0m [38;2;248;248;242mSF:rors,\x20final\)\nUnicodeDecodeError:\x20'utf-8'\x20codec\x20can't\x20d[0m
+[38;5;238m  88[0m   [38;5;238m│[0m [38;2;248;248;242mSF:ecode\x20byte\x200xe0\x20in\x20position\x205:\x20invalid\x20continuatio[0m
+[38;5;238m  89[0m   [38;5;238m│[0m [38;2;248;248;242mSF:n\x20byte\n");[0m
+[38;5;238m  90[0m   [38;5;238m│[0m [38;2;248;248;242mMAC Address: 08:00:27:E5:C5:17 (Oracle VirtualBox virtual NIC)[0m
+[38;5;238m  91[0m   [38;5;238m│[0m [38;2;248;248;242mService Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel[0m
+[38;5;238m  92[0m   [38;5;238m│[0m 
+[38;5;238m  93[0m   [38;5;238m│[0m [38;2;248;248;242mService detection performed. Please report any incorrect results at https://nmap.org/subm[0m
+[38;5;238m    [0m   [38;5;238m│[0m [38;2;248;248;242mit/ .[0m
+[38;5;238m  94[0m   [38;5;238m│[0m [38;2;248;248;242m# Nmap done at Sun Nov 27 16:44:55 2022 -- 1 IP address (1 host up) scanned in 67.31 seco[0m
+[38;5;238m    [0m   [38;5;238m│[0m [38;2;248;248;242mnds[0m
+[38;5;238m───────┴──────────────────────────────────────────────────────────────────────────────────────────[0m

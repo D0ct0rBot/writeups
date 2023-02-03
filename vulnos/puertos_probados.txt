@@ -1,0 +1,11 @@
+
+22 ssh OpenSSH 5.3p1
+80 http Apache httpd
+
+143 imap Dovecot
+993 ssl/imap Dovecot
+3306 MySql
+8080 Apache Tomcat
+10000 MiniServ
+
+

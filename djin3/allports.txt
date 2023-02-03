@@ -1,0 +1,25 @@
+Starting Nmap 7.93 ( https://nmap.org ) at 2022-11-27 16:42 EST
+Initiating ARP Ping Scan at 16:42
+Scanning 10.0.2.4 [1 port]
+Completed ARP Ping Scan at 16:42, 0.08s elapsed (1 total hosts)
+Initiating SYN Stealth Scan at 16:42
+Scanning 10.0.2.4 [65535 ports]
+Discovered open port 22/tcp on 10.0.2.4
+Discovered open port 80/tcp on 10.0.2.4
+Discovered open port 31337/tcp on 10.0.2.4
+Discovered open port 5000/tcp on 10.0.2.4
+Completed SYN Stealth Scan at 16:42, 6.43s elapsed (65535 total ports)
+Nmap scan report for 10.0.2.4
+Host is up, received arp-response (0.00022s latency).
+Scanned at 2022-11-27 16:42:01 EST for 6s
+Not shown: 65531 closed tcp ports (reset)
+PORT      STATE SERVICE REASON
+22/tcp    open  ssh     syn-ack ttl 64
+80/tcp    open  http    syn-ack ttl 64
+5000/tcp  open  upnp    syn-ack ttl 64
+31337/tcp open  Elite   syn-ack ttl 64
+MAC Address: 08:00:27:E5:C5:17 (Oracle VirtualBox virtual NIC)
+
+Read data files from: /usr/bin/../share/nmap
+Nmap done: 1 IP address (1 host up) scanned in 6.79 seconds
+           Raw packets sent: 65536 (2.884MB) | Rcvd: 65536 (2.621MB)

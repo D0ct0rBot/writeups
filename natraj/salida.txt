@@ -1,0 +1,10 @@
+--2022-12-12 17:06:34--  http://192.168.1.55/console/file.php?file=/var/www/html/index.html
+Connecting to 192.168.1.55:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Saving to: ‘file.php?file=%2Fvar%2Fwww%2Fhtml%2Findex.html’
+
+     0K .......... ....                                        7.70M=0.002s
+
+2022-12-12 17:06:34 (7.70 MB/s) - ‘file.php?file=%2Fvar%2Fwww%2Fhtml%2Findex.html’ saved [14497]
+

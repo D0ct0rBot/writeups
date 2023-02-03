@@ -1,0 +1,11 @@
+# Nmap 7.93 scan initiated Sun Dec 18 15:41:45 2022 as: nmap -sS -p0-100 -Pn -oN open_ports.txt 192.168.1.127
+Nmap scan report for insanityhosting.home (192.168.1.127)
+Host is up (0.0033s latency).
+Not shown: 91 filtered tcp ports (no-response), 7 filtered tcp ports (host-prohibited)
+PORT   STATE SERVICE
+21/tcp open  ftp
+22/tcp open  ssh
+80/tcp open  http
+MAC Address: 00:0C:29:76:98:86 (VMware)
+
+# Nmap done at Sun Dec 18 15:41:48 2022 -- 1 IP address (1 host up) scanned in 2.31 seconds

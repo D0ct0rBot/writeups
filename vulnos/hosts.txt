@@ -1,0 +1,9 @@
+Interface: eth0, type: EN10MB, MAC: 08:00:27:22:46:4f, IPv4: 10.0.2.5
+Starting arp-scan 1.9.8 with 256 hosts (https://github.com/royhills/arp-scan)
+10.0.2.1	52:54:00:12:35:00	QEMU
+10.0.2.2	52:54:00:12:35:00	QEMU
+10.0.2.3	08:00:27:06:8e:16	PCS Systemtechnik GmbH
+10.0.2.15	08:00:27:43:06:19	PCS Systemtechnik GmbH
+
+4 packets received by filter, 0 packets dropped by kernel
+Ending arp-scan 1.9.8: 256 hosts scanned in 2.755 seconds (92.92 hosts/sec). 4 responded

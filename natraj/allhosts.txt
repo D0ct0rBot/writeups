@@ -1,0 +1,17 @@
+Interface: eth0, type: EN10MB, MAC: 08:00:27:22:46:4f, IPv4: 192.168.1.79
+Starting arp-scan 1.9.8 with 256 hosts (https://github.com/royhills/arp-scan)
+192.168.1.1	48:8d:36:4f:94:37	Arcadyan Corporation
+192.168.1.15	e0:d5:5e:56:4d:af	GIGA-BYTE TECHNOLOGY CO.,LTD.
+192.168.1.32	78:c8:81:2a:af:2d	Sony Interactive Entertainment Inc.
+192.168.1.44	dc:f5:05:5b:28:45	AzureWave Technology Inc.
+192.168.1.55	00:0c:29:7a:1f:ed	VMware, Inc.
+192.168.1.76	e0:9d:13:c6:e2:52	Samsung Electronics Co.,Ltd
+192.168.1.98	9c:d2:1e:5d:d5:57	Hon Hai Precision Ind. Co.,Ltd.
+192.168.1.12	68:db:f5:00:01:0e	Amazon Technologies Inc.
+192.168.1.43	ec:c4:0d:3c:8a:96	Nintendo Co.,Ltd
+192.168.1.45	de:24:d0:58:b9:9f	(Unknown: locally administered)
+192.168.1.110	54:99:63:61:e5:c6	Apple, Inc.
+192.168.1.67	74:60:fa:a4:0c:2b	HUAWEI TECHNOLOGIES CO.,LTD
+
+12 packets received by filter, 0 packets dropped by kernel
+Ending arp-scan 1.9.8: 256 hosts scanned in 3.029 seconds (84.52 hosts/sec). 12 responded

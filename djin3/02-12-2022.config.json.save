@@ -1,0 +1,6 @@
+connections:
+{
+	"URL": "10.0.2.5:445",
+	"output":"/bin/bash -c \"whoami\""
+}
+	
