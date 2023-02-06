@@ -1,6 +1,6 @@
 # writeups
 Write ups for vulnerable machine labs:
 
-- [Vulnhub](/vulnhub)
+- [Vulnhub](/vulnhub/README.md)
 - [Hack the box]()
 - [Try hack me]()
