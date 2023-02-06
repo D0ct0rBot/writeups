@@ -1,10 +1,10 @@
 # Presidential
 
 Si la máquina da problemas para iniciar, se puede editar la interfaz de red
-localizando el archivo */etc/sysconfig/network-scripts*. Renombrar el fichero *ifcfg-enp0s3* a *ifconfi-eth0*
-editandolo y allá donde ponga *enp0s3* cambiar por *eth0*.
+localizando el archivo */etc/sysconfig/network-scripts*. Renombrar el fichero *ifcfg-enp0s3* a *ifconfi-eth0*, 
+luego editarlo y allá donde ponga *enp0s3* cambiar por *eth0*.
 
-Poner la máquina en VMWare con ethernet bridged. Si no peta al editar los parámetros, editar el fichero vmx
+Poner la máquina en VMWare con ethernet bridged. Si nos peta al editar los parámetros, editar el fichero vmx
 y eliminar todas las entradas ethernet que encontremos. Añadir ethernet.addressType = "generated" ethernet0.present=TRUE.
 
 -------------------------------------------------------------------------------
