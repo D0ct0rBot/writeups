@@ -356,7 +356,7 @@ mensaje codificado -> xxd -r -> XOR key -> mensaje
 
 Crearemos un script para dados 2 parámetros de entrada, un fichero y un texto, nos genere un mensaje codificado/decodificado
 
-![xordecode.py](xordecode.py)
+[xordecode.py](/xordecode.py)
 
 -------------------------------------------------------------------------------
 
