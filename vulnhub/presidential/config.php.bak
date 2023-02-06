@@ -1,8 +1,0 @@
-<?php
-
-$dbUser = "votebox";
-$dbPass = "casoj3FFASPsbyoRP";
-$dbHost = "localhost";
-$dbname = "votebox";
-
-?>
