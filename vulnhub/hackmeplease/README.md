@@ -2,7 +2,7 @@
 
 Empezamos la investigación realizando un escaneo de las máquinas accesibles desde la interfaz de red eth0
 
-![arpscan.png](arpscan.png)
+![arp-scan.png](arp-scan.png)
 
 Como vemos hay una máquina virtual VMWare asociada a la ip 192.168.1.36
 
