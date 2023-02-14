@@ -9,6 +9,7 @@
 - [Loly](/vulnhub/loly/README.md)
 - [Earth](/vulnhub/earth/README.md)
 - [Presidential](/vulnhub/presidential/README.md)
+- [HackMePlease(/vulnhub/hackmeplease/README.md)
 
 (*) = Writeup needs improvement or work in progress.
 (-) = No writeup just individual files.
