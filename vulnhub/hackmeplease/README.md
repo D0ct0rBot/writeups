@@ -380,17 +380,14 @@ MySQL [mysql]> select user, authentication_string from user;
 | user             | authentication_string                                                  |
 +------------------+------------------------------------------------------------------------+
 -3B<;yrVDMbVKA4tdgskyi7u9wDeaAycRfWaDu6XxE5/ppf7 |
-| seeddms          | $A$005$d 5=
-                                B}x{F -_E-bpSftyzk6e7NqJ6DWIL2AzzxKxSahPoRqZvG9Bej/c7 |
-| debian-sys-maint | $A$005$woD"j`%!04QZ{m3KTkvDc7crnFw9G0Fyx3MjeWXsjoD0EMEhynazfkX.1 |
+| seeddms          | $A$005$d 5=B}x{F -_E-bpSftyzk6e7NqJ6DWIL2AzzxKxSahPoRqZvG9Bej/c7 |
+| debian-sys-maint | $A$005$woD"j%!04QZ{m3KTkvDc7crnFw9G0Fyx3MjeWXsjoD0EMEhynazfkX.1 |
 | mysql.infoschema | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |
 | mysql.session    | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |
 | mysql.sys        | $A$005$THISISACOMBINATIONOFINVALIDSALTANDPASSWORDTHATMUSTNEVERBRBEUSED |
 | root             |                                                                        |
-| seeddms          | $A$005$A@]@yCjderspsKBE
-                                            Wb77PQUG8HUGhs0wW9nN5HFf1c5yK41et/8Uz9a4kq4 |
-| seedms           | $A$005$':zLXtaKw49H`6
-                                          `PImejdBmtks1FgLOk2Xs9AuoeYwxdSRsy9NBNHTBJt1 |
+| seeddms          | $A$005$A@]@yCjderspsKBEWb77PQUG8HUGhs0wW9nN5HFf1c5yK41et/8Uz9a4kq4 |
+| seedms           | $A$005$':zLXtaKw49H`6`PImejdBmtks1FgLOk2Xs9AuoeYwxdSRsy9NBNHTBJt1 |
 +------------------+------------------------------------------------------------------------+
 9 rows in set (0,002 sec)
 ```
